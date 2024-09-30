@@ -1,5 +1,5 @@
 class Attendance < ApplicationRecord
-  belongs_to :student
+  belongs_to :user
   validates :sign_in_time, presence: true  # Ensure sign-in time is present
 
   def self.to_csv
