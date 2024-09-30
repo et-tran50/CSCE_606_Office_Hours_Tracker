@@ -1,3 +1,8 @@
 <h1>Welcome to the Home Page</h1>
 <%# <p>This is the index action of the HomeController.</p> %>
 <p>We are Office-Hours-Tracker.</p>
+
+<h1>Attendance Records</h1>
+
+<!-- Add the button to download the CSV -->
+<%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %>

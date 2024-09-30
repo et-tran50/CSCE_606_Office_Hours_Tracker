@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   root "home#index"
   # Route for about page
   get "about", to: "home#about", as: :about
+    # Add the route to the CSV export action
+  get 'attendances/export_csv', to: 'attendances#export_csv', as: 'export_csv'
 end
