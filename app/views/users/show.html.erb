@@ -15,5 +15,8 @@
     <%= @current_user.last_name %>
   </p>
 
+  <!-- Add the button to download the CSV -->
+  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %>
+
   <%= link_to "Logout", logout_path %>
 </div>
