@@ -7,16 +7,29 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-StudentsAttendance.destroy_all
 
-# Seed data
-StudentsAttendance.create([
-  { email: 'james@tamu.edu', checkin_date: '2024-10-01', checkin_time: '09:00:00' },
-  { email: 'sara@tamu.edu', checkin_date: '2024-10-01', checkin_time: '09:15:00' },
-  { email: 'bran@tamu.edu', checkin_date: '2024-10-01', checkin_time: '09:30:00' },
-  { email: 'jolly@tamu.edu', checkin_date: '2024-10-02', checkin_time: '10:00:00' },
-  { email: 'jack@tamu.edu', checkin_date: '2024-10-02', checkin_time: '10:15:00' }
-])
 
-# attendance = StudentsAttendance.find(1) # replace 1 with the actual ID
-# puts "Email: #{attendance.email}, Checkin Date: #{attendance.checkin_date}, Checkin Time: #{attendance.checkin_time.strftime("%H:%M:%S")}"
+require 'faker'
+
+
+
+# Get all student ids
+user_ids = User.pluck(:id)
+start_date = Date.parse("2024-06-01")
+end_date = Date.parse("2024-06-06")
+
+# Create fake attendance records for these students
+50.times do
+  user_id = user_ids.sample  # Randomly select a valid student_id
+  # Generate a random date between June 1 and June 6
+  random_date = rand(start_date..end_date)
+  # Generate a random time between 9:00 and 17:00 (inclusive)
+  random_hour = rand(9..16)
+  random_minute = rand(0..59)
+  random_time = Time.zone.local(random_date.year, random_date.month, random_date.day, random_hour, random_minute)
+
+  Attendance.create(
+    user_id: user_id,
+    sign_in_time: random_time
+  )
+end

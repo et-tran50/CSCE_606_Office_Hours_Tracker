@@ -1,2 +1,0 @@
-class StudentsAttendance < ApplicationRecord
-end

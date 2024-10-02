@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#logout", as: "logout"
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"
 
-  post 'mark_attendance', to: 'attendance#mark'
+  post 'attendances/mark', to: 'attendances#mark', as: 'mark'
+
+  #  Route to allow users to download the attendance report as a CSV file
+  get 'attendances/export_csv', to: 'attendances#export_csv', as: 'export_csv'
+  
 end
