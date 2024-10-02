@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get "/logout", to: "sessions#logout", as: "logout"
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"
+
+  post 'mark_attendance', to: 'attendance#mark'
 end
