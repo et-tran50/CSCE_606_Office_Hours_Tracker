@@ -59,10 +59,14 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# +++ for google oauth2 +++
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
+# --- for google oauth2 ---
 
+# +++ for pg in heroku +++
 group :production do
   gem "pg"
 end
+# --- ffor pg in heroku ---

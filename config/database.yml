@@ -27,6 +27,9 @@ test:
 #
 # Similarly, if you deploy your application as a Docker container, you must
 # ensure the database is located in a persisted volume.
+
+# We're using SQLite locally, but Heroku uses PostgreSQL.
+# Heroku will actually overwrite this with its own values, but this is a note to our future selves that the production environment is using postgres and that we should not run production locally.
 production:
   adapter: postgresql
   url: <%= ENV["DATABASE_URL"] %>
