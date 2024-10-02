@@ -5,4 +5,6 @@ Feature: Student Page
 
   Scenario: Student Page Elements
     Given I'm on the page "Student"
-    Then I should see "I am here"
+    Then I should see "Howdy"
+    When I click "Mark my attendance"
+    Then I should see "Attendence marked successfully!"
