@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-
-  describe 'when trying to find movies by the same director' do
-    it 'returns a valid collection when a valid director is present' do
+  describe "when trying to login" do
+    it "logs me in" do
       
+  end
+  describe 'when trying to logout' do
+    it 'logs me out' do
+      expect(flash[:notice]).to match(/You are logged out/)
     end
   end
 end

@@ -4,6 +4,8 @@ Given('I\'m on the page {string}') do |string|
     visit root_path
   when "About"
     visit about_path
+  when "Student"
+    visit student_path
   else
     raise "Path not defined for #{string}"
   end
