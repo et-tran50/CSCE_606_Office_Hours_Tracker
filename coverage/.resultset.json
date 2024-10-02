@@ -1,12 +1,14 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/user/CSCE_606_Office_Hours_Tracker/app/controllers/home_controller.rb": {
+      "/home/user/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
         "lines": [
           1,
           1,
-          null,
           1,
+          1,
+          0,
+          null,
           null,
           null
         ]
@@ -14,8 +16,29 @@
       "/home/user/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          1,
           null,
           1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
           null
         ]
       },
@@ -43,6 +66,49 @@
       },
       "/home/user/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
         "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/user/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/user/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
+        "lines": [
+          0,
           0,
           0,
           0,
@@ -82,8 +148,17 @@
         ],
         "branches": {
         }
+      },
+      "/home/user/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1727844146
+    "timestamp": 1727883510
   }
 }
