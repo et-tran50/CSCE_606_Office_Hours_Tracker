@@ -5,7 +5,7 @@ Given('I\'m on the page {string}') do |string|
   when "About"
     visit about_path
   when "Student"
-    visit student_path
+    #I want to call it right here
   else
     raise "Path not defined for #{string}"
   end

@@ -13,3 +13,19 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+  provider: 'google_oauth2',
+  uid: '123456789',
+  info: {
+    name: 'Test User',
+    email: 'testuser@example.com',
+    image: 'http://example.com/testuser.jpg'
+  },
+  credentials: {
+    token: 'mock_token',
+    refresh_token: 'mock_refresh_token',
+    expires_at: Time.now + 1.week
+  }
+})

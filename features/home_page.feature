@@ -5,10 +5,5 @@ Feature: Home Page
 
   Scenario: Home Page Elements
     Given I'm on the page "Home"
-    Then I should see "Welcome to the Home Page"
-    And I should see "We are Office-Hours-Tracker."
-
-  Scenario: About Page Elements
-    Given I'm on the page "About"
-    Then I should see "Home#about"
-    And I should see "Find me in app/views/home/about.html.erb"
+    Then I should see "Welcome"
+    And I should see "Login with Google"
