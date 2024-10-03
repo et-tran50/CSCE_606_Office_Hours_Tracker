@@ -54,3 +54,27 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+
+require 'omniauth'
+
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+  provider: 'google_oauth2',
+  uid: '123456789',
+  info: {
+    name: 'Test User',
+    email: 'testuser@example.com',
+    image: 'http://example.com/testuser.jpg'
+  },
+  credentials: {
+    token: 'mock_token',
+    refresh_token: 'mock_refresh_token',
+    expires_at: Time.now + 1.week
+  }
+})
+
+#prompt: How do I do a cucumber test that checks if something downloaded when I click the link
+#response: code below
+
+
