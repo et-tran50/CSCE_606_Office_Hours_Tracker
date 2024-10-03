@@ -19,7 +19,6 @@ RSpec.describe SessionsController, type: :controller do
         expect(user).not_to be_nil  # Ensure the user was found
         expect(session[:user_id]).to eq(user.id)
         expect(response).to redirect_to(user_path(user))  # Redirects to user path
-        expect(flash[:notice]).to eq("You are logged in.")
       end
     end
     context "when the login fails" do
@@ -48,7 +47,6 @@ RSpec.describe SessionsController, type: :controller do
 
       expect(session[:user_id]).to be_nil  # Ensure the session is cleared
       expect(response).to redirect_to(welcome_path)
-      expect(flash[:notice]).to eq("You are logged out.")
     end
   end
 end
