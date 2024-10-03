@@ -1,2 +1,19 @@
-<h1>Welcome#index</h1>
-<p><%= button_to "Login with Google", "/auth/google_oauth2", data: {turbo: "false"} %></p>
+<div class = "header-image">
+  <img style="margin-top: 60px;"src="<%= image_path('Box_logo.png') %>" alt="Texas A&M Box Logo" width="400" />
+</div>
+<div class="header-text">
+  <h1>Office Hours Tracker</h1>
+  <h1 style="margin-top: -25px;" >Welcome!</h1>
+</div>
+<div  class="login">
+  <h2>I am signing in as: </h2>
+  <select id="role-selection" class="dropdown-menu">
+    <option value="" disabled selected>Select your role</option>
+    <option value="student">Student</option>
+    <option value="ta">TA</option>
+    <option value="admin">Admin</option>
+  </select>
+  <p><%= button_to "/auth/google_oauth2", data: {turbo: "false"}, class: "google-btn" do %>
+    Login with Google
+  <% end %></p>
+</div>
