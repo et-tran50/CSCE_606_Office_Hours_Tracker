@@ -6,9 +6,8 @@ Feature: Student Page
   Scenario: Student logs in successfully 
     Given I'm on the page "Home"
     When I click "Login with Google"
-    Then I should see "You are logged in"
-    And I should see "Howdy Test"
-    When I click "Mark my attendance"
+    Then I should see "Howdy, Test!"
+    When I click "I AM HERE!"
     Then I should see "Attendance marked successfully!"
 
   Scenario: Student logs in successfully 
@@ -21,4 +20,4 @@ Feature: Student Page
     Given I'm on the page "Home"
     When I click "Login with Google"
     When I click link "Logout"
-    Then I should see "You are logged out."
+    Then I should see "Office Hours Tracker"
