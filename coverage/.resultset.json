@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
         "lines": [
           1,
           1,
@@ -13,7 +13,7 @@
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
@@ -42,31 +42,31 @@
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/helpers/application_helper.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/helpers/attendance_helper.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/attendance_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/helpers/attendances_helper.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/attendances_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/helpers/home_helper.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/home_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/channel.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/channel.rb": {
         "lines": [
           0,
           0,
@@ -76,7 +76,7 @@
         "branches": {
         }
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -86,7 +86,7 @@
         "branches": {
         }
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/controllers/attendances_controller.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/attendances_controller.rb": {
         "lines": [
           0,
           0,
@@ -116,7 +116,7 @@
         "branches": {
         }
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
         "lines": [
           0,
           0,
@@ -138,82 +138,6 @@
           null,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/jobs/application_job.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/mailers/application_mailer.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/models/application_record.rb": {
-        "lines": [
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/models/attendance.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
           0,
           0,
           0,
@@ -224,7 +148,83 @@
         "branches": {
         }
       },
-      "/home/bryson/finalProject/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/jobs/application_job.rb": {
+        "lines": [
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/mailers/application_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/attendance.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
         "lines": [
           0,
           0,
@@ -235,6 +235,224 @@
         }
       }
     },
-    "timestamp": 1727907266
+    "timestamp": 1727921358
+  },
+  "RSpec": {
+    "coverage": {
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/application_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/attendance_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/attendances_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/helpers/home_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          14,
+          null,
+          null,
+          1,
+          null,
+          null,
+          13,
+          null,
+          null,
+          1,
+          null,
+          10,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/attendances_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          2,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null,
+          2,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
+        "lines": [
+          1,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/channel.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/jobs/application_job.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/mailers/application_mailer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/ehan/CSCE_606_Office_Hours_Tracker/app/models/attendance.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          6,
+          48,
+          48,
+          null,
+          48,
+          null,
+          48,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    "timestamp": 1727921538
   }
 }

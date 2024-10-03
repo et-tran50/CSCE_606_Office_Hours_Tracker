@@ -46,9 +46,9 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem "sqlite3"
-  
+
   # random data generator
-  gem 'faker'
+  gem "faker"
 end
 
 group :development do
@@ -60,12 +60,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 
   gem "selenium-webdriver"
-
+  gem "rails-controller-testing"
   gem "cucumber-rails", require: false
   gem "database_cleaner"
   gem "rspec-rails"
   gem "capybara"
-  gem "simplecov", require: false
+  gem "simplecov"
 end
 
 # +++ for google oauth2 +++
