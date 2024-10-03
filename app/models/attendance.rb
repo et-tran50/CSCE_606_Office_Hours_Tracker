@@ -4,7 +4,7 @@ class Attendance < ApplicationRecord
 
   def self.to_csv
     CSV.generate(headers: true) do |csv|
-      csv << ["Date", "Time Slot", "Number of Students"]
+      csv << [ "Date", "Time Slot", "Number of Students" ]
 
       # Define the date range from June 1 to June 6, 2024
       start_date = Date.parse("2024-06-01")
@@ -19,7 +19,7 @@ class Attendance < ApplicationRecord
           # Count the number of students in that time range
           count = Attendance.where(sign_in_time: start_time..end_time).count
           # Add a row to the CSV for each time slot
-          csv << [date.strftime('%Y-%m-%d'), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count]
+          csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
         end
       end
     end
