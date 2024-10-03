@@ -33,4 +33,3 @@ Then('the download link should point to the correct file path') do
 
   expect(actual_path).to eq(expected_path)
 end
-  

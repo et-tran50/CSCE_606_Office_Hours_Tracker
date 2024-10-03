@@ -7,7 +7,7 @@ RSpec.describe WelcomeController, type: :controller do
   describe "GET #index" do
     context "when the user is logged in" do
       before do
-        @user = User.create!(uid: "123", provider: "google_oauth2", email: "test@example.com", first_name: "Test", last_name: "User") 
+        @user = User.create!(uid: "123", provider: "google_oauth2", email: "test@example.com", first_name: "Test", last_name: "User")
         session[:user_id] = @user.id  # Simulate user login by setting the session
       end
 
