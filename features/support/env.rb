@@ -74,7 +74,5 @@ OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
   }
 })
 
-#prompt: How do I do a cucumber test that checks if something downloaded when I click the link
-#response: code below
-
-
+# prompt: How do I do a cucumber test that checks if something downloaded when I click the link
+# response: code below
