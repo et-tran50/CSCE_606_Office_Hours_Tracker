@@ -1,24 +1,7 @@
-# README
+# Office Hours Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[deployed application](https://office-hours-tracker-a63f1f6d64ad.herokuapp.com/)
 
-Things you may want to cover:
+[Code Climate report](https://codeclimate.com/github/gourangi0309/CSCE_606_Office_Hours_Tracker)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Goal: The app will allow students to mark their attendance. TAs can clock their shifts in the web application and mark their attendance. Admin can view Excel reports for payroll and analytics. Users can switch between student and admin roles depending on their class.
