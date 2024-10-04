@@ -4,7 +4,7 @@
 
 - [Code Climate Report](https://codeclimate.com/github/gourangi0309/CSCE_606_Office_Hours_Tracker)
 
-- [Team Working Agreement](documentation/Fall2024/Team_Working_Agreement.pdf)
+- [Team Working Agreement](documentation/Fall2024/Team_Working_Agreement.md)
   
 # Goal
 
