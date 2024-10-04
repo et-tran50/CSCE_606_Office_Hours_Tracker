@@ -4,6 +4,8 @@
 
 - [Code Climate Report](https://codeclimate.com/github/gourangi0309/CSCE_606_Office_Hours_Tracker)
 
+- [Team Working Agreement](documentation/Fall2024/Team Working Agreement.pdf)
+  
 # Goal
 
 - The app will allow students to mark their attendance. TAs can clock their shifts in the web application and mark their attendance. Admin can view Excel reports for payroll and analytics. Users can switch between student and admin roles depending on their class.
@@ -14,3 +16,27 @@
 
 - [Sprint Burndown Chart](https://tamu-team-office-tracker.atlassian.net/jira/software/projects/SCRUM/boards/1/reports/burndown?source=sidebar)
 - [Burnup Report](https://tamu-team-office-tracker.atlassian.net/jira/software/projects/SCRUM/boards/1/reports/burnup)
+
+# How to Run the Project
+
+1. Clone the repository
+```bash
+git clone https://github.com/et-tran50/CSCE_606_Office_Hours_Tracker.git
+```
+
+2. Navigate into the project directory
+```bash
+cd CSCE_606_Office_Hours_Tracker
+```
+
+3. Install dependencies
+```bash
+bundle install 
+```
+
+4. Start the Rails server
+```bash
+rails server
+```
+
+5. Access the application by opening your browser and go to [http://localhost:3000](http://localhost:3000).
