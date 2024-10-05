@@ -3,6 +3,7 @@
 - [Deployed Application](https://office-hours-tracker-a63f1f6d64ad.herokuapp.com/)
 
 - [Code Climate Report](https://codeclimate.com/github/gourangi0309/CSCE_606_Office_Hours_Tracker)
+  Note: This report captures the state at the end of Sprint 1 and will not be updated in real-time.
 
 - [Team Working Agreement](documentation/Fall2024/Team_Working_Agreement.md)
   
