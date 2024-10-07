@@ -4,9 +4,10 @@
   <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
 </div>
 <div class="header-bar">
-  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
+  <h1 class="welcome-text">Howdy TA, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
+<%= link_to "Download Attendance CSV", export_csv_path, class: "download-btn" %>
 
 
 <div class="circular-btn-container">
@@ -38,9 +39,6 @@
     <%= hidden_field_tag :email, @current_user.email %> 
     <%= submit_tag 'Mark my attendance',id: 'mark-attendance-btn', class: 'btn btn-primary' %>
   <% end %> -->
-
-  <!-- Add the button to download the CSV 
-  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %> -->
 
   
 </div>

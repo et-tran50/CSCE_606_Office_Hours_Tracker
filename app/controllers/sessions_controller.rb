@@ -18,9 +18,42 @@ class SessionsController < ApplicationController
 
     if @user.valid?
       session[:user_id] = @user.id
-      redirect_to user_path(@user)# , notice: "You are logged in."
+      redirect_to determine_redirect_path(@user.email)# , notice: "You are logged in."
     else
       redirect_to welcome_path, alert: "Login failed."
     end
+  end
+  
+  # the code below determines based on the email address what page the user should go to. if the user is in admin.txt or ta.txt found in the
+  # lib file, they will go there. 
+  #prompt: check the email address logged in with and redirect it to a ta page, student page, or admin page
+  # depending on whether the email address is in the admin email list or the ta email list. 
+  #response: code below (modified to fit the user id requirements)
+  private
+
+  def determine_redirect_path(email)
+    if ta_email?(email)
+      ta_path(@user) 
+    elsif admin_email?(email)
+      admin_path(@user)
+    else
+      user_path(@user) 
+    end
+  end
+
+  def ta_email?(email)
+    ta_emails.include?(email)
+  end
+
+  def admin_email?(email)
+    admin_emails.include?(email)
+  end
+
+  def ta_emails
+    File.read(Rails.root.join('lib', 'ta_emails.txt')).split("\n").map(&:strip)
+  end
+
+  def admin_emails
+    File.read(Rails.root.join('lib', 'admin_emails.txt')).split("\n").map(&:strip)
   end
 end
