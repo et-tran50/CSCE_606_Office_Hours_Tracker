@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'csv'
   before_action :set_current_user, only: [:show, :showTA, :showAdmin]
   before_action :authorize_access, only: [:showTA, :showAdmin]
 
@@ -46,11 +47,19 @@ class UsersController < ApplicationController
   end
 
   def ta_emails
-    File.read(Rails.root.join('lib', 'ta_emails.txt')).split("\n").map(&:strip)
+    read_emails_from_csv(Rails.root.join('lib', 'ta_emails.csv'))
+  end
+  
+  def admin_emails
+    read_emails_from_csv(Rails.root.join('lib', 'admin_emails.csv'))
   end
 
-  def admin_emails
-    File.read(Rails.root.join('lib', 'admin_emails.txt')).split("\n").map(&:strip)
+  def read_emails_from_csv(file_path)
+    emails = []
+    CSV.foreach(file_path, headers: false) do |row|
+      emails << row[0].strip unless row[0].nil? # Assuming emails are in the first column
+    end
+    emails
   end
 end
 
