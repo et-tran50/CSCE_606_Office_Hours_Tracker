@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  sign_in_time: 2024-10-14 11:37:38
+  sign_out_time: 2024-10-14 11:37:38
+  course: MyString
+
+two:
+  user: two
+  sign_in_time: 2024-10-14 11:37:38
+  sign_out_time: 2024-10-14 11:37:38
+  course: MyString
