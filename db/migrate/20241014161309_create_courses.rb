@@ -6,9 +6,8 @@ class CreateCourses < ActiveRecord::Migration[7.2]
       t.string :instructor_name
       # t.string :semester
       # t.integer :year
-      t.datetime start_date
-      t.datetime end_date
-      
+      t.date :start_date
+      t.date :end_date
 
       t.timestamps
     end
