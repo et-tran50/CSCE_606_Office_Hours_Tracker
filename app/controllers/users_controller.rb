@@ -1,20 +1,22 @@
 class UsersController < ApplicationController
-  require 'csv'
-  before_action :set_current_user, only: [:show, :showTA, :showAdmin]
-  before_action :authorize_access, only: [:showTA, :showAdmin]
+  require "csv"
+  before_action :set_current_user, only: [ :show, :showTA, :showAdmin ]
+  before_action :authorize_access, only: [ :showTA, :showAdmin ]
 
   # user gets set above for all, so nothing is in controller
   def show
+    @user = User.find(params[:id])  # Load the user
+    @courses = Course.all
   end
 
-  def showTA 
+  def showTA
   end
 
   def showAdmin
   end
 
 
-  #I asked chat to add security checks so that a student couldn't access the url unless in the file
+  # I asked chat to add security checks so that a student couldn't access the url unless in the file
   private
 
   def set_current_user
@@ -29,12 +31,12 @@ class UsersController < ApplicationController
 
   def current_user_valid?
     # Check if the current user's email is valid for TA or Admin
-    if action_name == 'showTA'
+    if action_name == "showTA"
       ta_email?(@current_user.email)
-    elsif action_name == 'showAdmin'
+    elsif action_name == "showAdmin"
       admin_email?(@current_user.email)
     else
-      true 
+      true
     end
   end
 
@@ -47,11 +49,11 @@ class UsersController < ApplicationController
   end
 
   def ta_emails
-    read_emails_from_csv(Rails.root.join('lib', 'ta_emails.csv'))
+    read_emails_from_csv(Rails.root.join("lib", "ta_emails.csv"))
   end
-  
+
   def admin_emails
-    read_emails_from_csv(Rails.root.join('lib', 'admin_emails.csv'))
+    read_emails_from_csv(Rails.root.join("lib", "admin_emails.csv"))
   end
 
   def read_emails_from_csv(file_path)
@@ -62,4 +64,3 @@ class UsersController < ApplicationController
     emails
   end
 end
-
