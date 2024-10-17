@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_15_133452) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_17_231000) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "sign_in_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "course_id"
-    t.index ["course_id"], name: "index_attendances_on_course_id"
+    t.string "course_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
@@ -51,7 +50,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_133452) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "users"
   add_foreign_key "ta_attendances", "users"
 end

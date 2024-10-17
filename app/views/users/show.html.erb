@@ -1,57 +1,34 @@
 <div class="top-bar">
   <img  src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="top-bar-logo">
-
   <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
 </div>
+
 <div class="header-bar">
   <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
 
 <div class="course-dropdown">
-  <%= form_with url: mark_path, method: :post, class: "course-selection-form" do |f| %>
+  <%= form_with url: user_path(@current_user), method: :get, class: "course-selection-form" do %>
     <div>
-      <%= f.label :course_id, "Select a course" %>
-      <%= f.select :course_id, options_from_collection_for_select(@courses, "id", "course_number"), { include_blank: 'No selection' } %>
+      <%= label_tag :course_number, "Select a course" %>
+      <%= select_tag :course_number, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), include_blank: 'No selection' %>
+      <%= submit_tag "Confirm", class: "select-course-btn" %>
     </div>
   <% end %>
 </div>
 
-
-
-<div class="circular-btn-container">
-  <%= form_with url: mark_path, method: :post, class: "circular-form" do %>
-    <%= hidden_field_tag :email, @current_user.email %>
-    <%= button_tag type: 'submit', id: 'mark-attendance-btn', class: 'circular-btn' do %>
-      <span>I AM</span><br>
-      <span style="margin-top: -45px;">HERE!</span>
+<% if params[:course_number].present? && params[:course_number] != "" %>
+  <div class="circular-btn-container">
+    <%= form_with url: mark_path, method: :post, class: "circular-form" do %>
+      <%= hidden_field_tag :email, @current_user.email %>
+      <%= hidden_field_tag :course_number, params[:course_number] %>
+      <%= button_tag type: 'submit', id: 'mark-attendance-btn', class: 'circular-btn' do %>
+        <span>I AM</span><br>
+        <span style="margin-top: -45px;">HERE!</span>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<div id="user-details">
-  <!--<p>
-  <strong>Email:</strong>
-    <%= @current_user.email %>
-  </p>
+  </div>
+<% end %>
 
-  <p>
-    <strong>First name:</strong>
-    <%= @current_user.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= @current_user.last_name %>
-  </p> -->
-
-  <!--<%= form_with url: mark_path, method: :post do %>
-    <%= hidden_field_tag :email, @current_user.email %> 
-    <%= submit_tag 'Mark my attendance',id: 'mark-attendance-btn', class: 'btn btn-primary' %>
-  <% end %> -->
-
-  <!-- Add the button to download the CSV 
-  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %> -->
-
-  
-</div>
-
+<div id="user-details"></div>
