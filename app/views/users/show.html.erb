@@ -24,11 +24,11 @@
       <%= hidden_field_tag :email, @current_user.email %>
       <%= hidden_field_tag :course_number, params[:course_number] %>
       <%= button_tag type: 'submit', id: 'mark-attendance-btn', class: 'circular-btn' do %>
-        <span>I AM</span><br>
-        <span style="margin-top: -45px;">HERE!</span>
+        <span>I AM HERE FOR <%= params[:course_number] %></span>
       <% end %>
     <% end %>
   </div>
 <% end %>
+
 
 <div id="user-details"></div>
