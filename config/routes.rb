@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   #  Route to allow users to download the attendance report as a CSV file
   get "attendances/export_csv", to: "attendances#export_csv", as: "export_csv"
+
+  resources :courses, only: [:index]
 end

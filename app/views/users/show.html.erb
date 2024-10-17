@@ -8,6 +8,16 @@
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
 
+<div class="course-dropdown">
+  <%= form_with url: mark_path, method: :post, class: "course-selection-form" do |f| %>
+    <div>
+      <%= f.label :course_id, "Select a course" %>
+      <%= f.select :course_id, options_from_collection_for_select(@courses, "id", "course_number"), { include_blank: 'No selection' } %>
+    </div>
+  <% end %>
+</div>
+
+
 
 <div class="circular-btn-container">
   <%= form_with url: mark_path, method: :post, class: "circular-form" do %>
