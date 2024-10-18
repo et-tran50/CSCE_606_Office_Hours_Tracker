@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
 
   # I asked chat to add security checks so that a student couldn't access the url unless in the file
-  private
+  # protected
 
   def set_current_user
     @current_user = User.find(params[:id])
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def current_user_valid?
+    return false if @current_user.nil?
     # Check if the current user's email is valid for TA or Admin
     if action_name == "showTA"
       ta_email?(@current_user.email)
