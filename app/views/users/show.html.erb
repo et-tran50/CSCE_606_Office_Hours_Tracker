@@ -18,7 +18,7 @@
     <% end %>
   <% end %>
 </div>
-<div id="user-details">
+<div class="user-details">
   <!--<p>
   <strong>Email:</strong>
     <%= @current_user.email %>
@@ -33,15 +33,23 @@
     <strong>Last name:</strong>
     <%= @current_user.last_name %>
   </p> -->
-
-  <!--<%= form_with url: mark_path, method: :post do %>
-    <%= hidden_field_tag :email, @current_user.email %> 
-    <%= submit_tag 'Mark my attendance',id: 'mark-attendance-btn', class: 'btn btn-primary' %>
-  <% end %> -->
-
-  <!-- Add the button to download the CSV 
-  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %> -->
-
-  
 </div>
 
+<div class="attendance user-details">
+  <h1>ADMIN</h1>
+  <h2>Attendance Data</h2>
+  <%= form_tag attendance_path, method: :get do %>
+    <!-- todo: add the course id filter-->
+
+    <%= label_tag :start_date, "Start Date:" %>
+    <%= date_field_tag :start_date, params[:start_date], class: "date-input" %>
+   
+    <%= label_tag :end_date, "End Date:" %>
+    <%= date_field_tag :end_date, params[:end_date], class: "date-input" %>
+  <% end %>
+  <div class="user-details">
+    <!-- Add the button to download the CSV -->
+    <%= button_to "Download Student Attendance CSV", download_student_attendance_test_path(format: :csv, course_id: params[:course_id], start_date: params[:start_date], end_date: params[:end_date]), method: :get, class: "download-btn" %>
+    <%= button_to "Download TA Attendance CSV", download_ta_attendance_test_path(format: :csv, course_id: params[:course_id], start_date: params[:start_date], end_date: params[:end_date]), method: :get, class: "download-btn" %>
+  </div>
+</div>
