@@ -112,6 +112,28 @@ body::before {
     background-color: #7a0000;
 }
 
+
+.course-dropdown {
+    display: flex;
+    justify-content: center;   
+    margin-bottom: 20px;       
+  }
+  
+  .course-dropdown label {
+    font-size: 18px;
+    margin-right: 10px;       
+  }
+  
+  .course-dropdown select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;        
+    border: 1px solid #ccc;    
+    background-color: #f8f8f8; 
+  }
+  
+
+
 .logout-btn {
     background-color: #500000;
     color: white;

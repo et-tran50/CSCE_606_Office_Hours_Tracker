@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  require 'csv'
+  require "csv"
   skip_before_action :require_login, only: [ :omniauth ]
   # GET /logout
   def logout
@@ -24,21 +24,21 @@ class SessionsController < ApplicationController
       redirect_to welcome_path, alert: "Login failed."
     end
   end
-  
+
   # the code below determines based on the email address what page the user should go to. if the user is in admin.txt or ta.txt found in the
-  # lib file, they will go there. 
-  #prompt: check the email address logged in with and redirect it to a ta page, student page, or admin page
-  # depending on whether the email address is in the admin email list or the ta email list. 
-  #response: code below (modified to fit the user id requirements)
+  # lib file, they will go there.
+  # prompt: check the email address logged in with and redirect it to a ta page, student page, or admin page
+  # depending on whether the email address is in the admin email list or the ta email list.
+  # response: code below (modified to fit the user id requirements)
   private
 
   def determine_redirect_path(email)
     if ta_email?(email)
-      ta_path(@user) 
+      ta_path(@user)
     elsif admin_email?(email)
       admin_path(@user)
     else
-      user_path(@user) 
+      user_path(@user)
     end
   end
 
@@ -51,11 +51,11 @@ class SessionsController < ApplicationController
   end
 
   def ta_emails
-    read_emails_from_csv(Rails.root.join('lib', 'ta_emails.csv'))
+    read_emails_from_csv(Rails.root.join("lib", "ta_emails.csv"))
   end
-  
+
   def admin_emails
-    read_emails_from_csv(Rails.root.join('lib', 'admin_emails.csv'))
+    read_emails_from_csv(Rails.root.join("lib", "admin_emails.csv"))
   end
 
   def read_emails_from_csv(file_path)
