@@ -14,28 +14,32 @@ class AttendancesController < ApplicationController
     if user
       if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController
         TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
+        session[:attendance_marked] = true
         # flash[:notice] = "TA attendance marked successfully!"
       else
         Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)
+        session[:stu_attendance_marked] = true
         # flash[:notice] = "Attendance marked successfully!"
       end
-      session[:attendance_marked] = true
+      
+      # Rails.logger.info "Attendance marked: #{session[:attendance_marked]}"  # Log to verify
+
     else
       flash[:alert] = "User not found!"
     end
 
-    redirect_to determine_redirect_path(email)# , notice: flash[:notice] || "Attendance marking failed."
+    redirect_to determine_redirect_path(email, course_number)# , notice: flash[:notice] || "Attendance marking failed."
   end
 
   private
 
-  def determine_redirect_path(email)
+  def determine_redirect_path(email, course_number)
     if ta_email?(email)
       ta_path(@current_user)
     elsif admin_email?(email)
       admin_path(@current_user)
     else
-      user_path(@current_user)
+      user_path(@current_user, course_number: course_number)
     end
   end
 

@@ -21,13 +21,12 @@
 
 <div class="class-menu">
   <%= form_with url: user_path(@current_user), method: :get, class: "class-menu" do %>
-  <h2>Select a course: </h2>
+    <h2>Select a course: </h2>
     <div>
-      
-      <%= select_tag :course_number, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), include_blank: 'No selection' %>
-      
+      <%= select_tag :course_number, 
+          options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), 
+          include_blank: 'No selection', onchange: "this.form.submit();" %>
     </div>
-    <%= submit_tag "Confirm", class: "check" %>
   <% end %>
 </div>
 
@@ -36,8 +35,12 @@
     <%= form_with url: mark_path, method: :post, class: "circular-form" do %>
       <%= hidden_field_tag :email, @current_user.email %>
       <%= hidden_field_tag :course_number, params[:course_number] %>
-      <%= button_tag type: 'submit', id: 'mark-attendance-btn', class: 'circular-btn' do %>
-        <span>I AM HERE FOR <%= params[:course_number] %></span>
+      <%= button_tag type: 'submit', id: 'mark-attendance-btn', class: "check-in-btn #{'marked' if session[:stu_attendance_marked]}" do %>
+        <% if session[:stu_attendance_marked] %>
+          <span>CHECKED IN!</span>
+        <% else %>
+          <span>CHECK IN FOR <%= params[:course_number] %></span>
+        <% end %>
       <% end %>
     <% end %>
   </div>
