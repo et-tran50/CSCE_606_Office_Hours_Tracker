@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
         session[:stu_attendance_marked] = true
         # flash[:notice] = "Attendance marked successfully!"
       end
-      
+
       # Rails.logger.info "Attendance marked: #{session[:attendance_marked]}"  # Log to verify
 
     else
