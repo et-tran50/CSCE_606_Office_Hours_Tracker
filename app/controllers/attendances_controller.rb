@@ -4,23 +4,16 @@ class AttendancesController < ApplicationController
     def attendance
       @courses = Course.all
       @attendances = filter_attendances
-    end
 
-    # Send the generated CSV file to the user
-    def download_student_attendance
-      send_data generate_student_attendance_csv, filename: "student_attendance.csv"
-    end
-
-    def download_ta_attendance
-      send_data generate_ta_attendance_csv, filename: "ta_attendance.csv"
-    end
-
-    def download_student_attendance_test
-      send_data generate_student_attendance_csv_test, filename: "student_attendance_test.csv"
-    end
-
-    def download_ta_attendance_test
-      send_data generate_ta_attendance_csv_test, filename: "ta_attendance_test.csv"
+      respond_to do |format|
+        format.html
+        format.csv do
+          send_data generate_attendance_csv,
+                    filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
+                    type: "text/csv",
+                    disposition: "attachment"
+        end
+      end
     end
 
     def mark
@@ -41,6 +34,17 @@ class AttendancesController < ApplicationController
 
     private
 
+    def generate_attendance_csv
+      case params[:attendance_type]
+      when "student"
+        generate_student_attendance_csv_count
+      when "ta"
+        generate_ta_attendance_csv_count
+      else
+        raise ArgumentError, "Invalid attendance type"
+      end
+    end
+
     def filter_attendances
       attendances = Attendance.all
       attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
@@ -49,15 +53,16 @@ class AttendancesController < ApplicationController
       attendances
     end
 
-    def generate_student_attendance_csv_test
+    def generate_student_attendance_csv_count
+      # Shows how many students showed up at each hour
       attendances = filter_attendances.joins(:user).where(users: { role: "student" })
+
+      # Define the date range given from attendance sheet
+      start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
+      end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
 
       CSV.generate(headers: true) do |csv|
         csv << [ "Date", "Time Slot", "Number of Students" ]
-
-        # Define the date range from June 1 to June 6, 2024
-        start_date = Date.parse("2024-06-01")
-        end_date = Date.parse("2024-06-06")
 
         # Loop through each day
         (start_date..end_date).each do |date|
@@ -66,7 +71,7 @@ class AttendancesController < ApplicationController
             start_time = Time.zone.parse("#{date} #{hour}:00:00")
             end_time = start_time + 1.hour
             # Count the number of students in that time range
-            count = attendance.count
+            count = rand(0..5) # attendance.count
             # Add a row to the CSV for each time slot
             csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
           end
@@ -74,15 +79,16 @@ class AttendancesController < ApplicationController
       end
     end
 
-    def generate_ta_attendance_csv_test
+    def generate_ta_attendance_csv_count
+      # Shows how many tas showed up at each hour
       attendances = filter_attendances.joins(:user).where(users: { role: "ta" })
+
+      # Define the date range from June 1 to June 6, 2024
+      start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
+      end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
 
       CSV.generate(headers: true) do |csv|
         csv << [ "Date", "Time Slot", "Number of TAs" ]
-
-        # Define the date range from June 1 to June 6, 2024
-        start_date = Date.parse("2024-06-01")
-        end_date = Date.parse("2024-06-06")
 
         # Loop through each day
         (start_date..end_date).each do |date|
@@ -91,7 +97,7 @@ class AttendancesController < ApplicationController
             start_time = Time.zone.parse("#{date} #{hour}:00:00")
             end_time = start_time + 1.hour
             # Count the number of students in that time range
-            count = attendance.count
+            count = rand(0..5) # attendance.count
             # Add a row to the CSV for each time slot
             csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
           end
@@ -100,6 +106,7 @@ class AttendancesController < ApplicationController
     end
 
     def generate_student_attendance_csv
+      # Shows each attendance record (basically all entries where someone clicked "I am here")
       attendances = filter_attendances.joins(:user).where(users: { role: "student" })
 
       CSV.generate do |csv|
@@ -111,6 +118,7 @@ class AttendancesController < ApplicationController
     end
 
     def generate_ta_attendance_csv
+      # Shows each attendance record
       attendances = filter_attendances.joins(:user).where(users: { role: "ta" })
 
       CSV.generate do |csv|
