@@ -13,11 +13,16 @@
  *= require_tree .
  *= require_self
  */
+ html{
+     height: 100%;
+     margin: 0;
+ }
 body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    overflow: hidden;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -35,6 +40,10 @@ body::before {
     opacity: 0.4;
     z-index: -1;
 }
+
+
+
+
 
 .header-image {
     text-align: center;
@@ -68,8 +77,8 @@ body::before {
     background-color: #500000;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 24px;
+    padding: 20px 40px;
+    font-size: 30px;
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
@@ -83,6 +92,8 @@ body::before {
 .circular-btn-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 75px;
 }
 
 .circular-form {
@@ -112,27 +123,9 @@ body::before {
     background-color: #7a0000;
 }
 
-
-.course-dropdown {
-    display: flex;
-    justify-content: center;   
-    margin-bottom: 20px;       
-  }
-  
-  .course-dropdown label {
-    font-size: 18px;
-    margin-right: 10px;       
-  }
-  
-  .course-dropdown select {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;        
-    border: 1px solid #ccc;    
-    background-color: #f8f8f8; 
-  }
-  
-
+.circular-btn.marked {
+    background-color: rgb(13, 181, 13);
+}
 
 .logout-btn {
     background-color: #500000;
@@ -178,28 +171,96 @@ body::before {
 .top-bar {
     width: 100%;
     background-color: #500000;
-    padding: 40px;
+    padding: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: f;
 }
 
-/* Styling for the logo/image */
 .top-bar-logo {
     position: absolute;
-    left: 20px;
-    height: 300px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 150px;
     width: auto;
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background-color: #500000;
+    text-align: left;
+}
+
+.bottom-bar-logo {
+    transform: translateY(-20%);
+    margin-left: 20px;
+    width: 250px;
+    height: auto;
 }
 
 /* Styling for the user's profile image */
 .profile-picture {
     position: fixed;
     right: 40px;
-    height: 60px;
-    width: 60px;
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.class-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.class-menu label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.class-menu select {
+    width: 450px;
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    width: 500px;
+    height: 75px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.check-in-btn {
+    width: 300px;
+    height: 100px;
+    background-color: #500000;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check-in-btn:hover {
+    background-color: #7a0000;
+}
+
+.check-in-btn.marked {
+    background-color: rgb(13, 181, 13);
 }

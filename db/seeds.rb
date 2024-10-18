@@ -16,36 +16,36 @@ require 'faker'
 
 
 # seed the Course database
-# Course.create(
-#   course_number: 'ENGR 102',
-#   course_name: 'Engineering Lab I - Computation',
-#   instructor_name: 'Niki Ritchey',
-#   # semester: 'Fall',
-#   # year: 2024,
-#   start_date: Date.new(2024, 8, 19),
-#   end_date: Date.new(2024, 12, 31)
-# )
+Course.create(
+  course_number: 'ENGR 102',
+  course_name: 'Engineering Lab I - Computation',
+  instructor_name: 'Niki Ritchey',
+  # semester: 'Fall',
+  # year: 2024,
+  start_date: Date.new(2024, 8, 19),
+  end_date: Date.new(2024, 12, 31)
+)
 
-# Course.create(
-#   course_number: 'ENGR 200',
-#   course_name: 'Dummy course 1',
-#   instructor_name: 'Dummy prof 1',
-#   # semester: 'Fall',
-#   # year: 2024,
-#   start_date: Date.new(2024, 8, 19),
-#   end_date: Date.new(2024, 12, 31)
-# )
+Course.create(
+  course_number: 'ENGR 200',
+  course_name: 'Dummy course 1',
+  instructor_name: 'Dummy prof 1',
+  # semester: 'Fall',
+  # year: 2024,
+  start_date: Date.new(2024, 8, 19),
+  end_date: Date.new(2024, 12, 31)
+)
 
 
-# Course.create(
-#   course_number: 'ENGR 300',
-#   course_name: 'Dummy course 2',
-#   instructor_name: 'Dummy prof 2',
-#   # semester: 'Fall',
-#   # year: 2024,
-#   start_date: Date.new(2024, 8, 19),
-#   end_date: Date.new(2024, 12, 31)
-# )
+Course.create(
+  course_number: 'ENGR 300',
+  course_name: 'Dummy course 2',
+  instructor_name: 'Dummy prof 2',
+  # semester: 'Fall',
+  # year: 2024,
+  start_date: Date.new(2024, 8, 19),
+  end_date: Date.new(2024, 12, 31)
+)
 
 Course.create(
   course_number: 'ENGR 207',

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   # user gets set above for all, so nothing is in controller
   def show
+    session[:attendance_marked] = nil
     @user = User.find(params[:id])  # Load the user
     @courses = Course.all
   end
