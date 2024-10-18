@@ -1,20 +1,33 @@
 <div class="top-bar">
-  <img  src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="top-bar-logo">
+  <img  src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
+
   <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
 </div>
-
 <div class="header-bar">
   <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
 
-<div class="course-dropdown">
-  <%= form_with url: user_path(@current_user), method: :get, class: "course-selection-form" do %>
+<%# <div class="class-menu">
+  <select class="dropdown-menu">
+    <option value="CSCE 101">CSCE 101</option>
+    <option value="CSCE 102">CSCE 102</option>
+    <option value="CSCE 103">CSCE 103</option>
+  </select>
+  
+
+  <button class="check-in-btn">Check In</button>
+</div> %>
+
+<div class="class-menu">
+  <%= form_with url: user_path(@current_user), method: :get, class: "class-menu" do %>
+  <h2>Select a course: </h2>
     <div>
-      <%= label_tag :course_number, "Select a course" %>
+      
       <%= select_tag :course_number, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), include_blank: 'No selection' %>
-      <%= submit_tag "Confirm", class: "select-course-btn" %>
+      
     </div>
+    <%= submit_tag "Confirm", class: "check" %>
   <% end %>
 </div>
 
@@ -30,5 +43,39 @@
   </div>
 <% end %>
 
+<div class="bottom-bar">
+        <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
+</div>
 
-<div id="user-details"></div>
+
+<%# <div id="user-details"> %>
+  
+  <!--<p>
+      <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
+
+  <strong>Email:</strong>
+    <%= @current_user.email %>
+  </p>
+
+  <p>
+    <strong>First name:</strong>
+    <%= @current_user.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @current_user.last_name %>
+  </p> -->
+
+  <!--<%= form_with url: mark_path, method: :post do %>
+    <%= hidden_field_tag :email, @current_user.email %> 
+    <%= submit_tag 'Mark my attendance',id: 'mark-attendance-btn', class: 'btn btn-primary' %>
+  <% end %> -->
+
+  <!-- Add the button to download the CSV 
+  <%= label_tag :course_number, "Select a course" %>
+  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %> -->
+
+  
+<%# </div> %>
+

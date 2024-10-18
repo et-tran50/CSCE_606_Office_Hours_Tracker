@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_17_231000) do
     t.string "course_number"
     t.string "course_name"
     t.string "instructor_name"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
