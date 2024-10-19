@@ -21,13 +21,17 @@ class AttendancesController < ApplicationController
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
     course_number = params[:course_number]
 
+
+    course = Course.find_by(course_number: course_number)  # Find the course by course_number
+
     if user
       if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController
         if attendance_marked_recently?(user, "ta")
           flash[:notice] = "Attendance already marked for the time slot"
         else
           # Mark attendance if no recent entry found
-          TaAttendance.create(user_id: user.id, sign_in_time: Time.now, course_id: "102-PT")
+          # 2024/10/18 update: the course_id should actually be course
+          TaAttendance.create(user_id: user.id, sign_in_time: Time.now, course: "102-PT")
           session[:attendance_marked] = true
           flash[:notice] = "TA attendance marked successfully!"
         end
@@ -36,7 +40,7 @@ class AttendancesController < ApplicationController
           flash[:notice] = "Attendance already marked for the time slot"
         else
           # Mark attendance for Student if no recent entry found
-          Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)
+          Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course.id)
           session[:stu_attendance_marked] = true
           flash[:notice] = "Student attendance marked successfully!"
         end
@@ -175,7 +179,8 @@ class AttendancesController < ApplicationController
     CSV.generate do |csv|
       csv << [ "Student Name", "Course", "Date", "Time" ]
       attendances.each do |attendance|
-        csv << [ attendance.user.full_name, attendance.course.name, attendance.created_at.to_date, attendance.created_at.strftime("%H:%M") ]
+        course_search = Course.find_by(id: attendance.course_id) # course is a foriegn key to attendances, so we need to find the course by index
+        csv << [ attendance.user.full_name, course_search.course_name, attendance.created_at.to_date, attendance.created_at.strftime("%H:%M") ]
       end
     end
   end
