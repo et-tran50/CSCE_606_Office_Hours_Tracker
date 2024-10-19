@@ -76,50 +76,5 @@ def set_omniauth(name, email)
   })
 end
 
-# OmniAuth.config.mock_auth[:google_oauth2_student] = OmniAuth::AuthHash.new({
-#   provider: 'google_oauth2',
-#   uid: 'id_student',
-#   info: {
-#     name: 'name_student',
-#     email: 'student@student.com',
-#     image: 'http://example.com/testuser.jpg'
-#   },
-#   credentials: {
-#     token: 'mock_token',
-#     refresh_token: 'mock_refresh_token',
-#     expires_at: Time.now + 1.week
-#   }
-# })
-
-# OmniAuth.config.mock_auth[:google_oauth2_ta] = OmniAuth::AuthHash.new({
-#   provider: 'google_oauth2',
-#   uid: 'id_ta',
-#   info: {
-#     name: 'name_ta',
-#     email: 'ta@ta.com',
-#     image: 'http://example.com/testuser.jpg'
-#   },
-#   credentials: {
-#     token: 'mock_token',
-#     refresh_token: 'mock_refresh_token',
-#     expires_at: Time.now + 1.week
-#   }
-# })
-
-# OmniAuth.config.mock_auth[:google_oauth2_admin] = OmniAuth::AuthHash.new({
-#   provider: 'google_oauth2',
-#   uid: 'id_admin',
-#   info: {
-#     name: 'name_admin',
-#     email: 'admin@admin.com',
-#     image: 'http://example.com/testuser.jpg'
-#   },
-#   credentials: {
-#     token: 'mock_token',
-#     refresh_token: 'mock_refresh_token',
-#     expires_at: Time.now + 1.week
-#   }
-# })
-
 # prompt: How do I do a cucumber test that checks if something downloaded when I click the link
 # response: code below

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <title>Code coverage for Office-hours-tracker</title>
+    <title>Code coverage for Csce 606 office hours tracker</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.13.1/application.js' type='text/javascript'></script>
     <link href='./assets/0.13.1/application.css' media='screen, projection, print' rel='stylesheet' type='text/css' />
-    <link rel="icon" type="image/png" href="./assets/0.13.1/favicon_green.png" />
+    <link rel="icon" type="image/png" href="./assets/0.13.1/favicon_red.png" />
   </head>
 
   <body>
@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-10-18T11:40:10-05:00">2024-10-18T11:40:10-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-10-18T21:35:47-05:00">2024-10-18T21:35:47-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -21,15 +21,15 @@
   <h2>
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
-      <span class="green">
-  96.18%
+      <span class="red">
+  28.95%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.8
+         1.39
        </span>
     </span> hits/line
     )
@@ -42,11 +42,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>157</b> relevant lines,
-    <span class="green"><b>151</b> lines covered</span> and
-    <span class="red"><b>6</b> lines missed. </span>
-    (<span class="green">
-  96.18%
+    <b>266</b> relevant lines,
+    <span class="green"><b>77</b> lines covered</span> and
+    <span class="red"><b>189</b> lines missed. </span>
+    (<span class="red">
+  28.95%
 </span>
 )
   </div>
@@ -70,84 +70,84 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#90341acb2b79a87be64eeb628a2ae70746da89bc" class="src_link" title="app/channels/application_cable/channel.rb">app/channels/application_cable/channel.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#16e8c2ce68ab553dba9b9a041da45de15333dfb4" class="src_link" title="app/channels/application_cable/channel.rb">app/channels/application_cable/channel.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#e21344798a2ae2a199388bb6dbde53573fa836b6" class="src_link" title="app/channels/application_cable/connection.rb">app/channels/application_cable/connection.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#9d3c31132850313a94a3c2061b6d5f70c6d80ad5" class="src_link" title="app/channels/application_cable/connection.rb">app/channels/application_cable/connection.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#9ac27f0e8773fcc0e8227c7836728be7d98360a9" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#f9a213d9a6f17d5e6ebbcdb55d3f971db6d2087a" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
+            <td class="yellow strong cell--number t-file__coverage">90.00 %</td>
             <td class="cell--number">25</td>
             <td class="cell--number">10</td>
-            <td class="cell--number">10</td>
+            <td class="cell--number">9</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">6.30</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#5db739eb9c86595adc880f94bf238278b3387bff" class="src_link" title="app/controllers/attendances_controller.rb">app/controllers/attendances_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">194</td>
+            <td class="cell--number">146</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">4.40</td>
+            <td class="cell--number">146</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#c59349e9d9bcc806d211e9115954b99a65761666" class="src_link" title="app/controllers/attendances_controller.rb">app/controllers/attendances_controller.rb</a></td>
-            <td class="yellow strong cell--number t-file__coverage">88.89 %</td>
-            <td class="cell--number">69</td>
-            <td class="cell--number">36</td>
-            <td class="cell--number">32</td>
-            <td class="cell--number">4</td>
-            <td class="cell--number">1.81</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#9dfc9bd8a708f9e895cab4cf8663edfb0fb22576" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">94.59 %</td>
+            <td class="strong t-file__name"><a href="#e4bbb0373a724f9f1a32859a957e8f5565aca8e6" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">91.89 %</td>
             <td class="cell--number">68</td>
             <td class="cell--number">37</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1.27</td>
+            <td class="cell--number">34</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">6.32</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#11021045095796d61e57aaed8895094b93ad4067" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#f88531a7e0c16626ff62d9206ddc423099293275" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">54.29 %</td>
             <td class="cell--number">68</td>
             <td class="cell--number">35</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.43</td>
+            <td class="cell--number">19</td>
+            <td class="cell--number">16</td>
+            <td class="cell--number">1.34</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#14377b9e4aba8c6db1df98f8ac58e86c2a62dcc5" class="src_link" title="app/controllers/welcome_controller.rb">app/controllers/welcome_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#66c55d4ad9518daebf2ae7962c51fd79f9935268" class="src_link" title="app/controllers/welcome_controller.rb">app/controllers/welcome_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">80.00 %</td>
             <td class="cell--number">8</td>
             <td class="cell--number">5</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.20</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">3.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#3067437c7ac82723999b02d626de81ad823f9bce" class="src_link" title="app/helpers/application_helper.rb">app/helpers/application_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#6351d8feb820df23daf07b34e085230da41805a0" class="src_link" title="app/helpers/application_helper.rb">app/helpers/application_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -158,7 +158,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#ec64cdb0aaff79c660f950ae7d8e3649ca1d0491" class="src_link" title="app/helpers/attendance_helper.rb">app/helpers/attendance_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#cce37adced85b47e21ab358374130574b87751f4" class="src_link" title="app/helpers/attendance_helper.rb">app/helpers/attendance_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -169,7 +169,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#f68b08f89e387f2ce347329ffdc73f7c9c6705b4" class="src_link" title="app/helpers/attendances_helper.rb">app/helpers/attendances_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#a468bbf68a28ddf2ba35208740ccb69cfc264b20" class="src_link" title="app/helpers/attendances_helper.rb">app/helpers/attendances_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -180,7 +180,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#f646fb8c63a90b8e6752998bf90799a795f95cd0" class="src_link" title="app/helpers/home_helper.rb">app/helpers/home_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#7709d2e786a07f90322d36374fdbf11a8210a71f" class="src_link" title="app/helpers/home_helper.rb">app/helpers/home_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -191,79 +191,79 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#45315e016ff5d502b87e3af2e969a7f0e7b0fb7d" class="src_link" title="app/jobs/application_job.rb">app/jobs/application_job.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#8856d9965623198f83238ad38ab8a7dccec4374d" class="src_link" title="app/jobs/application_job.rb">app/jobs/application_job.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">7</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
+            <td class="cell--number">2</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#497b3f1e6578003e0ab1f3eec3c11ac5e54b271c" class="src_link" title="app/mailers/application_mailer.rb">app/mailers/application_mailer.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#25f38a21b02a9288db7416fabe271186d592c2c7" class="src_link" title="app/mailers/application_mailer.rb">app/mailers/application_mailer.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#4c7b55a8c8a56fbb73e120f7c32796c1f9321f3c" class="src_link" title="app/models/application_record.rb">app/models/application_record.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#e8b291aeb0b1ac2c807a11c3b02c28c6fc58f008" class="src_link" title="app/models/attendance.rb">app/models/attendance.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">27</td>
-            <td class="cell--number">14</td>
-            <td class="cell--number">14</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">14.79</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#472e02024834f90ad79176ff7e694bf6f85827cc" class="src_link" title="app/models/course.rb">app/models/course.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#a48a343b948e05f5dafcf473c7e9468ece036711" class="src_link" title="app/models/ta_attendance.rb">app/models/ta_attendance.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#329fe352c71ba958b33e293a663f2d5143a3f60a" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">4</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#ed9b70eac9d6d9894cf4ab66503b95a09e3cd9dd" class="src_link" title="app/models/application_record.rb">app/models/application_record.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#b5d463f7370e2dcdf6263633dd40e350f964b88f" class="src_link" title="app/models/attendance.rb">app/models/attendance.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">6</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#b73dd0c632e53b3b86776fc73d256f79c6c99bcf" class="src_link" title="app/models/course.rb">app/models/course.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#e02eaa812c44b976717747a0ee0967ada663e30f" class="src_link" title="app/models/ta_attendance.rb">app/models/ta_attendance.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">3</td>
             <td class="cell--number">3</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">0.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#e2db0f9b99ba96b36613b38c2eb4444ad7cb5bf3" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">80.00 %</td>
+            <td class="cell--number">8</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0.80</td>
             
           </tr>
         
@@ -278,15 +278,15 @@
   <h2>
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
-      <span class="green">
-  95.12%
+      <span class="red">
+  28.33%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.72
+         1.54
        </span>
     </span> hits/line
     )
@@ -299,11 +299,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>123</b> relevant lines,
-    <span class="green"><b>117</b> lines covered</span> and
-    <span class="red"><b>6</b> lines missed. </span>
-    (<span class="green">
-  95.12%
+    <b>233</b> relevant lines,
+    <span class="green"><b>66</b> lines covered</span> and
+    <span class="red"><b>167</b> lines missed. </span>
+    (<span class="red">
+  28.33%
 </span>
 )
   </div>
@@ -327,57 +327,57 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#9ac27f0e8773fcc0e8227c7836728be7d98360a9" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#f9a213d9a6f17d5e6ebbcdb55d3f971db6d2087a" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
+            <td class="yellow strong cell--number t-file__coverage">90.00 %</td>
             <td class="cell--number">25</td>
             <td class="cell--number">10</td>
-            <td class="cell--number">10</td>
+            <td class="cell--number">9</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">6.30</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#5db739eb9c86595adc880f94bf238278b3387bff" class="src_link" title="app/controllers/attendances_controller.rb">app/controllers/attendances_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">194</td>
+            <td class="cell--number">146</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">4.40</td>
+            <td class="cell--number">146</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#c59349e9d9bcc806d211e9115954b99a65761666" class="src_link" title="app/controllers/attendances_controller.rb">app/controllers/attendances_controller.rb</a></td>
-            <td class="yellow strong cell--number t-file__coverage">88.89 %</td>
-            <td class="cell--number">69</td>
-            <td class="cell--number">36</td>
-            <td class="cell--number">32</td>
-            <td class="cell--number">4</td>
-            <td class="cell--number">1.81</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#9dfc9bd8a708f9e895cab4cf8663edfb0fb22576" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">94.59 %</td>
+            <td class="strong t-file__name"><a href="#e4bbb0373a724f9f1a32859a957e8f5565aca8e6" class="src_link" title="app/controllers/sessions_controller.rb">app/controllers/sessions_controller.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">91.89 %</td>
             <td class="cell--number">68</td>
             <td class="cell--number">37</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1.27</td>
+            <td class="cell--number">34</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">6.32</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#11021045095796d61e57aaed8895094b93ad4067" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#f88531a7e0c16626ff62d9206ddc423099293275" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">54.29 %</td>
             <td class="cell--number">68</td>
             <td class="cell--number">35</td>
-            <td class="cell--number">35</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.43</td>
+            <td class="cell--number">19</td>
+            <td class="cell--number">16</td>
+            <td class="cell--number">1.34</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#14377b9e4aba8c6db1df98f8ac58e86c2a62dcc5" class="src_link" title="app/controllers/welcome_controller.rb">app/controllers/welcome_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#66c55d4ad9518daebf2ae7962c51fd79f9935268" class="src_link" title="app/controllers/welcome_controller.rb">app/controllers/welcome_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">80.00 %</td>
             <td class="cell--number">8</td>
             <td class="cell--number">5</td>
-            <td class="cell--number">5</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.20</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">3.00</td>
             
           </tr>
         
@@ -391,15 +391,15 @@
   <h2>
     <span class="group_name">Channels</span>
     (<span class="covered_percent">
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
-       <span class="yellow">
-         1.0
+       <span class="red">
+         0.0
        </span>
     </span> hits/line
     )
@@ -412,11 +412,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>4</b> relevant lines,
-    <span class="green"><b>4</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed. </span>
-    (<span class="green">
-  100.0%
+    <b>8</b> relevant lines,
+    <span class="green"><b>0</b> lines covered</span> and
+    <span class="red"><b>8</b> lines missed. </span>
+    (<span class="red">
+  0.0%
 </span>
 )
   </div>
@@ -440,24 +440,24 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#90341acb2b79a87be64eeb628a2ae70746da89bc" class="src_link" title="app/channels/application_cable/channel.rb">app/channels/application_cable/channel.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#16e8c2ce68ab553dba9b9a041da45de15333dfb4" class="src_link" title="app/channels/application_cable/channel.rb">app/channels/application_cable/channel.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#e21344798a2ae2a199388bb6dbde53573fa836b6" class="src_link" title="app/channels/application_cable/connection.rb">app/channels/application_cable/connection.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#9d3c31132850313a94a3c2061b6d5f70c6d80ad5" class="src_link" title="app/channels/application_cable/connection.rb">app/channels/application_cable/connection.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -471,15 +471,15 @@
   <h2>
     <span class="group_name">Models</span>
     (<span class="covered_percent">
-      <span class="green">
-  100.0%
+      <span class="red">
+  46.67%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
-       <span class="green">
-         9.77
+       <span class="red">
+         0.47
        </span>
     </span> hits/line
     )
@@ -492,11 +492,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>22</b> relevant lines,
-    <span class="green"><b>22</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed. </span>
-    (<span class="green">
-  100.0%
+    <b>15</b> relevant lines,
+    <span class="green"><b>7</b> lines covered</span> and
+    <span class="red"><b>8</b> lines missed. </span>
+    (<span class="red">
+  46.67%
 </span>
 )
   </div>
@@ -520,7 +520,7 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#4c7b55a8c8a56fbb73e120f7c32796c1f9321f3c" class="src_link" title="app/models/application_record.rb">app/models/application_record.rb</a></td>
+            <td class="strong t-file__name"><a href="#ed9b70eac9d6d9894cf4ab66503b95a09e3cd9dd" class="src_link" title="app/models/application_record.rb">app/models/application_record.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">3</td>
             <td class="cell--number">2</td>
@@ -531,46 +531,46 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#e8b291aeb0b1ac2c807a11c3b02c28c6fc58f008" class="src_link" title="app/models/attendance.rb">app/models/attendance.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">27</td>
-            <td class="cell--number">14</td>
-            <td class="cell--number">14</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">14.79</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#472e02024834f90ad79176ff7e694bf6f85827cc" class="src_link" title="app/models/course.rb">app/models/course.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#a48a343b948e05f5dafcf473c7e9468ece036711" class="src_link" title="app/models/ta_attendance.rb">app/models/ta_attendance.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
-            
-          </tr>
-        
-          <tr class="t-file">
-            <td class="strong t-file__name"><a href="#329fe352c71ba958b33e293a663f2d5143a3f60a" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#b5d463f7370e2dcdf6263633dd40e350f964b88f" class="src_link" title="app/models/attendance.rb">app/models/attendance.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">6</td>
             <td class="cell--number">4</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#b73dd0c632e53b3b86776fc73d256f79c6c99bcf" class="src_link" title="app/models/course.rb">app/models/course.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#e02eaa812c44b976717747a0ee0967ada663e30f" class="src_link" title="app/models/ta_attendance.rb">app/models/ta_attendance.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">3</td>
             <td class="cell--number">3</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">3</td>
+            <td class="cell--number">0.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#e2db0f9b99ba96b36613b38c2eb4444ad7cb5bf3" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">80.00 %</td>
+            <td class="cell--number">8</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">0.80</td>
             
           </tr>
         
@@ -584,15 +584,15 @@
   <h2>
     <span class="group_name">Mailers</span>
     (<span class="covered_percent">
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
-       <span class="yellow">
-         1.0
+       <span class="red">
+         0.0
        </span>
     </span> hits/line
     )
@@ -605,11 +605,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>3</b> relevant lines,
-    <span class="green"><b>3</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed. </span>
-    (<span class="green">
-  100.0%
+    <b>4</b> relevant lines,
+    <span class="green"><b>0</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed. </span>
+    (<span class="red">
+  0.0%
 </span>
 )
   </div>
@@ -633,13 +633,13 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#497b3f1e6578003e0ab1f3eec3c11ac5e54b271c" class="src_link" title="app/mailers/application_mailer.rb">app/mailers/application_mailer.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#25f38a21b02a9288db7416fabe271186d592c2c7" class="src_link" title="app/mailers/application_mailer.rb">app/mailers/application_mailer.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">4</td>
-            <td class="cell--number">3</td>
-            <td class="cell--number">3</td>
+            <td class="cell--number">4</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">4</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -702,7 +702,7 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#3067437c7ac82723999b02d626de81ad823f9bce" class="src_link" title="app/helpers/application_helper.rb">app/helpers/application_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#6351d8feb820df23daf07b34e085230da41805a0" class="src_link" title="app/helpers/application_helper.rb">app/helpers/application_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -713,7 +713,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#ec64cdb0aaff79c660f950ae7d8e3649ca1d0491" class="src_link" title="app/helpers/attendance_helper.rb">app/helpers/attendance_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#cce37adced85b47e21ab358374130574b87751f4" class="src_link" title="app/helpers/attendance_helper.rb">app/helpers/attendance_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -724,7 +724,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#f68b08f89e387f2ce347329ffdc73f7c9c6705b4" class="src_link" title="app/helpers/attendances_helper.rb">app/helpers/attendances_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#a468bbf68a28ddf2ba35208740ccb69cfc264b20" class="src_link" title="app/helpers/attendances_helper.rb">app/helpers/attendances_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -735,7 +735,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#f646fb8c63a90b8e6752998bf90799a795f95cd0" class="src_link" title="app/helpers/home_helper.rb">app/helpers/home_helper.rb</a></td>
+            <td class="strong t-file__name"><a href="#7709d2e786a07f90322d36374fdbf11a8210a71f" class="src_link" title="app/helpers/home_helper.rb">app/helpers/home_helper.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">2</td>
             <td class="cell--number">1</td>
@@ -755,15 +755,15 @@
   <h2>
     <span class="group_name">Jobs</span>
     (<span class="covered_percent">
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
-       <span class="yellow">
-         1.0
+       <span class="red">
+         0.0
        </span>
     </span> hits/line
     )
@@ -776,11 +776,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>1</b> relevant lines,
-    <span class="green"><b>1</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed. </span>
-    (<span class="green">
-  100.0%
+    <b>2</b> relevant lines,
+    <span class="green"><b>0</b> lines covered</span> and
+    <span class="red"><b>2</b> lines missed. </span>
+    (<span class="red">
+  0.0%
 </span>
 )
   </div>
@@ -804,13 +804,13 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#45315e016ff5d502b87e3af2e969a7f0e7b0fb7d" class="src_link" title="app/jobs/application_job.rb">app/jobs/application_job.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="strong t-file__name"><a href="#8856d9965623198f83238ad38ab8a7dccec4374d" class="src_link" title="app/jobs/application_job.rb">app/jobs/application_job.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
             <td class="cell--number">7</td>
-            <td class="cell--number">1</td>
-            <td class="cell--number">1</td>
+            <td class="cell--number">2</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.00</td>
+            <td class="cell--number">2</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -883,17 +883,17 @@
       <div id="footer">
         Generated by <a href="https://github.com/simplecov-ruby/simplecov">simplecov</a> v0.22.0
         and simplecov-html v0.13.1<br/>
-        using RSpec
+        using Cucumber Features
       </div>
 
       <div class="source_files">
       
-        <div class="source_table" id="90341acb2b79a87be64eeb628a2ae70746da89bc">
+        <div class="source_table" id="16e8c2ce68ab553dba9b9a041da45de15333dfb4">
   <div class="header">
     <h3>app/channels/application_cable/channel.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -902,9 +902,9 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
-      <span class="green"><b>2</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>4</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
 
     
@@ -915,9 +915,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -927,9 +925,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -939,7 +935,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="3">
+          <li class="missed" data-hits="0" data-linenumber="3">
             
 
             
@@ -949,7 +945,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="missed" data-hits="0" data-linenumber="4">
             
 
             
@@ -963,12 +959,12 @@
 </div>
 
       
-        <div class="source_table" id="e21344798a2ae2a199388bb6dbde53573fa836b6">
+        <div class="source_table" id="9d3c31132850313a94a3c2061b6d5f70c6d80ad5">
   <div class="header">
     <h3>app/channels/application_cable/connection.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -977,9 +973,9 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
-      <span class="green"><b>2</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>4</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
 
     
@@ -990,9 +986,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -1002,9 +996,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -1014,7 +1006,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="3">
+          <li class="missed" data-hits="0" data-linenumber="3">
             
 
             
@@ -1024,7 +1016,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="missed" data-hits="0" data-linenumber="4">
             
 
             
@@ -1038,12 +1030,12 @@
 </div>
 
       
-        <div class="source_table" id="9ac27f0e8773fcc0e8227c7836728be7d98360a9">
+        <div class="source_table" id="f9a213d9a6f17d5e6ebbcdb55d3f971db6d2087a">
   <div class="header">
     <h3>app/controllers/application_controller.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="yellow">
+  90.0%
 </span>
 
       lines covered
@@ -1053,8 +1045,8 @@
 
     <div class="t-line-summary">
       <b>10</b> relevant lines.
-      <span class="green"><b>10</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
 
     
@@ -1163,9 +1155,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="14" data-linenumber="10">
+          <li class="covered" data-hits="23" data-linenumber="10">
             
-              <span class="hits">14</span>
+              <span class="hits">23</span>
             
 
             
@@ -1227,9 +1219,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="13" data-linenumber="16">
+          <li class="covered" data-hits="23" data-linenumber="16">
             
-              <span class="hits">13</span>
+              <span class="hits">23</span>
             
 
             
@@ -1281,9 +1273,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="10" data-linenumber="21">
+          <li class="covered" data-hits="11" data-linenumber="21">
             
-              <span class="hits">10</span>
+              <span class="hits">11</span>
             
 
             
@@ -1293,9 +1285,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="22">
             
 
             
@@ -1339,12 +1329,12 @@
 </div>
 
       
-        <div class="source_table" id="c59349e9d9bcc806d211e9115954b99a65761666">
+        <div class="source_table" id="5db739eb9c86595adc880f94bf238278b3387bff">
   <div class="header">
     <h3>app/controllers/attendances_controller.rb</h3>
     <h4>
-      <span class="yellow">
-  88.89%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -1353,9 +1343,9 @@
     
 
     <div class="t-line-summary">
-      <b>36</b> relevant lines.
-      <span class="green"><b>32</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <b>146</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>146</b> lines missed.</span>
     </div>
 
     
@@ -1366,9 +1356,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -1378,9 +1366,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -1400,36 +1386,32 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="4">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="4">
             
 
             
 
-            <code class="ruby">  def export_csv</code>
+            <code class="ruby">    def attendance</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="5">
+          <li class="missed" data-hits="0" data-linenumber="5">
             
 
             
 
-            <code class="ruby">    # Send the generated CSV file to the user</code>
+            <code class="ruby">      @courses = Course.all</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="6">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="6">
             
 
             
 
-            <code class="ruby">    send_data Attendance.to_csv, filename: &quot;attendance_report.csv&quot;</code>
+            <code class="ruby">      @attendances = filter_attendances</code>
           </li>
         </div>
       
@@ -1439,99 +1421,87 @@
 
             
 
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="8">
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="9">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="8">
             
 
             
 
-            <code class="ruby">  def mark</code>
+            <code class="ruby">      respond_to do |format|</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="10">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="9">
             
 
             
 
-            <code class="ruby">    email = params[:email]</code>
+            <code class="ruby">        format.html</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="11">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="10">
             
 
             
 
-            <code class="ruby">    user = User.find_by(email: email)  # Assuming User is the model associated with the user</code>
+            <code class="ruby">        format.csv do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="12">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="11">
             
 
             
 
-            <code class="ruby">    course_number = params[:course_number]</code>
+            <code class="ruby">          send_data generate_attendance_csv,</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="13">
+          <li class="missed" data-hits="0" data-linenumber="12">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">                    filename: &quot;#{params[:attendance_type]}_attendance_#{Date.today.strftime(&#39;%Y%m%d&#39;)}.csv&quot;,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="14">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="13">
             
 
             
 
-            <code class="ruby">    if user</code>
+            <code class="ruby">                    type: &quot;text/csv&quot;,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="15">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="14">
             
 
             
 
-            <code class="ruby">      if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController</code>
+            <code class="ruby">                    disposition: &quot;attachment&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="15">
+            
+
+            
+
+            <code class="ruby">        end</code>
           </li>
         </div>
       
@@ -1541,7 +1511,7 @@
 
             
 
-            <code class="ruby">        TaAttendance.create(user_id: user.id, sign_in_time: Time.now)</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -1551,7 +1521,7 @@
 
             
 
-            <code class="ruby">        session[:attendance_marked] = true</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -1561,51 +1531,47 @@
 
             
 
-            <code class="ruby">        # flash[:notice] = &quot;TA attendance marked successfully!&quot;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="19">
+          <li class="missed" data-hits="0" data-linenumber="19">
             
 
             
 
-            <code class="ruby">      else</code>
+            <code class="ruby">  def mark</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="20">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="20">
             
 
             
 
-            <code class="ruby">        Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)</code>
+            <code class="ruby">    email = params[:email]</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="21">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="21">
             
 
             
 
-            <code class="ruby">        session[:stu_attendance_marked] = true</code>
+            <code class="ruby">    user = User.find_by(email: email)  # Assuming User is the model associated with the user</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="22">
+          <li class="missed" data-hits="0" data-linenumber="22">
             
 
             
 
-            <code class="ruby">        # flash[:notice] = &quot;Attendance marked successfully!&quot;</code>
+            <code class="ruby">    course_number = params[:course_number]</code>
           </li>
         </div>
       
@@ -1615,59 +1581,57 @@
 
             
 
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="24">
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="25">
+          <li class="missed" data-hits="0" data-linenumber="24">
             
 
             
 
-            <code class="ruby">      # Rails.logger.info &quot;Attendance marked: #{session[:attendance_marked]}&quot;  # Log to verify</code>
+            <code class="ruby">    if user</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="missed" data-hits="0" data-linenumber="25">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="missed" data-hits="0" data-linenumber="26">
             
 
             
 
-            <code class="ruby">    else</code>
+            <code class="ruby">        if attendance_marked_recently?(user, &quot;ta&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="28">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="27">
             
 
             
 
-            <code class="ruby">      flash[:alert] = &quot;User not found!&quot;</code>
+            <code class="ruby">          flash[:notice] = &quot;Attendance already marked for the time slot&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="28">
+            
+
+            
+
+            <code class="ruby">        else</code>
           </li>
         </div>
       
@@ -1677,117 +1641,107 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">          # Mark attendance if no recent entry found</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="30">
+          <li class="missed" data-hits="0" data-linenumber="30">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">          TaAttendance.create(user_id: user.id, sign_in_time: Time.now, course_id: &quot;102-PT&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="31">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="31">
             
 
             
 
-            <code class="ruby">    redirect_to determine_redirect_path(email, course_number)# , notice: flash[:notice] || &quot;Attendance marking failed.&quot;</code>
+            <code class="ruby">          session[:attendance_marked] = true</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="missed" data-hits="0" data-linenumber="32">
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">          flash[:notice] = &quot;TA attendance marked successfully!&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
+          <li class="missed" data-hits="0" data-linenumber="33">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="34">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="34">
             
 
             
 
-            <code class="ruby">  private</code>
+            <code class="ruby">      else</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="missed" data-hits="0" data-linenumber="35">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        if attendance_marked_recently?(user, &quot;student&quot;) # Check for student attendance</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="36">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="36">
             
 
             
 
-            <code class="ruby">  def determine_redirect_path(email, course_number)</code>
+            <code class="ruby">          flash[:notice] = &quot;Attendance already marked for the time slot&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="37">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="37">
             
 
             
 
-            <code class="ruby">    if ta_email?(email)</code>
+            <code class="ruby">        else</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="38">
+          <li class="never" data-hits="" data-linenumber="38">
             
 
             
 
-            <code class="ruby">      ta_path(@current_user)</code>
+            <code class="ruby">          # Mark attendance for Student if no recent entry found</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="39">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="39">
             
 
             
 
-            <code class="ruby">    elsif admin_email?(email)</code>
+            <code class="ruby">          Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)</code>
           </li>
         </div>
       
@@ -1797,39 +1751,37 @@
 
             
 
-            <code class="ruby">      admin_path(@current_user)</code>
+            <code class="ruby">          session[:stu_attendance_marked] = true</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="41">
+          <li class="missed" data-hits="0" data-linenumber="41">
             
 
             
 
-            <code class="ruby">    else</code>
+            <code class="ruby">          flash[:notice] = &quot;Student attendance marked successfully!&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="42">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="42">
             
 
             
 
-            <code class="ruby">      user_path(@current_user, course_number: course_number)</code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="43">
+          <li class="missed" data-hits="0" data-linenumber="43">
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -1839,7 +1791,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1849,46 +1801,12 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      # Rails.logger.info &quot;Attendance marked: #{session[:attendance_marked]}&quot;  # Log to verify</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="46">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def ta_email?(email)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="47">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">    ta_emails.include?(email)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="48">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="49">
+          <li class="never" data-hits="" data-linenumber="46">
             
 
             
@@ -1898,31 +1816,57 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="50">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="47">
             
 
             
 
-            <code class="ruby">  def admin_email?(email)</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="51">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="48">
             
 
             
 
-            <code class="ruby">    admin_emails.include?(email)</code>
+            <code class="ruby">      flash[:alert] = &quot;User not found!&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="52">
+          <li class="missed" data-hits="0" data-linenumber="49">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="50">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="51">
+            
+
+            
+
+            <code class="ruby">    redirect_to determine_redirect_path(email, course_number)# , notice: flash[:notice] || &quot;Attendance marking failed.&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="52">
             
 
             
@@ -1942,41 +1886,17 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="54">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="54">
             
 
             
 
-            <code class="ruby">  def ta_emails</code>
+            <code class="ruby">  private</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="55">
-            
-              <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    read_emails_from_csv(Rails.root.join(&quot;lib&quot;, &quot;ta_emails.csv&quot;))</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="56">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="57">
+          <li class="never" data-hits="" data-linenumber="55">
             
 
             
@@ -1986,36 +1906,52 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="58">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="56">
             
 
             
 
-            <code class="ruby">  def admin_emails</code>
+            <code class="ruby">  def attendance_marked_recently?(user, role)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="59">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="57">
             
 
             
 
-            <code class="ruby">    read_emails_from_csv(Rails.root.join(&quot;lib&quot;, &quot;admin_emails.csv&quot;))</code>
+            <code class="ruby">    if role == &quot;ta&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="60">
+          <li class="never" data-hits="" data-linenumber="58">
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      # Check TA attendance within the last hour</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="59">
+            
+
+            
+
+            <code class="ruby">      TaAttendance.where(user_id: user.id, sign_in_time: (Time.now - 1.hour)..Time.now).exists?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="60">
+            
+
+            
+
+            <code class="ruby">    else</code>
           </li>
         </div>
       
@@ -2025,60 +1961,22 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      # Check Student attendance within the last hour</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="62">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="62">
             
 
             
 
-            <code class="ruby">  def read_emails_from_csv(file_path)</code>
+            <code class="ruby">      Attendance.where(user_id: user.id, sign_in_time: (Time.now - 1.hour)..Time.now).exists?</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="5" data-linenumber="63">
-            
-              <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">    emails = []</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="64">
-            
-              <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">    CSV.foreach(file_path, headers: false) do |row|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="8" data-linenumber="65">
-            
-              <span class="hits">8</span>
-            
-
-            
-
-            <code class="ruby">      emails &lt;&lt; row[0].strip unless row[0].nil? # Assuming emails are in the first column</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="66">
+          <li class="missed" data-hits="0" data-linenumber="63">
             
 
             
@@ -2088,19 +1986,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="5" data-linenumber="67">
-            
-              <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">    emails</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="68">
+          <li class="missed" data-hits="0" data-linenumber="64">
             
 
             
@@ -2110,7 +1996,1297 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="65">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="66">
+            
+
+            
+
+            <code class="ruby">  def determine_redirect_path(email, course_number)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="67">
+            
+
+            
+
+            <code class="ruby">    if ta_email?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="68">
+            
+
+            
+
+            <code class="ruby">      ta_path(@current_user)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="69">
+            
+
+            
+
+            <code class="ruby">    elsif admin_email?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="70">
+            
+
+            
+
+            <code class="ruby">      admin_path(@current_user)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="71">
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="72">
+            
+
+            
+
+            <code class="ruby">      user_path(@current_user, course_number: course_number)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="73">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="74">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="75">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="76">
+            
+
+            
+
+            <code class="ruby">  def ta_email?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="77">
+            
+
+            
+
+            <code class="ruby">    ta_emails.include?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="78">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="79">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="80">
+            
+
+            
+
+            <code class="ruby">  def admin_email?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="81">
+            
+
+            
+
+            <code class="ruby">    admin_emails.include?(email)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="82">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="83">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="84">
+            
+
+            
+
+            <code class="ruby">  def ta_emails</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="85">
+            
+
+            
+
+            <code class="ruby">    read_emails_from_csv(Rails.root.join(&quot;lib&quot;, &quot;ta_emails.csv&quot;))</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="86">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="87">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="88">
+            
+
+            
+
+            <code class="ruby">  def admin_emails</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="89">
+            
+
+            
+
+            <code class="ruby">    read_emails_from_csv(Rails.root.join(&quot;lib&quot;, &quot;admin_emails.csv&quot;))</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="90">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="91">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="92">
+            
+
+            
+
+            <code class="ruby">  def read_emails_from_csv(file_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="93">
+            
+
+            
+
+            <code class="ruby">    emails = []</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="94">
+            
+
+            
+
+            <code class="ruby">    CSV.foreach(file_path, headers: false) do |row|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="95">
+            
+
+            
+
+            <code class="ruby">      emails &lt;&lt; row[0].strip unless row[0].nil? # Assuming emails are in the first column</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="96">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="97">
+            
+
+            
+
+            <code class="ruby">    emails</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="98">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="99">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="100">
+            
+
+            
+
+            <code class="ruby">  def generate_attendance_csv</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="101">
+            
+
+            
+
+            <code class="ruby">    case params[:attendance_type]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="102">
+            
+
+            
+
+            <code class="ruby">    when &quot;student&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="103">
+            
+
+            
+
+            <code class="ruby">      generate_student_attendance_csv_count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="104">
+            
+
+            
+
+            <code class="ruby">    when &quot;ta&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="105">
+            
+
+            
+
+            <code class="ruby">      generate_ta_attendance_csv_count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="106">
+            
+
+            
+
+            <code class="ruby">    else</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="107">
+            
+
+            
+
+            <code class="ruby">      raise ArgumentError, &quot;Invalid attendance type&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="108">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="109">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="110">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="111">
+            
+
+            
+
+            <code class="ruby">  def filter_attendances</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="112">
+            
+
+            
+
+            <code class="ruby">    attendances = Attendance.all</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="113">
+            
+
+            
+
+            <code class="ruby">    attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="114">
+            
+
+            
+
+            <code class="ruby">    attendances = attendances.where(&quot;created_at &gt;= ?&quot;, params[:start_date].to_date.beginning_of_day) if params[:start_date].present?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="115">
+            
+
+            
+
+            <code class="ruby">    attendances = attendances.where(&quot;created_at &lt;= ?&quot;, params[:end_date].to_date.end_of_day) if params[:end_date].present?</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="116">
+            
+
+            
+
+            <code class="ruby">    attendances</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="117">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="118">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="119">
+            
+
+            
+
+            <code class="ruby">  def generate_student_attendance_csv_count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="120">
+            
+
+            
+
+            <code class="ruby">    # Shows how many students showed up at each hour</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="121">
+            
+
+            
+
+            <code class="ruby">    attendances = filter_attendances.joins(:user).where(users: { role: &quot;student&quot; })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="122">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="123">
+            
+
+            
+
+            <code class="ruby">    # Define the date range given from attendance sheet</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="124">
+            
+
+            
+
+            <code class="ruby">    start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="125">
+            
+
+            
+
+            <code class="ruby">    end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="126">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="127">
+            
+
+            
+
+            <code class="ruby">    CSV.generate(headers: true) do |csv|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="128">
+            
+
+            
+
+            <code class="ruby">      csv &lt;&lt; [ &quot;Date&quot;, &quot;Time Slot&quot;, &quot;Number of Students&quot; ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="129">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="130">
+            
+
+            
+
+            <code class="ruby">      # Loop through each day</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="131">
+            
+
+            
+
+            <code class="ruby">      (start_date..end_date).each do |date|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="132">
+            
+
+            
+
+            <code class="ruby">        # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="133">
+            
+
+            
+
+            <code class="ruby">        (9..16).each do |hour|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="134">
+            
+
+            
+
+            <code class="ruby">          start_time = Time.zone.parse(&quot;#{date} #{hour}:00:00&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="135">
+            
+
+            
+
+            <code class="ruby">          end_time = start_time + 1.hour</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="136">
+            
+
+            
+
+            <code class="ruby">          # Count the number of students in that time range</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="137">
+            
+
+            
+
+            <code class="ruby">          count = rand(0..5) # attendance.count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="138">
+            
+
+            
+
+            <code class="ruby">          # Add a row to the CSV for each time slot</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="139">
+            
+
+            
+
+            <code class="ruby">          csv &lt;&lt; [ date.strftime(&quot;%Y-%m-%d&quot;), &quot;#{start_time.strftime(&#39;%H:%M&#39;)} - #{end_time.strftime(&#39;%H:%M&#39;)}&quot;, count ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="140">
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="141">
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="142">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="143">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="144">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="145">
+            
+
+            
+
+            <code class="ruby">  def generate_ta_attendance_csv_count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="146">
+            
+
+            
+
+            <code class="ruby">    # Shows how many tas showed up at each hour</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="147">
+            
+
+            
+
+            <code class="ruby">    attendances = filter_attendances.joins(:user).where(users: { role: &quot;ta&quot; })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="148">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="149">
+            
+
+            
+
+            <code class="ruby">    # Define the date range from June 1 to June 6, 2024</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="150">
+            
+
+            
+
+            <code class="ruby">    start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="151">
+            
+
+            
+
+            <code class="ruby">    end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="152">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="153">
+            
+
+            
+
+            <code class="ruby">    CSV.generate(headers: true) do |csv|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="154">
+            
+
+            
+
+            <code class="ruby">      csv &lt;&lt; [ &quot;Date&quot;, &quot;Time Slot&quot;, &quot;Number of TAs&quot; ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="155">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="156">
+            
+
+            
+
+            <code class="ruby">      # Loop through each day</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="157">
+            
+
+            
+
+            <code class="ruby">      (start_date..end_date).each do |date|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="158">
+            
+
+            
+
+            <code class="ruby">        # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="159">
+            
+
+            
+
+            <code class="ruby">        (9..16).each do |hour|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="160">
+            
+
+            
+
+            <code class="ruby">          start_time = Time.zone.parse(&quot;#{date} #{hour}:00:00&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="161">
+            
+
+            
+
+            <code class="ruby">          end_time = start_time + 1.hour</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="162">
+            
+
+            
+
+            <code class="ruby">          # Count the number of students in that time range</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="163">
+            
+
+            
+
+            <code class="ruby">          count = rand(0..5) # attendance.count</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="164">
+            
+
+            
+
+            <code class="ruby">          # Add a row to the CSV for each time slot</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="165">
+            
+
+            
+
+            <code class="ruby">          csv &lt;&lt; [ date.strftime(&quot;%Y-%m-%d&quot;), &quot;#{start_time.strftime(&#39;%H:%M&#39;)} - #{end_time.strftime(&#39;%H:%M&#39;)}&quot;, count ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="166">
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="167">
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="168">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="169">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="170">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="171">
+            
+
+            
+
+            <code class="ruby">  def generate_student_attendance_csv</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="172">
+            
+
+            
+
+            <code class="ruby">    # Shows each attendance record (basically all entries where someone clicked &quot;I am here&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="173">
+            
+
+            
+
+            <code class="ruby">    attendances = filter_attendances.joins(:user).where(users: { role: &quot;student&quot; })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="174">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="175">
+            
+
+            
+
+            <code class="ruby">    CSV.generate do |csv|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="176">
+            
+
+            
+
+            <code class="ruby">      csv &lt;&lt; [ &quot;Student Name&quot;, &quot;Course&quot;, &quot;Date&quot;, &quot;Time&quot; ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="177">
+            
+
+            
+
+            <code class="ruby">      attendances.each do |attendance|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="178">
+            
+
+            
+
+            <code class="ruby">        csv &lt;&lt; [ attendance.user.full_name, attendance.course.name, attendance.created_at.to_date, attendance.created_at.strftime(&quot;%H:%M&quot;) ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="179">
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="180">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="181">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="182">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="183">
+            
+
+            
+
+            <code class="ruby">  def generate_ta_attendance_csv</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="184">
+            
+
+            
+
+            <code class="ruby">    # Shows each attendance record</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="185">
+            
+
+            
+
+            <code class="ruby">    attendances = filter_attendances.joins(:user).where(users: { role: &quot;ta&quot; })</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="186">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="187">
+            
+
+            
+
+            <code class="ruby">    CSV.generate do |csv|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="188">
+            
+
+            
+
+            <code class="ruby">      csv &lt;&lt; [ &quot;TA Name&quot;, &quot;Course&quot;, &quot;Date&quot;, &quot;Time&quot; ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="189">
+            
+
+            
+
+            <code class="ruby">      attendances.each do |attendance|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="190">
+            
+
+            
+
+            <code class="ruby">        csv &lt;&lt; [ attendance.user.full_name, attendance.course.name, attendance.created_at.to_date, attendance.created_at.strftime(&quot;%H:%M&quot;) ]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="191">
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="192">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="193">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="194">
             
 
             
@@ -2124,12 +3300,12 @@
 </div>
 
       
-        <div class="source_table" id="9dfc9bd8a708f9e895cab4cf8663edfb0fb22576">
+        <div class="source_table" id="e4bbb0373a724f9f1a32859a957e8f5565aca8e6">
   <div class="header">
     <h3>app/controllers/sessions_controller.rb</h3>
     <h4>
       <span class="green">
-  94.59%
+  91.89%
 </span>
 
       lines covered
@@ -2139,8 +3315,8 @@
 
     <div class="t-line-summary">
       <b>37</b> relevant lines.
-      <span class="green"><b>35</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <span class="green"><b>34</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
 
     
@@ -2209,9 +3385,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="6">
+          <li class="covered" data-hits="3" data-linenumber="6">
             
-              <span class="hits">1</span>
+              <span class="hits">3</span>
             
 
             
@@ -2221,9 +3397,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="7">
+          <li class="covered" data-hits="3" data-linenumber="7">
             
-              <span class="hits">1</span>
+              <span class="hits">3</span>
             
 
             
@@ -2275,9 +3451,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="12">
+          <li class="covered" data-hits="8" data-linenumber="12">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2287,9 +3463,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="13">
+          <li class="covered" data-hits="8" data-linenumber="13">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2299,9 +3475,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="14">
+          <li class="covered" data-hits="8" data-linenumber="14">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2311,9 +3487,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="15">
+          <li class="covered" data-hits="8" data-linenumber="15">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2323,9 +3499,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="16">
+          <li class="covered" data-hits="8" data-linenumber="16">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2335,9 +3511,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="17">
+          <li class="covered" data-hits="8" data-linenumber="17">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2367,9 +3543,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="20">
+          <li class="covered" data-hits="8" data-linenumber="20">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -2379,9 +3555,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="21">
+          <li class="covered" data-hits="8" data-linenumber="21">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2391,9 +3567,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="22">
+          <li class="covered" data-hits="8" data-linenumber="22">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2413,9 +3589,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="24">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="24">
             
 
             
@@ -2539,9 +3713,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="36">
+          <li class="covered" data-hits="8" data-linenumber="36">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2561,9 +3735,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="38">
+          <li class="covered" data-hits="8" data-linenumber="38">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2593,9 +3767,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="41">
+          <li class="covered" data-hits="8" data-linenumber="41">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2647,9 +3821,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="46">
+          <li class="covered" data-hits="8" data-linenumber="46">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2691,9 +3865,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="50">
+          <li class="covered" data-hits="8" data-linenumber="50">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2735,9 +3909,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="54">
+          <li class="covered" data-hits="8" data-linenumber="54">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2779,9 +3953,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="58">
+          <li class="covered" data-hits="8" data-linenumber="58">
             
-              <span class="hits">1</span>
+              <span class="hits">8</span>
             
 
             
@@ -2823,9 +3997,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="62">
+          <li class="covered" data-hits="16" data-linenumber="62">
             
-              <span class="hits">2</span>
+              <span class="hits">16</span>
             
 
             
@@ -2835,9 +4009,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="63">
+          <li class="covered" data-hits="16" data-linenumber="63">
             
-              <span class="hits">2</span>
+              <span class="hits">16</span>
             
 
             
@@ -2847,9 +4021,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="64">
+          <li class="covered" data-hits="40" data-linenumber="64">
             
-              <span class="hits">3</span>
+              <span class="hits">40</span>
             
 
             
@@ -2869,9 +4043,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="66">
+          <li class="covered" data-hits="16" data-linenumber="66">
             
-              <span class="hits">2</span>
+              <span class="hits">16</span>
             
 
             
@@ -2905,12 +4079,12 @@
 </div>
 
       
-        <div class="source_table" id="11021045095796d61e57aaed8895094b93ad4067">
+        <div class="source_table" id="f88531a7e0c16626ff62d9206ddc423099293275">
   <div class="header">
     <h3>app/controllers/users_controller.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  54.29%
 </span>
 
       lines covered
@@ -2920,8 +4094,8 @@
 
     <div class="t-line-summary">
       <b>35</b> relevant lines.
-      <span class="green"><b>35</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>19</b> lines covered</span> and
+      <span class="red"><b>16</b> lines missed.</span>
     </div>
 
     
@@ -3012,9 +4186,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="8">
+          <li class="covered" data-hits="8" data-linenumber="8">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -3024,9 +4198,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="9">
+          <li class="covered" data-hits="8" data-linenumber="9">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -3036,9 +4210,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="10">
+          <li class="covered" data-hits="8" data-linenumber="10">
             
-              <span class="hits">2</span>
+              <span class="hits">8</span>
             
 
             
@@ -3184,9 +4358,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="24">
+          <li class="covered" data-hits="8" data-linenumber="24">
             
-              <span class="hits">3</span>
+              <span class="hits">8</span>
             
 
             
@@ -3228,9 +4402,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="28">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="28">
             
 
             
@@ -3240,9 +4412,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="29">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="29">
             
 
             
@@ -3294,9 +4464,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="34">
-            
-              <span class="hits">4</span>
+          <li class="missed" data-hits="0" data-linenumber="34">
             
 
             
@@ -3316,9 +4484,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="36">
-            
-              <span class="hits">3</span>
+          <li class="missed" data-hits="0" data-linenumber="36">
             
 
             
@@ -3328,9 +4494,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="37">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="37">
             
 
             
@@ -3340,9 +4504,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="38">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="38">
             
 
             
@@ -3352,9 +4514,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="39">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="39">
             
 
             
@@ -3374,9 +4534,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="41">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="41">
             
 
             
@@ -3428,9 +4586,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="46">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="46">
             
 
             
@@ -3472,9 +4628,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="50">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="50">
             
 
             
@@ -3516,9 +4670,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="54">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="54">
             
 
             
@@ -3560,9 +4712,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="58">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="58">
             
 
             
@@ -3604,9 +4754,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="62">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="62">
             
 
             
@@ -3616,9 +4764,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="63">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="63">
             
 
             
@@ -3628,9 +4774,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="64">
-            
-              <span class="hits">2</span>
+          <li class="missed" data-hits="0" data-linenumber="64">
             
 
             
@@ -3650,9 +4794,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="66">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="66">
             
 
             
@@ -3686,12 +4828,12 @@
 </div>
 
       
-        <div class="source_table" id="14377b9e4aba8c6db1df98f8ac58e86c2a62dcc5">
+        <div class="source_table" id="66c55d4ad9518daebf2ae7962c51fd79f9935268">
   <div class="header">
     <h3>app/controllers/welcome_controller.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  80.0%
 </span>
 
       lines covered
@@ -3701,8 +4843,8 @@
 
     <div class="t-line-summary">
       <b>5</b> relevant lines.
-      <span class="green"><b>5</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
 
     
@@ -3749,9 +4891,9 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="4">
+          <li class="covered" data-hits="12" data-linenumber="4">
             
-              <span class="hits">2</span>
+              <span class="hits">12</span>
             
 
             
@@ -3761,9 +4903,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="5">
             
 
             
@@ -3807,7 +4947,7 @@
 </div>
 
       
-        <div class="source_table" id="3067437c7ac82723999b02d626de81ad823f9bce">
+        <div class="source_table" id="6351d8feb820df23daf07b34e085230da41805a0">
   <div class="header">
     <h3>app/helpers/application_helper.rb</h3>
     <h4>
@@ -3860,7 +5000,7 @@
 </div>
 
       
-        <div class="source_table" id="ec64cdb0aaff79c660f950ae7d8e3649ca1d0491">
+        <div class="source_table" id="cce37adced85b47e21ab358374130574b87751f4">
   <div class="header">
     <h3>app/helpers/attendance_helper.rb</h3>
     <h4>
@@ -3913,7 +5053,7 @@
 </div>
 
       
-        <div class="source_table" id="f68b08f89e387f2ce347329ffdc73f7c9c6705b4">
+        <div class="source_table" id="a468bbf68a28ddf2ba35208740ccb69cfc264b20">
   <div class="header">
     <h3>app/helpers/attendances_helper.rb</h3>
     <h4>
@@ -3966,7 +5106,7 @@
 </div>
 
       
-        <div class="source_table" id="f646fb8c63a90b8e6752998bf90799a795f95cd0">
+        <div class="source_table" id="7709d2e786a07f90322d36374fdbf11a8210a71f">
   <div class="header">
     <h3>app/helpers/home_helper.rb</h3>
     <h4>
@@ -4019,12 +5159,12 @@
 </div>
 
       
-        <div class="source_table" id="45315e016ff5d502b87e3af2e969a7f0e7b0fb7d">
+        <div class="source_table" id="8856d9965623198f83238ad38ab8a7dccec4374d">
   <div class="header">
     <h3>app/jobs/application_job.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -4033,9 +5173,9 @@
     
 
     <div class="t-line-summary">
-      <b>1</b> relevant lines.
-      <span class="green"><b>1</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>2</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>2</b> lines missed.</span>
     </div>
 
     
@@ -4046,9 +5186,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -4108,7 +5246,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="7">
+          <li class="missed" data-hits="0" data-linenumber="7">
             
 
             
@@ -4122,12 +5260,12 @@
 </div>
 
       
-        <div class="source_table" id="497b3f1e6578003e0ab1f3eec3c11ac5e54b271c">
+        <div class="source_table" id="25f38a21b02a9288db7416fabe271186d592c2c7">
   <div class="header">
     <h3>app/mailers/application_mailer.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -4136,9 +5274,9 @@
     
 
     <div class="t-line-summary">
-      <b>3</b> relevant lines.
-      <span class="green"><b>3</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>4</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
 
     
@@ -4149,9 +5287,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -4161,9 +5297,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -4173,9 +5307,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="3">
             
 
             
@@ -4185,7 +5317,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="missed" data-hits="0" data-linenumber="4">
             
 
             
@@ -4199,7 +5331,7 @@
 </div>
 
       
-        <div class="source_table" id="4c7b55a8c8a56fbb73e120f7c32796c1f9321f3c">
+        <div class="source_table" id="ed9b70eac9d6d9894cf4ab66503b95a09e3cd9dd">
   <div class="header">
     <h3>app/models/application_record.rb</h3>
     <h4>
@@ -4264,12 +5396,12 @@
 </div>
 
       
-        <div class="source_table" id="e8b291aeb0b1ac2c807a11c3b02c28c6fc58f008">
+        <div class="source_table" id="b5d463f7370e2dcdf6263633dd40e350f964b88f">
   <div class="header">
     <h3>app/models/attendance.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -4278,9 +5410,9 @@
     
 
     <div class="t-line-summary">
-      <b>14</b> relevant lines.
-      <span class="green"><b>14</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>4</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
 
     
@@ -4291,9 +5423,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -4303,9 +5433,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -4315,9 +5443,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="3">
             
 
             
@@ -4337,249 +5463,17 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="5">
             
 
             
 
-            <code class="ruby">  def self.to_csv</code>
+            <code class="ruby">  # self.to_csv moved to attendance_controller.rb</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="6">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    CSV.generate(headers: true) do |csv|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="7">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      csv &lt;&lt; [ &quot;Date&quot;, &quot;Time Slot&quot;, &quot;Number of Students&quot; ]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="8">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="9">
-            
-
-            
-
-            <code class="ruby">      # Define the date range from June 1 to June 6, 2024</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="10">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      start_date = Date.parse(&quot;2024-06-01&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="11">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      end_date = Date.parse(&quot;2024-06-06&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="12">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="13">
-            
-
-            
-
-            <code class="ruby">      # Loop through each day</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="14">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      (start_date..end_date).each do |date|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="15">
-            
-
-            
-
-            <code class="ruby">        # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="6" data-linenumber="16">
-            
-              <span class="hits">6</span>
-            
-
-            
-
-            <code class="ruby">        (9..16).each do |hour|</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="48" data-linenumber="17">
-            
-              <span class="hits">48</span>
-            
-
-            
-
-            <code class="ruby">          start_time = Time.zone.parse(&quot;#{date} #{hour}:00:00&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="48" data-linenumber="18">
-            
-              <span class="hits">48</span>
-            
-
-            
-
-            <code class="ruby">          end_time = start_time + 1.hour</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="19">
-            
-
-            
-
-            <code class="ruby">          # Count the number of students in that time range</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="48" data-linenumber="20">
-            
-              <span class="hits">48</span>
-            
-
-            
-
-            <code class="ruby">          count = Attendance.where(sign_in_time: start_time..end_time).count</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="21">
-            
-
-            
-
-            <code class="ruby">          # Add a row to the CSV for each time slot</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="48" data-linenumber="22">
-            
-              <span class="hits">48</span>
-            
-
-            
-
-            <code class="ruby">          csv &lt;&lt; [ date.strftime(&quot;%Y-%m-%d&quot;), &quot;#{start_time.strftime(&#39;%H:%M&#39;)} - #{end_time.strftime(&#39;%H:%M&#39;)}&quot;, count ]</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="23">
-            
-
-            
-
-            <code class="ruby">        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="24">
-            
-
-            
-
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="25">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="26">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="27">
+          <li class="missed" data-hits="0" data-linenumber="6">
             
 
             
@@ -4593,7 +5487,7 @@
 </div>
 
       
-        <div class="source_table" id="472e02024834f90ad79176ff7e694bf6f85827cc">
+        <div class="source_table" id="b73dd0c632e53b3b86776fc73d256f79c6c99bcf">
   <div class="header">
     <h3>app/models/course.rb</h3>
     <h4>
@@ -4646,12 +5540,12 @@
 </div>
 
       
-        <div class="source_table" id="a48a343b948e05f5dafcf473c7e9468ece036711">
+        <div class="source_table" id="e02eaa812c44b976717747a0ee0967ada663e30f">
   <div class="header">
     <h3>app/models/ta_attendance.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  0.0%
 </span>
 
       lines covered
@@ -4660,9 +5554,9 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
-      <span class="green"><b>2</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>3</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>3</b> lines missed.</span>
     </div>
 
     
@@ -4673,9 +5567,7 @@
     <ol>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="1">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="1">
             
 
             
@@ -4685,9 +5577,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="2">
-            
-              <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="2">
             
 
             
@@ -4697,7 +5587,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="3">
+          <li class="missed" data-hits="0" data-linenumber="3">
             
 
             
@@ -4711,12 +5601,12 @@
 </div>
 
       
-        <div class="source_table" id="329fe352c71ba958b33e293a663f2d5143a3f60a">
+        <div class="source_table" id="e2db0f9b99ba96b36613b38c2eb4444ad7cb5bf3">
   <div class="header">
     <h3>app/models/user.rb</h3>
     <h4>
-      <span class="green">
-  100.0%
+      <span class="red">
+  80.0%
 </span>
 
       lines covered
@@ -4725,9 +5615,9 @@
     
 
     <div class="t-line-summary">
-      <b>3</b> relevant lines.
-      <span class="green"><b>3</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>5</b> relevant lines.
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
 
     
@@ -4775,6 +5665,48 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="4">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="5">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    def full_name</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="6">
+            
+
+            
+
+            <code class="ruby">        &quot;#{first_name} #{last_name}&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="7">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="8">
             
 
             
