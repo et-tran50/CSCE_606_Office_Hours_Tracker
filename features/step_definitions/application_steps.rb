@@ -4,6 +4,9 @@ Given('I am on the page {string}') do |string|
     visit root_path
   when "About"
     visit about_path
+  when "Admin"
+    admin_user = User.find_by(email: "admin@admin.com")
+    visit admin_path(admin_user.id)
   when "Student"
     # I want to call it right here
   else
@@ -56,7 +59,50 @@ Then('I select {string} from the {string} dropdown') do |option, dropdown|
   expect(page).to have_button("CHECK IN FOR ENGR 102")
 end
 
+Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
+  select(option, from: dropdown)
+end
+
 Then('I should see {string} on the button with id {string}') do |button_text, button_id|
   # save_and_open_page
   expect(page).to have_button(button_text, wait: 10)
+end
+
+When("I set the start date to {string}") do |date|
+  fill_in "start_date", with: date
+end
+
+When("I set the end date to {string}") do |date|
+  fill_in "end_date", with: date
+end
+
+Then("I should receive a CSV file") do
+  expect(page.response_headers['Content-Type']).to eq 'text/csv'
+end
+
+Then("the CSV file should contain the correct attendance data") do
+  csv_content = page.body
+  csv = CSV.parse(csv_content, headers: true)
+
+  # verify the headers
+  expect(csv.headers).to eq(['Date', 'Time Slot', 'Number of Students'])
+
+  # convert the csv table to an array of hashes, which lets us use rows.first and rows.last
+  rows = csv.map(&:to_h)
+
+  # verify the date range
+  expect(rows.first['Date']).to eq('2024-10-01')
+  expect(rows.last['Date']).to eq('2024-10-18')
+
+  # verify the time slots
+  time_slots = csv['Time Slot'].uniq
+  expected_time_slots = [
+    '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00',
+    '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00'
+  ]
+  expect(time_slots).to match_array(expected_time_slots)
+
+  # verify the # of students is always 0 or greater
+  student_counts = csv['Number of Students'].map(&:to_i)
+  expect(student_counts.min).to be >= 0
 end
