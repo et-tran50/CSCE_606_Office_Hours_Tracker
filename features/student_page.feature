@@ -3,21 +3,28 @@ Feature: Student Page
   I want to login and see the student page
   So that I can register I am here
 
-  Scenario: Student logs in successfully 
-    Given I'm on the page "Home"
+  Scenario: Student logs in with mocked Google OAuth account
+    Given I am logged in as user with name "name_student" and email "student@student.com"
+    Given I am on the page "Home"
     When I click "Login with Google"
-    Then I should see "Howdy, Test!"
-    When I click "I AM HERE!"
-    Then I should see "Attendance marked successfully!"
-
-  Scenario: Student logs in successfully 
-    Given I'm on the page "Home"
-    When I click "Login with Google"
-    When I click the download link
-    Then the download link should point to the correct file path
+    Then I should see "Howdy, name_student!"
 
   Scenario: Student logs out
-    Given I'm on the page "Home"
+    Given I am on the page "Home"
     When I click "Login with Google"
     When I click link "Logout"
     Then I should see "Office Hours Tracker"
+
+  Scenario: When first logging in, the button should not be visible
+    Given I am logged in as user with name "name_student" and email "student@student.com"
+    Given I am on the page "Home"
+    When I click "Login with Google"
+    Then I should not see "CHECK IN FOR"
+    Then I should see "No selection" in the "course_number" dropdown and it is selected
+
+  Scenario: Student can select specific courses
+    Given I am logged in as user with name "name_student" and email "student@student.com"
+    Given I am on the page "Home"
+    When I click "Login with Google"
+    Then I select "ENGR 102" from the "course_number" dropdown
+    Then I should see "CHECK IN FOR ENGR 102" on the button with id "mark-attendance-btn"
