@@ -10,7 +10,7 @@ RSpec.describe AttendancesController, type: :controller do
   before do
     # Set up a user and a course for all the test cases
     @user = User.create(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
-    
+
 
     @course = Course.create(
       course_number: 'ENGR 102',
@@ -19,14 +19,14 @@ RSpec.describe AttendancesController, type: :controller do
       start_date: Date.new(2024, 8, 19),
       end_date: Date.new(2024, 12, 31)
     )
-    
+
     session[:user_id] = @user.id
   end
 
-  
+
   describe "#generate_student_attendance_csv" do
     before do
-      @user2 = User.create(uid: "123458789", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe2", role:"student")
+      @user2 = User.create(uid: "123458789", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe2", role: "student")
       @course2 = Course.create(
       course_number: 'ENGR 103',
       course_name: 'Engineering Lab II - Computation',
@@ -38,25 +38,24 @@ RSpec.describe AttendancesController, type: :controller do
     end
 
     it "generates a CSV with student attendance records" do
-
-      #puts "All Attendances: #{Attendance.all.inspect}"
+      # puts "All Attendances: #{Attendance.all.inspect}"
       allow(controller).to receive(:filter_attendances).and_return(Attendance.all)
-      
+
       csv_data = controller.send(:generate_student_attendance_csv)
       csv = CSV.parse(csv_data, headers: true)
 
-      expect(csv.headers).to eq(["Student Name", "Course", "Date", "Time"])
+      expect(csv.headers).to eq([ "Student Name", "Course", "Date", "Time" ])
     end
   end
 
   describe "#generate_ta_attendance_csv" do
     it "generates a CSV with TA attendance records" do
       allow(controller).to receive(:filter_attendances).and_return(Attendance.all)
-      
+
       csv_data = controller.send(:generate_ta_attendance_csv)
       csv = CSV.parse(csv_data, headers: true)
 
-      expect(csv.headers).to eq(["TA Name", "Course", "Date", "Time"])
+      expect(csv.headers).to eq([ "TA Name", "Course", "Date", "Time" ])
     end
   end
 
@@ -66,7 +65,7 @@ RSpec.describe AttendancesController, type: :controller do
     @user = User.create(uid: "123456789", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe")
     @course = Course.create(course_number: "CS101", course_name: "Introduction to Computer Science")
     session[:user_id] = @user.id
-    
+
     # Create attendances for testing
     @attendance1 = Attendance.create(user_id: @user.id, course_id: @course.id, sign_in_time: 2.days.ago)
     @attendance2 = Attendance.create(user_id: @user.id, course_id: @course.id, sign_in_time: 1.day.ago)
@@ -84,7 +83,7 @@ RSpec.describe AttendancesController, type: :controller do
     expect(response.headers['Content-Type']).to include 'text/csv'
     expect(response.headers['Content-Disposition']).to include 'attachment'
     expect(response.headers['Content-Disposition']).to include "student_attendance_#{Date.today.strftime('%Y%m%d')}.csv"
-    
+
     # Check if the CSV contains the expected data
     csv_content = response.body
     expect(csv_content).to include "Date"
@@ -93,7 +92,6 @@ RSpec.describe AttendancesController, type: :controller do
 
 
   it "generates a CSV with TA attendance count" do
-
     get :attendance, params: {
       attendance_type: 'ta',
       course_id: @course.id,
@@ -107,7 +105,6 @@ RSpec.describe AttendancesController, type: :controller do
   end
 
   it "returns invalid type error" do
-
     expect {
       # Replace with the actual method that raises the ArgumentError
       get :attendance, params: {
@@ -117,7 +114,6 @@ RSpec.describe AttendancesController, type: :controller do
         end_date: Date.today
       }, format: :csv
     }.to raise_error(ArgumentError, "Invalid attendance type")
-
   end
 end
 
