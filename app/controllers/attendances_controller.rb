@@ -27,7 +27,7 @@ class AttendancesController < ApplicationController
           flash[:notice] = "Attendance already marked for the time slot"
         else
           # Mark attendance if no recent entry found
-          TaAttendance.create(user_id: user.id, sign_in_time: Time.now, course_id: "102-PT")
+          TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
           session[:attendance_marked] = true
           flash[:notice] = "TA attendance marked successfully!"
         end

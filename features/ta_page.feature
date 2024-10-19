@@ -13,3 +13,11 @@ Feature: TA Page
     When I click "Login with Google"
     When I click link "Logout"
     Then I should see "Office Hours Tracker"
+
+  Scenario: TA successfully marks attendance
+    Given I am logged in as user with name "Gourangi" and email "gourangitaware@tamu.edu"
+    Given I am on the page "Home"
+    When I click "Login with Google"
+    Then I should see "Howdy TA, Gourangi!"
+    When I mark my attendance
+    Then I should see "TA attendance marked successfully!"

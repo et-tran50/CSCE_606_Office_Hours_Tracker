@@ -68,6 +68,7 @@ Then('I should see {string} on the button with id {string}') do |button_text, bu
   expect(page).to have_button(button_text, wait: 10)
 end
 
+<<<<<<< HEAD
 When("I set the start date to {string}") do |date|
   fill_in "start_date", with: date
 end
@@ -106,3 +107,11 @@ Then("the CSV file should contain the correct attendance data") do
   student_counts = csv['Number of Students'].map(&:to_i)
   expect(student_counts.min).to be >= 0
 end
+=======
+
+When('I mark my attendance') do
+  # puts page.html  # This will print the HTML of the current page for debugging
+  find('#mark-attendance-btn').click
+end
+
+>>>>>>> 55c4b43 (Cucumber Scenarios)
