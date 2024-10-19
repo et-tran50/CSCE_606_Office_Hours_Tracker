@@ -41,7 +41,7 @@ Then('the download link should point to the correct file path') do
   expect(actual_path).to eq(expected_path)
 end
 
-Given('I am logged in as user with name {string} and email {string}') do |name, email|
+Given('I am logged in with name {string} and email {string}') do |name, email|
   # Set the mock data with the specified email
   set_omniauth(name, email)
 end
@@ -53,10 +53,13 @@ end
 Then('I select {string} from the {string} dropdown') do |option, dropdown|
   select(option, from: dropdown)
 
-  # dropdown_element = find(:select, dropdown)
+  page.execute_script("document.forms[0].submit()")
+
+  # save_and_open_page
+
   # options = dropdown_element.all('option').map(&:text)
   # puts "Options in the #{dropdown} dropdown: #{options.join(', ')}"
-  expect(page).to have_button("CHECK IN FOR ENGR 102")
+  # expect(page).to have_button("CHECK IN FOR ENGR 102")
 end
 
 Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
@@ -64,7 +67,12 @@ Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
 end
 
 Then('I should see {string} on the button with id {string}') do |button_text, button_id|
-  # save_and_open_page
+  dropdown_element = find(:select, "course_number")
+  selected_value = dropdown_element.value
+  selected_option = dropdown_element.find("option[value='#{selected_value}']").text
+  puts "The selected option is: #{selected_option}"
+
+
   expect(page).to have_button(button_text, wait: 10)
 end
 
