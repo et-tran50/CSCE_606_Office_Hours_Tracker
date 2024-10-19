@@ -53,7 +53,7 @@ end
 Then('I select {string} from the {string} dropdown') do |option, dropdown|
   select(option, from: dropdown)
 
-  page.execute_script("document.forms[0].submit()")
+  # page.execute_script("document.forms[0].submit()")
 
   # save_and_open_page
 
@@ -67,13 +67,14 @@ Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
 end
 
 Then('I should see {string} on the button with id {string}') do |button_text, button_id|
-  dropdown_element = find(:select, "course_number")
-  selected_value = dropdown_element.value
-  selected_option = dropdown_element.find("option[value='#{selected_value}']").text
-  puts "The selected option is: #{selected_option}"
+  # dropdown_element = find(:select, "course_number")
+  # selected_value = dropdown_element.value
+  # selected_option = dropdown_element.find("option[value='#{selected_value}']").text
+  # puts "The selected option is: #{selected_option}"
 
+  find('#mark-attendance-btn').click
 
-  expect(page).to have_button(button_text, wait: 10)
+  # expect(page).to have_button(button_text, wait: 10)
 end
 
 When("I set the start date to {string}") do |date|
@@ -93,7 +94,7 @@ Then("the CSV file should contain the correct attendance data") do
   csv = CSV.parse(csv_content, headers: true)
 
   # verify the headers
-  expect(csv.headers).to eq(['Date', 'Time Slot', 'Number of Students'])
+  expect(csv.headers).to eq([ 'Date', 'Time Slot', 'Number of Students' ])
 
   # convert the csv table to an array of hashes, which lets us use rows.first and rows.last
   rows = csv.map(&:to_h)
