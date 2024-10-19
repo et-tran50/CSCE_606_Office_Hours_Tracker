@@ -10,6 +10,9 @@ SimpleCov.start 'rails'
 require 'cucumber/rails'
 require 'rspec/expectations'
 
+require 'capybara/cucumber'
+require 'selenium-webdriver'
+Capybara.javascript_driver = :selenium_chrome_headless
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will
@@ -75,6 +78,11 @@ def set_omniauth(name, email)
     }
   })
 end
+
+# Before do
+#   # Load the seeds before each test scenario
+#   load Rails.root.join('db', 'seeds.rb')
+# end
 
 # prompt: How do I do a cucumber test that checks if something downloaded when I click the link
 # response: code below

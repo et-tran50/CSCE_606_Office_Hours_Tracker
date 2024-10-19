@@ -68,35 +68,3 @@
   </p> -->
 </div>
 
-<div class="attendance user-details">
-  <h1>ADMIN</h1>
-  <h2>Attendance Data</h2>
-  <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
-    <!-- todo: add the course id filter-->
-
-    <%= label_tag :start_date, "Start Date:" %>
-    <%= date_field_tag :start_date, params[:start_date], class: "date-input" %>
-   
-    <%= label_tag :end_date, "End Date:" %>
-    <%= date_field_tag :end_date, params[:end_date], class: "date-input" %>
-
-    <%= label_tag :attendance_type, "Attendance Type:" %>
-    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input" %>
-  
-    <%= submit_tag "Download Attendance CSV", class: "download-btn" %>
-  <% end %>
-</div>
-
-<script>
-// we need this script to create a new tab to initiate the csv download
-document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('attendance-form');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(form);
-    var queryString = new URLSearchParams(formData).toString();
-    var url = '<%= download_attendance_path %>' + '?' + queryString;
-    window.open(url, '_blank');
-  });
-});
-</script>
