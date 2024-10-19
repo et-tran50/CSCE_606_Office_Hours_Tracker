@@ -65,7 +65,7 @@ group :test do
   gem "rspec-rails"
   gem "capybara"
   gem "simplecov"
-  gem "shoulda-matchers", "~> 5.0"
+  gem "shoulda-matchers", "~> 6.4"
 end
 
 gem "launchy"
