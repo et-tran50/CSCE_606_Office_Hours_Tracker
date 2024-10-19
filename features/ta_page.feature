@@ -15,7 +15,7 @@ Feature: TA Page
     Then I should see "Office Hours Tracker"
 
   Scenario: TA successfully marks attendance
-    Given I am logged in as user with name "Gourangi" and email "gourangitaware@tamu.edu"
+    Given I am logged in with name "Gourangi" and email "gourangitaware@tamu.edu"
     Given I am on the page "Home"
     When I click "Login with Google"
     Then I should see "Howdy TA, Gourangi!"

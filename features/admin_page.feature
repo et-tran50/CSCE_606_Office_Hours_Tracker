@@ -6,10 +6,10 @@ Feature: Admin Page
     Given I am logged in with name "name_admin" and email "admin@admin.com"
     Given I am on the page "Home"
     When I click "Login with Google"
-    Then I should see "Howdy, name_admin!"
+    Then I should see "Howdy Admin, name_admin!"
 
   Scenario: Download student attendance data
-    Given I am logged in as user with name "name_admin" and email "admin@admin.com"
+    Given I am logged in with name "name_admin" and email "admin@admin.com"
     Given I am on the page "Home"
     When I click "Login with Google"
     And  I am on the page "Admin"
