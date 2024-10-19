@@ -20,17 +20,28 @@ RSpec.describe AttendancesController, type: :controller do
   describe "POST #mark" do
     before do
       @user = User.create(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
+      @course = Course.create(
+        course_number: 'ENGR 102',
+        course_name: 'Engineering Lab I - Computation',
+        instructor_name: 'Niki Ritchey',
+        start_date: Date.new(2024, 8, 19),
+        end_date: Date.new(2024, 12, 31)
+        )
       session[:user_id] = @user.id
     end
 
+
     context "when the user exists" do
-      it "marks the attendance and redirects with a notice" do
-        post :mark, params: { email: @user.email }  # Simulate marking attendance
+      it "marks the attendance and verify success" do
+        post :mark, params: { email: @user.email, course_number: @course.course_number }  # Pass course_number
+
         expect(Attendance.last.user_id).to eq(@user.id)  # Check that the attendance was created
-        expect(flash[:notice]).to eq("Attendance marked successfully!")
-        expect(response).to redirect_to(user_path(@user))  # Check redirection
+        expect(Attendance.last.course_id).to eq(@course.course_number)  # Check that the correct course is associated
+
+        expect(session[:stu_attendance_marked]).to be true  # Check that session is set
       end
     end
+
 
     context "when the user does not exist" do
       it "does not mark attendance and redirects with an alert" do

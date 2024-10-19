@@ -1,4 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'shoulda/matchers'
 require 'spec_helper'
 require 'simplecov'
 SimpleCov.start 'rails'
@@ -11,6 +12,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+require 'capybara/rspec'
+
+Capybara.javascript_driver = :selenium_chrome_headless  # Or choose another driver you prefer
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -74,4 +79,12 @@ RSpec.configure do |config|
 
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
+end
+
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
