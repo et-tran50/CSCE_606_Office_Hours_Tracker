@@ -12,9 +12,6 @@
 require 'faker'
 
 
-
-
-
 # seed the Course database
 Course.create(
   course_number: 'ENGR 102',

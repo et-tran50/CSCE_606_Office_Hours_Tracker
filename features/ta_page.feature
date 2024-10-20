@@ -20,4 +20,4 @@ Feature: TA Page
     When I click "Login with Google"
     Then I should see "Howdy TA, Gourangi!"
     When I mark my attendance
-    Then I should see "TA attendance marked successfully!"
+    Then I should see "Ta attendance marked successfully!"

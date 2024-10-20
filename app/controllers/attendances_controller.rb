@@ -16,47 +16,85 @@ class AttendancesController < ApplicationController
       end
     end
 
+  # def mark
+  #   email = params[:email]
+  #   user = User.find_by(email: email)  # Assuming User is the model associated with the user
+  #   course_number = params[:course_number]
+
+
+  #   course = Course.find_by(course_number: course_number)  # Find the course by course_number
+
+  #   if user
+  #     if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController
+  #       if attendance_marked_recently?(user, "ta")
+  #         flash[:notice] = "Attendance already marked for the time slot"
+  #       else
+  #         # Mark attendance if no recent entry found
+  #         # 2024/10/18 update: the course_id should actually be course
+  #         # , course: "102-PT"
+  #         TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
+  #         session[:attendance_marked] = true
+  #         flash[:notice] = "TA attendance marked successfully!"
+  #       end
+  #     else
+  #       if attendance_marked_recently?(user, "student") # Check for student attendance
+  #         flash[:notice] = "Attendance already marked for the time slot"
+  #       else
+  #         # Mark attendance for Student if no recent entry found
+  #         Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course.id)
+  #         session[:stu_attendance_marked] = true
+  #         flash[:notice] = "Student attendance marked successfully!"
+  #       end
+  #     end
+
+  #     # Rails.logger.info "Attendance marked: #{session[:attendance_marked]}"  # Log to verify
+
+  #   else
+  #     flash[:alert] = "User not found!"
+  #   end
+
+  #   redirect_to determine_redirect_path(email, course_number)# , notice: flash[:notice] || "Attendance marking failed."
+  # end
   def mark
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
     course_number = params[:course_number]
-
-
-    course = Course.find_by(course_number: course_number)  # Find the course by course_number
-
+  
     if user
-      if ta_email?(email)  # Check if the user is a TA using the same logic as in SessionsController
-        if attendance_marked_recently?(user, "ta")
-          flash[:notice] = "Attendance already marked for the time slot"
-        else
-          # Mark attendance if no recent entry found
-          # 2024/10/18 update: the course_id should actually be course
-          # , course: "102-PT"
-          TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
-          session[:attendance_marked] = true
-          flash[:notice] = "TA attendance marked successfully!"
-        end
+      if ta_email?(email)
+        handle_attendance(user, "ta", course_number)
       else
-        if attendance_marked_recently?(user, "student") # Check for student attendance
-          flash[:notice] = "Attendance already marked for the time slot"
-        else
-          # Mark attendance for Student if no recent entry found
-          Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course.id)
-          session[:stu_attendance_marked] = true
-          flash[:notice] = "Student attendance marked successfully!"
-        end
+        handle_attendance(user, "student", course_number)
       end
-
-      # Rails.logger.info "Attendance marked: #{session[:attendance_marked]}"  # Log to verify
-
     else
       flash[:alert] = "User not found!"
     end
-
-    redirect_to determine_redirect_path(email, course_number)# , notice: flash[:notice] || "Attendance marking failed."
+  
+    redirect_to determine_redirect_path(email, course_number)
   end
-
+  
   private
+  
+  
+  def handle_attendance(user, role, course_number)
+    if attendance_marked_recently?(user, role)
+      flash[:notice] = "Attendance already marked for the time slot"
+    else
+      mark_attendance(user, role, course_number)
+      session[:attendance_marked] = true
+      flash[:notice] = "#{role.capitalize} attendance marked successfully!"
+    end
+  end
+  
+  def mark_attendance(user, role, course_number)
+    if role == "ta"
+      TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
+    else
+      Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)
+    end
+  end
+  
+
 
   def attendance_marked_recently?(user, role)
     if role == "ta"
