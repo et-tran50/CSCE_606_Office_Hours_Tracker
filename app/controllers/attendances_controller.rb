@@ -31,7 +31,8 @@ class AttendancesController < ApplicationController
         else
           # Mark attendance if no recent entry found
           # 2024/10/18 update: the course_id should actually be course
-          TaAttendance.create(user_id: user.id, sign_in_time: Time.now, course: "102-PT")
+          # , course: "102-PT"
+          TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
           session[:attendance_marked] = true
           flash[:notice] = "TA attendance marked successfully!"
         end
