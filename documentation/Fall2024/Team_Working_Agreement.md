@@ -16,6 +16,8 @@
   - [Sprint Burnup Report](https://tamu-team-office-tracker.atlassian.net/jira/software/projects/SCRUM/boards/1/reports/burnup)
 - **GitHub**: For code version control
   - [GitHub Repository](https://github.com/et-tran50/CSCE_606_Office_Hours_Tracker/tree/main)
+  **Lucid Chart**: To communicate on the database design
+  - [Database Chart](https://lucid.app/lucidchart/510cad3f-cc9d-47e0-9a23-49a79023c998/edit?viewport_loc=-2060%2C764%2C2423%2C1335%2C0_0&invitationId=inv_b7a66580-306e-4d07-a6f9-536df3c4ff37)
 
 ## 4. Definition of Done
 The following criteria must be met for a task or feature to be considered "done":
@@ -54,3 +56,6 @@ If a team member cannot complete a task on time:
 
 ### c. Deployment to Heroku
 - **Designate someone** for Heroku deployments instead of deploying after each push to GitHub. This ensures controlled, stable deployments and avoids deploying incomplete features or bugs.
+
+### d. About submission of individual work
+- If the person's role is developer, he should submit his work at least **2 days** before the sprint ends. This helps the scrum master and product owener to have more time to valdiate work and to submit MVP document.
