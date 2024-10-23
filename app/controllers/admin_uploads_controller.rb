@@ -37,16 +37,20 @@ class AdminUploadsController < ApplicationController
       /\A[^@\s]+@[^@\s]+\z/.match?(email)
     end
   
+
     def append_email(email, target_file)
-      File.open(Rails.root.join('lib', target_file), 'a') do |file|
-        file.puts(email)
+      CSV.open(Rails.root.join('lib', target_file), 'a+', headers: true) do |csv|
+        csv << [email]  # Wrap email in an array to create a new row
       end
     end
+
   
     def overwrite_emails(file, target_file)
       emails = CSV.read(file.path).flatten
-      File.open(Rails.root.join('lib', target_file), 'w') do |file|
-        emails.each { |email| file.puts(email) }
+      CSV.open(Rails.root.join('lib', target_file), 'w') do |csv|
+        emails.each do |email|
+          csv << [email]  # Write each email as a new row
+        end
       end
     end
   
