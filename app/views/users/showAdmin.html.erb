@@ -9,7 +9,10 @@
 </div>
 
 <div class="attendance user-details">
+  <!--Admin function subpages -->
   <%= link_to 'Upload TA/Admin Emails', upload_email_path, class: 'btn btn-primary' %>
+  <%= link_to 'Manage Courses', courses_path, class: 'btn btn-primary' %>
+
   <h1>ADMIN</h1>
   <h2>Attendance Data</h2>
   <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>

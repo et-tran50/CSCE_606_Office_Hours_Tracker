@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get "courses/index"
+  get "courses/new"
+  get "courses/create"
+  get "courses/edit"
+  get "courses/update"
+  get "courses/destroy"
   root "welcome#index"
   get "welcome/index", to: "welcome#index", as: "welcome"
 
@@ -24,5 +30,6 @@ Rails.application.routes.draw do
   get "attendances/download", to: "attendances#attendance", defaults: { format: "csv" }, as: "download_attendance"
   get "attendances", to: "attendances#attendance", as: "attendance"
 
-  resources :courses, only: [ :index ]
+  # , only: [ :index ]
+  resources :courses
 end
