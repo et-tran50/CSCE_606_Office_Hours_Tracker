@@ -18,23 +18,127 @@
   <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
     <!-- todo: add the course id filter-->
 
+    <div>
+    <%= label_tag :course_id, "Select Course:" %>
+    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "select-input" %>
+    <%= label_tag :attendance_type, "Attendance Type:" %>
+    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input" %>
+    </div>
+
+    <br>
     <%= label_tag :start_date, "Start Date:" %>
     <%= date_field_tag :start_date, params[:start_date], class: "date-input" %>
-   
     <%= label_tag :end_date, "End Date:" %>
     <%= date_field_tag :end_date, params[:end_date], class: "date-input" %>
 
-    <%= label_tag :attendance_type, "Attendance Type:" %>
-    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input" %>
-  
+    <br>
+    <div>
     <%= submit_tag "Download Attendance CSV", class: "download-btn" %>
-    
-  
+    </div>
 
   <% end %> 
+  <h2>Attendance Histogram</h2>
+  <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
 </div>
 
 <script>
+  function drawHistogram(data) {
+  const canvas = document.getElementById('attendanceHistogram');
+  const ctx = canvas.getContext('2d');
+
+  // setting the histogram data
+  const labels = data.labels;
+  const values = data.values;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#ffffff'; // set the background to white
+  ctx.fillRect(0, 0, canvas.width, canvas.height); // cover the whole canvas
+
+
+  // setting the margin and axis color
+  const x_margin = canvas.width * 0.05;
+  const y_margin = x_margin / 2;
+  const barWidth = (canvas.width - x_margin) / 2 / 10;
+  const maxVal = Math.max(...values);
+  const scale = (canvas.height - y_margin - y_margin) / maxVal;
+  const axisColor = '#000';
+  const fontSize = 20;
+
+  // draw the y axis
+  ctx.beginPath();
+  ctx.moveTo(x_margin, y_margin);
+  ctx.lineTo(x_margin, canvas.height - y_margin);
+  ctx.strokeStyle = axisColor;
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // draw the x axis
+  ctx.beginPath();
+  ctx.moveTo(x_margin, canvas.height - y_margin);
+  ctx.lineTo(canvas.width - x_margin, canvas.height - y_margin);
+  ctx.strokeStyle = axisColor;
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // setting the font size and color
+  ctx.font = `${fontSize}px Arial`;
+  ctx.fillStyle = axisColor;
+
+  // display the y axis labels
+  for (let i = 0; i <= 5; i++) {
+    const yValue = (maxVal / 5) * i;
+    const yPos = canvas.height - y_margin - (yValue * scale);
+    ctx.fillText(Math.round(yValue), x_margin / 4, yPos); // Y 軸數值
+    ctx.beginPath();
+    ctx.moveTo(x_margin - 5, yPos);
+    ctx.lineTo(x_margin, yPos);
+    ctx.stroke();
+  }
+
+function getColor(value, minValue, maxValue) {
+  const ratio = (value - minValue) / (maxValue - minValue);
+  const blue = Math.round(255 * (1 - ratio));
+  const green = Math.round(255 * ratio);
+  return `rgb(0, ${green}, ${blue})`;
+}
+
+  // // animation
+  let progress = 0;
+  const animationSpeed = 5; // control the animation speed
+  function animateBars() {
+    progress += animationSpeed;
+
+    for (let i = 0; i < values.length; i++) {
+      const barHeight = Math.min(values[i] * scale, progress);
+      const x = x_margin + i * (barWidth + barWidth * 0.4) + barWidth * 0.6;
+      const y = canvas.height - y_margin - barHeight;
+
+      ctx.fillStyle = getColor(values[i], 0, maxVal); // set the color
+      ctx.fillRect(x, y, barWidth, barHeight);
+
+      ctx.fillStyle = '#000';
+      ctx.fillText(values[i], x + barWidth / 3, canvas.height - y_margin - Math.min(values[i] * scale, maxVal * scale) - 10); // display the value on each bar
+      ctx.fillText(labels[i], x, canvas.height - y_margin / 4); // display the label
+    }
+
+    if (progress < maxVal * scale) {
+      requestAnimationFrame(animateBars);
+    }
+  }
+  animateBars();
+}
+
+// test data
+const testData = {
+  labels: ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"],
+  values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+};
+
+// draw the histogram when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  drawHistogram(testData);
+});
+
 // we need this script to create a new tab to initiate the csv download
 document.addEventListener('DOMContentLoaded', function() {
   var form = document.getElementById('attendance-form');
