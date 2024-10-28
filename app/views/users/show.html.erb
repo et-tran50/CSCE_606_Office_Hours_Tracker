@@ -49,10 +49,7 @@
 <div class="bottom-bar">
         <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
 </div>
-
-
-<%# <div id="user-details"> %>
-  
+<div class="user-details">
   <!--<p>
       <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
 
@@ -69,16 +66,5 @@
     <strong>Last name:</strong>
     <%= @current_user.last_name %>
   </p> -->
-
-  <!--<%= form_with url: mark_path, method: :post do %>
-    <%= hidden_field_tag :email, @current_user.email %> 
-    <%= submit_tag 'Mark my attendance',id: 'mark-attendance-btn', class: 'btn btn-primary' %>
-  <% end %> -->
-
-  <!-- Add the button to download the CSV 
-  <%= label_tag :course_number, "Select a course" %>
-  <%= link_to "Download Attendance CSV", export_csv_path, class: "btn btn-primary" %> -->
-
-  
-<%# </div> %>
+</div>
 

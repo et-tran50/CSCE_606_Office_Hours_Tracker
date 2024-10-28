@@ -10,6 +10,9 @@ SimpleCov.start 'rails'
 require 'cucumber/rails'
 require 'rspec/expectations'
 
+require 'capybara/cucumber'
+require 'selenium-webdriver'
+Capybara.javascript_driver = :selenium_chrome_headless
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will
@@ -55,24 +58,31 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-
 require 'omniauth'
 
 OmniAuth.config.test_mode = true
-OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-  provider: 'google_oauth2',
-  uid: '123456789',
-  info: {
-    name: 'Test User',
-    email: 'testuser@example.com',
-    image: 'http://example.com/testuser.jpg'
-  },
-  credentials: {
-    token: 'mock_token',
-    refresh_token: 'mock_refresh_token',
-    expires_at: Time.now + 1.week
-  }
-})
+
+def set_omniauth(name, email)
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+    provider: 'google_oauth2',
+    uid: 'my_uid',
+    info: {
+      name: name, # Use the dynamic name passed in the test
+      email: email, # Use the dynamic email passed in the test
+      image: 'http://example.com/testuser.jpg'
+    },
+    credentials: {
+      token: 'mock_token',
+      refresh_token: 'mock_refresh_token',
+      expires_at: Time.now + 1.week
+    }
+  })
+end
+
+# Before do
+#   # Load the seeds before each test scenario
+#   load Rails.root.join('db', 'seeds.rb')
+# end
 
 # prompt: How do I do a cucumber test that checks if something downloaded when I click the link
 # response: code below

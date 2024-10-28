@@ -4,6 +4,6 @@ Feature: Home Page
   So that I can get information about the Office Hours Tracker
 
   Scenario: Home Page Elements
-    Given I'm on the page "Home"
+    Given I am on the page "Home"
     Then I should see "Welcome"
     And I should see "Login with Google"

@@ -1,0 +1,18 @@
+<h1>Courses</h1>
+<%= link_to 'New Course', new_course_path %>
+
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+      <%= link_to course.course_name, course_path(course) %> |
+      <%= link_to 'Edit', edit_course_path(course) %> |
+      <%= link_to 'Delete', course_path(course), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+      <!--<%= link_to 'Delete', course_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to 'Back to Admin Page', users_showAdmin_path(@current_user), class: 'back-btn' %>
+</div>
