@@ -57,10 +57,10 @@ Course.create(
 # Get all student ids
 user_ids = User.pluck(:id)
 start_date = Date.parse("2024-10-01")
-end_date = Date.parse("2024-10-25")
+end_date = Date.parse("2024-11-30")
 
 # Create fake attendance records for these students
-1000.times do
+10000.times do
   user_id = user_ids.sample  # Randomly select a valid student_id
   # Generate a random date between June 1 and June 6
   random_date = rand(start_date..end_date)
