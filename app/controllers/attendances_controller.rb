@@ -279,15 +279,40 @@ class AttendancesController < ApplicationController
   end
 end
 
-def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
-  # Parse the start and end date strings into Date objects
-  start_time = Date.parse(start_date)
-  end_time = Date.parse(end_date)
+# def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
+#   # Parse the start and end dates into Date objects
+#   start_time = Date.parse(start_date)
+#   end_time = Date.parse(end_date)
 
-  # Query the Attendance table for entries that match the course ID and are within the specified date and hour range
-  Attendance
-    .where(course_id: course_id) # Filter by the specified course ID
-    .where(sign_in_time: start_time.beginning_of_day..end_time.end_of_day) # Filter by the date range from start to end date
-    .where("strftime('%H:%M', sign_in_time) >= ? AND strftime('%H:%M', sign_in_time) < ?", hour_start, hour_end) # Filter by the hour range
-    .count # Return the total count of matching records
+#   # Extract hour and minute from hour_start and hour_end
+#   start_hour, start_minute, _ = hour_start.split(":").map(&:to_i)
+#   end_hour, end_minute, _ = hour_end.split(":").map(&:to_i)
+#   # start_minute
+#   # Query the Attendance table for entries matching the course ID, date range, and hour range
+#   Attendance
+#     .where(course_id: course_id)
+#     .where(sign_in_time: start_time.beginning_of_day..end_time.end_of_day) # Filter by date range
+#     .where("EXTRACT(HOUR FROM sign_in_time) > ? OR (EXTRACT(HOUR FROM sign_in_time) = ? AND EXTRACT(MINUTE FROM sign_in_time) >= ?)", start_hour, start_hour, start_minute)
+#     .where("EXTRACT(HOUR FROM sign_in_time) < ? OR (EXTRACT(HOUR FROM sign_in_time) = ? AND EXTRACT(MINUTE FROM sign_in_time) < ?)", end_hour, end_hour, end_minute)
+#     .count
+# end
+#
+def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
+  # Parse start and end dates
+  start_date = Date.parse(start_date)
+  end_date = Date.parse(end_date)
+
+  total_count = 0
+
+  (start_date..end_date).each do |date|
+    # Create specific datetime ranges for each day
+    start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: "+00:00")
+    end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: "+00:00")
+    # Count records for each day and add to total
+    total_count += Attendance
+                    .where(course_id: course_id)
+                    .where(sign_in_time: start_time..end_time)
+                    .count
+  end
+  total_count
 end
