@@ -20,20 +20,22 @@
 
     <div>
     <%= label_tag :course_id, "Select Course:" %>
-    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "select-input" %>
+    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "select-input", onchange: "submitAttendanceForm()"  %>
     <%= label_tag :attendance_type, "Attendance Type:" %>
-    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input" %>
+    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input", onchange: "submitAttendanceForm()"  %>
     </div>
 
     <br>
     <%= label_tag :start_date, "Start Date:" %>
-    <%= date_field_tag :start_date, params[:start_date], class: "date-input" %>
+    <%= date_field_tag :start_date, params[:start_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
     <%= label_tag :end_date, "End Date:" %>
-    <%= date_field_tag :end_date, params[:end_date], class: "date-input" %>
+    <%= date_field_tag :end_date, params[:end_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
 
     <br>
-    <div>
-    <%= submit_tag "Download Attendance CSV", class: "download-btn" %>
+    <div id="attendance-form-container">
+      <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
+        <%= submit_tag "Download Attendance CSV", class: "download-btn", id: "download-btn" %>
+      <% end %>
     </div>
 
   <% end %> 
@@ -44,29 +46,29 @@
 </div>
 
 <script>
-  function drawHistogram(data) {
+function drawHistogram(data) {
   const canvas = document.getElementById('attendanceHistogram');
   const ctx = canvas.getContext('2d');
 
-  // setting the histogram data
+  // Set up histogram data: x-axis labels and y-axis values
   const labels = data.labels;
   const values = data.values;
 
+  // Clear the canvas and set the background color to white
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#ffffff'; // set the background to white
-  ctx.fillRect(0, 0, canvas.width, canvas.height); // cover the whole canvas
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-
-  // setting the margin and axis color
+  // Set margin for the histogram and define bar width and axis color
   const x_margin = canvas.width * 0.05;
   const y_margin = x_margin / 2;
   const barWidth = (canvas.width - x_margin) / 2 / 10;
-  const maxVal = Math.max(...values);
-  const scale = (canvas.height - y_margin - y_margin) / maxVal;
+  const maxVal = Math.max(...values); // Get the highest y-axis value
+  const scale = (canvas.height - y_margin - y_margin) / maxVal; // Scale factor for bar height
   const axisColor = '#000';
   const fontSize = 20;
 
-  // draw the y axis
+  // Draw the y-axis
   ctx.beginPath();
   ctx.moveTo(x_margin, y_margin);
   ctx.lineTo(x_margin, canvas.height - y_margin);
@@ -74,7 +76,7 @@
   ctx.lineWidth = 4;
   ctx.stroke();
 
-  // draw the x axis
+  // Draw the x-axis
   ctx.beginPath();
   ctx.moveTo(x_margin, canvas.height - y_margin);
   ctx.lineTo(canvas.width - x_margin, canvas.height - y_margin);
@@ -82,47 +84,54 @@
   ctx.lineWidth = 4;
   ctx.stroke();
 
-  // setting the font size and color
+  // Set font properties for labels and text on the chart
   ctx.font = `${fontSize}px Arial`;
   ctx.fillStyle = axisColor;
 
-  // display the y axis labels
+  // Draw y-axis labels with evenly spaced intervals
   for (let i = 0; i <= 5; i++) {
     const yValue = (maxVal / 5) * i;
     const yPos = canvas.height - y_margin - (yValue * scale);
-    ctx.fillText(Math.round(yValue), x_margin / 4, yPos); // Y 軸數值
+    ctx.fillText(Math.round(yValue), x_margin / 4, yPos); // Display the y-axis values
     ctx.beginPath();
     ctx.moveTo(x_margin - 5, yPos);
-    ctx.lineTo(x_margin, yPos);
+    ctx.lineTo(x_margin, yPos); // Draw ticks on the y-axis
     ctx.stroke();
   }
 
-function getColor(value, minValue, maxValue) {
-  const ratio = (value - minValue) / (maxValue - minValue);
-  const blue = Math.round(255 * (1 - ratio));
-  const green = Math.round(255 * ratio);
-  return `rgb(0, ${green}, ${blue})`;
-}
+  // Define color gradient function based on normalized values
+  function getColor(value, minValue, maxValue) {
+    const ratio = (value - minValue) / (maxValue - minValue);
+    const blue = Math.round(255 * (1 - ratio));
+    const green = Math.round(255 * ratio);
+    return `rgb(0, ${green}, ${blue})`;
+  }
 
-  // // animation
+  // Animation control variables
   let progress = 0;
-  const animationSpeed = 5; // control the animation speed
+  const animationSpeed = 5; // Speed of the animation
+
+  // Function to animate bars growing to their target heights
   function animateBars() {
     progress += animationSpeed;
 
+    // Draw each bar according to current progress
     for (let i = 0; i < values.length; i++) {
       const barHeight = Math.min(values[i] * scale, progress);
       const x = x_margin + i * (barWidth + barWidth * 0.4) + barWidth * 0.6;
       const y = canvas.height - y_margin - barHeight;
 
-      ctx.fillStyle = getColor(values[i], 0, maxVal); // set the color
+      // Set bar color based on value
+      ctx.fillStyle = getColor(values[i], 0, maxVal);
       ctx.fillRect(x, y, barWidth, barHeight);
 
+      // Display bar values and labels
       ctx.fillStyle = '#000';
-      ctx.fillText(values[i], x + barWidth / 3, canvas.height - y_margin - Math.min(values[i] * scale, maxVal * scale) - 10); // display the value on each bar
-      ctx.fillText(labels[i], x, canvas.height - y_margin / 4); // display the label
+      ctx.fillText(values[i], x + barWidth / 3, canvas.height - y_margin - Math.min(values[i] * scale, maxVal * scale) - 10); // Display the count on each bar
+      ctx.fillText(labels[i], x, canvas.height - y_margin / 4); // Display the hour labels below each bar
     }
 
+    // Continue animation until the full height is reached for each bar
     if (progress < maxVal * scale) {
       requestAnimationFrame(animateBars);
     }
@@ -130,26 +139,73 @@ function getColor(value, minValue, maxValue) {
   animateBars();
 }
 
-// test data
-const testData = {
-  labels: ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"],
-  values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-};
+function submitAttendanceForm() {
+  // Get the form element by its ID
+  const form = document.getElementById('attendance-form');
+  
+  // Collect form data and create a URL query string
+  const formData = new FormData(form);
+  const queryString = new URLSearchParams(formData).toString();
 
-// draw the histogram when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-  drawHistogram(testData);
-});
+  // Send a GET request with the query string to the specified route
+  fetch(`/attendances/calculate_attendance?${queryString}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json', // Specify JSON content type
+      'X-Requested-With': 'XMLHttpRequest'  // Indicate that this is an AJAX request
+    }
+  })
+    .then(response => response.json())  // Parse the response data as JSON
+    .then(data => {
+      // Call drawHistogram function to render data on the histogram
+      // console.log(data);
+      drawHistogram(data);
+    })
+    .catch(error => console.error('Error:', error)); // Log errors in the console if they occur
+}
+</script>
 
-// we need this script to create a new tab to initiate the csv download
+<script>
+  function updateDateConstraints() {
+    const endDateField = document.querySelector('.date-input[name="end_date"]');
+    const startDateField = document.querySelector('.date-input[name="start_date"]');
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
+    // Ensure end_date cannot exceed today's date
+    endDateField.max = today;
+
+    // Set the max attribute of start_date based on end_date's value
+    if (endDateField.value) {
+      startDateField.max = endDateField.value;
+    } else {
+      startDateField.removeAttribute('max'); // Reset if end_date is cleared
+    }
+
+    // Set the min attribute of end_date based on start_date's value
+    if (startDateField.value) {
+      endDateField.min = startDateField.value;
+    } else {
+      endDateField.removeAttribute('min'); // Reset if start_date is cleared
+    }
+  }
+</script>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('attendance-form');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
+  // Call the submitAttendanceForm function once the DOM is fully loaded
+  submitAttendanceForm();
+  // Initial call to set constraints when the page loads
+  updateDateConstraints();
+
+  var downloadBtn = document.getElementById('download-btn');
+  downloadBtn.addEventListener('click', function(e) {
+    e.preventDefault(); // prevent the default action of the button
+
+    var form = document.getElementById('attendance-form');
     var formData = new FormData(form);
     var queryString = new URLSearchParams(formData).toString();
     var url = '<%= download_attendance_path %>' + '?' + queryString;
-    window.open(url, '_blank');
+    window.open(url, '_blank'); // open the csv file in a new tab
   });
 });
 </script>

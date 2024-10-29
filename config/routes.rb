@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get "attendances/download", to: "attendances#attendance", defaults: { format: "csv" }, as: "download_attendance"
   get "attendances", to: "attendances#attendance", as: "attendance"
+  get "attendances/calculate_attendance", to: "attendances#calculate_attendance", as: "calculate_attendance"
 
   # , only: [ :index ]
   resources :courses

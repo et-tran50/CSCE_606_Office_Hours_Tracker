@@ -1,20 +1,20 @@
 class AttendancesController < ApplicationController
   require "csv"
 
-    def attendance
-      @courses = Course.all
-      @attendances = filter_attendances
+  def attendance
+    @courses = Course.all
+    @attendances = filter_attendances
 
-      respond_to do |format|
-        format.html
-        format.csv do
-          send_data generate_attendance_csv,
-                    filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
-                    type: "text/csv",
-                    disposition: "attachment"
-        end
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data generate_attendance_csv,
+                  filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
+                  type: "text/csv",
+                  disposition: "attachment"
       end
     end
+  end
 
   # def mark
   #   email = params[:email]
@@ -71,6 +71,48 @@ class AttendancesController < ApplicationController
     end
 
     redirect_to determine_redirect_path(email, course_number)
+  end
+
+  def calculate_attendance
+    puts "course_id: #{params[:course_id]}"
+    puts "start_date: #{params[:start_date]}"
+    puts "end_date: #{params[:end_date]}"
+    # Retrieve the course ID, start date, and end date from the request parameters
+    course_id = params[:course_id]
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+
+    # Initialize the data structure for the histogram, with labels for x-axis and values for y-axis
+    data = {
+      labels: [], # Stores hour labels (e.g., "8 AM", "9 AM") for x-axis
+      values: []  # Stores corresponding attendance counts for y-axis
+    }
+
+    # Loop through each hour from 8 AM to 8 PM to calculate attendance counts per hour
+    (8..20).each do |hour|
+      # Format the hour label (e.g., "8 AM", "12 PM", "5 PM") and add it to labels array
+      if hour < 12
+        data[:labels] << "#{hour} AM"
+      elsif hour == 12
+        data[:labels] << "12 PM"
+      else
+        data[:labels] << "#{hour - 12} PM"
+      end
+
+      # Define the start and end times for the current hour range
+      start_time = "#{hour}:00:00"
+      end_time = "#{hour + 1}:00:00"
+
+      # Get the attendance count for this course, date range, and hour range
+      count = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
+      data[:values] << count # Add the count to the values array
+    end
+
+    # Output the generated data to the console for debugging
+    puts "data: #{data}"
+
+    # Render the data as JSON to send it to the frontend for display
+    render json: data
   end
 
   private
@@ -235,4 +277,42 @@ class AttendancesController < ApplicationController
       end
     end
   end
+end
+
+# def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
+#   # Parse the start and end dates into Date objects
+#   start_time = Date.parse(start_date)
+#   end_time = Date.parse(end_date)
+
+#   # Extract hour and minute from hour_start and hour_end
+#   start_hour, start_minute, _ = hour_start.split(":").map(&:to_i)
+#   end_hour, end_minute, _ = hour_end.split(":").map(&:to_i)
+#   # start_minute
+#   # Query the Attendance table for entries matching the course ID, date range, and hour range
+#   Attendance
+#     .where(course_id: course_id)
+#     .where(sign_in_time: start_time.beginning_of_day..end_time.end_of_day) # Filter by date range
+#     .where("EXTRACT(HOUR FROM sign_in_time) > ? OR (EXTRACT(HOUR FROM sign_in_time) = ? AND EXTRACT(MINUTE FROM sign_in_time) >= ?)", start_hour, start_hour, start_minute)
+#     .where("EXTRACT(HOUR FROM sign_in_time) < ? OR (EXTRACT(HOUR FROM sign_in_time) = ? AND EXTRACT(MINUTE FROM sign_in_time) < ?)", end_hour, end_hour, end_minute)
+#     .count
+# end
+#
+def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
+  # Parse start and end dates
+  start_date = Date.parse(start_date)
+  end_date = Date.parse(end_date)
+
+  total_count = 0
+
+  (start_date..end_date).each do |date|
+    # Create specific datetime ranges for each day
+    start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: "+00:00")
+    end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: "+00:00")
+    # Count records for each day and add to total
+    total_count += Attendance
+                    .where(course_id: course_id)
+                    .where(sign_in_time: start_time..end_time)
+                    .count
+  end
+  total_count
 end
