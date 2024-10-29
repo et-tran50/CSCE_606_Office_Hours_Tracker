@@ -59,7 +59,7 @@ class AttendancesController < ApplicationController
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
     course_number = params[:course_number]
-  
+
     if user
       if ta_email?(email)
         handle_attendance(user, "ta", course_number)
@@ -69,13 +69,13 @@ class AttendancesController < ApplicationController
     else
       flash[:alert] = "User not found!"
     end
-  
+
     redirect_to determine_redirect_path(email, course_number)
   end
-  
+
   private
-  
-  
+
+
   def handle_attendance(user, role, course_number)
     if attendance_marked_recently?(user, role)
       flash[:notice] = "Attendance already marked for the time slot"
@@ -85,7 +85,7 @@ class AttendancesController < ApplicationController
       flash[:notice] = "#{role.capitalize} attendance marked successfully!"
     end
   end
-  
+
   def mark_attendance(user, role, course_number)
     if role == "ta"
       TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
@@ -93,7 +93,7 @@ class AttendancesController < ApplicationController
       Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)
     end
   end
-  
+
 
 
   def attendance_marked_recently?(user, role)

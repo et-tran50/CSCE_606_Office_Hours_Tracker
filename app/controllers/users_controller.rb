@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def showAdmin
     @courses = Course.all
+    @attendances = Attendance.all
   end
 
 

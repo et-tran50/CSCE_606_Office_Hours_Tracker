@@ -22,7 +22,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    overflow: hidden;
+    overflow: auto;
+    overflow-y: auto;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -270,3 +271,41 @@ body::before {
 .check-in-btn.marked {
     background-color: rgb(13, 181, 13);
 }
+
+.attendance {
+    max-height: none; 
+    overflow-y: auto; 
+  }
+
+  .centered-table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+th {
+    background-color: #800000; /* Maroon */
+    color: white;
+    font-weight: bold;
+}
+
+tr {
+    background-color: white; /* All rows white */
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+  
