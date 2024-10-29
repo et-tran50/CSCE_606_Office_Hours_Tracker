@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
     if ta_email?(email)
       ta_path(@user)
     elsif admin_email?(email)
-      admin_path(@user)
+      admin_path(@user, Date.today)
     else
       user_path(@user)
     end

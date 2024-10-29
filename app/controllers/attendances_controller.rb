@@ -1,20 +1,20 @@
 class AttendancesController < ApplicationController
   require "csv"
 
-    def attendance
-      @courses = Course.all
-      @attendances = filter_attendances
+  def attendance
+    @courses = Course.all
+    @attendances = filter_attendances
 
-      respond_to do |format|
-        format.html
-        format.csv do
-          send_data generate_attendance_csv,
-                    filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
-                    type: "text/csv",
-                    disposition: "attachment"
-        end
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data generate_attendance_csv,
+                  filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
+                  type: "text/csv",
+                  disposition: "attachment"
       end
     end
+  end
 
   # def mark
   #   email = params[:email]
@@ -59,7 +59,7 @@ class AttendancesController < ApplicationController
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
     course_number = params[:course_number]
-  
+
     if user
       if ta_email?(email)
         handle_attendance(user, "ta", course_number)
@@ -69,13 +69,55 @@ class AttendancesController < ApplicationController
     else
       flash[:alert] = "User not found!"
     end
-  
+
     redirect_to determine_redirect_path(email, course_number)
   end
-  
+
+  def calculate_attendance
+    puts "course_id: #{params[:course_id]}"
+    puts "start_date: #{params[:start_date]}"
+    puts "end_date: #{params[:end_date]}"
+    # Retrieve the course ID, start date, and end date from the request parameters
+    course_id = params[:course_id]
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+
+    # Initialize the data structure for the histogram, with labels for x-axis and values for y-axis
+    data = {
+      labels: [], # Stores hour labels (e.g., "8 AM", "9 AM") for x-axis
+      values: []  # Stores corresponding attendance counts for y-axis
+    }
+
+    # Loop through each hour from 8 AM to 8 PM to calculate attendance counts per hour
+    (8..20).each do |hour|
+      # Format the hour label (e.g., "8 AM", "12 PM", "5 PM") and add it to labels array
+      if hour < 12
+        data[:labels] << "#{hour} AM"
+      elsif hour == 12
+        data[:labels] << "12 PM"
+      else
+        data[:labels] << "#{hour - 12} PM"
+      end
+
+      # Define the start and end times for the current hour range
+      start_time = "#{hour}:00:00"
+      end_time = "#{hour + 1}:00:00"
+
+      # Get the attendance count for this course, date range, and hour range
+      count = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
+      data[:values] << count # Add the count to the values array
+    end
+
+    # Output the generated data to the console for debugging
+    puts "data: #{data}"
+
+    # Render the data as JSON to send it to the frontend for display
+    render json: data
+  end
+
   private
-  
-  
+
+
   def handle_attendance(user, role, course_number)
     if attendance_marked_recently?(user, role)
       flash[:notice] = "Attendance already marked for the time slot"
@@ -85,7 +127,7 @@ class AttendancesController < ApplicationController
       flash[:notice] = "#{role.capitalize} attendance marked successfully!"
     end
   end
-  
+
   def mark_attendance(user, role, course_number)
     if role == "ta"
       TaAttendance.create(user_id: user.id, sign_in_time: Time.now)
@@ -93,7 +135,7 @@ class AttendancesController < ApplicationController
       Attendance.create(user_id: user.id, sign_in_time: Time.now, course_id: course_number)
     end
   end
-  
+
 
 
   def attendance_marked_recently?(user, role)
@@ -235,4 +277,17 @@ class AttendancesController < ApplicationController
       end
     end
   end
+end
+
+def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
+  # Parse the start and end date strings into Date objects
+  start_time = Date.parse(start_date)
+  end_time = Date.parse(end_date)
+
+  # Query the Attendance table for entries that match the course ID and are within the specified date and hour range
+  Attendance
+    .where(course_id: course_id) # Filter by the specified course ID
+    .where(sign_in_time: start_time.beginning_of_day..end_time.end_of_day) # Filter by the date range from start to end date
+    .where("strftime('%H:%M', sign_in_time) >= ? AND strftime('%H:%M', sign_in_time) < ?", hour_start, hour_end) # Filter by the hour range
+    .count # Return the total count of matching records
 end

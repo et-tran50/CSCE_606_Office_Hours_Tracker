@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   end
 
   def showAdmin
-    @courses = Course.all
+    @courses = Course.select(:course_number).distinct.order(:course_number)
+    params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
+    params[:attendance_type] ||= "student"
+    params[:start_date] ||= Date.today
+    params[:end_date] ||= Date.today
   end
 
 

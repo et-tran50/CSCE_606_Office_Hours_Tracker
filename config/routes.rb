@@ -11,15 +11,15 @@ Rails.application.routes.draw do
   get "/users/:id", to: "users#show", as: "user"
   get "showTA/:id", to: "users#showTA", as: "ta"
   get "showAdmin/:id", to: "users#showAdmin", as: "admin"
-  get 'users/showAdmin/:id', to: 'users#showAdmin', as: 'users_showAdmin'
+  get "users/showAdmin/:id", to: "users#showAdmin", as: "users_showAdmin"
   get "/logout", to: "sessions#logout", as: "logout"
   get "/auth/google_oauth2/callback", to: "sessions#omniauth"
-  get 'admin_uploads/new', to: 'admin_uploads#new', as: 'new_admin_upload'
-  post 'admin_uploads/create_admin_emails', to: 'admin_uploads#create_admin_emails', as: 'admin_upload'
-  post 'admin_uploads/create_ta_emails', to: 'admin_uploads#create_ta_emails', as: 'ta_upload'
+  get "admin_uploads/new", to: "admin_uploads#new", as: "new_admin_upload"
+  post "admin_uploads/create_admin_emails", to: "admin_uploads#create_admin_emails", as: "admin_upload"
+  post "admin_uploads/create_ta_emails", to: "admin_uploads#create_ta_emails", as: "ta_upload"
   post "attendances/mark", to: "attendances#mark", as: "mark"
-  get 'upload_email', to: 'admin_uploads#upload_email', as: 'upload_email'
-  post 'upload_emails', to: 'admin_uploads#upload_emails', as: 'upload_emails'
+  get "upload_email", to: "admin_uploads#upload_email", as: "upload_email"
+  post "upload_emails", to: "admin_uploads#upload_emails", as: "upload_emails"
 
   #  Route to allow users to download the attendance report as a CSV file
   # get "attendances/download_student_attendance", to: "attendances#download_student_attendance", as: "download_student_attendance"
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get "attendances/download", to: "attendances#attendance", defaults: { format: "csv" }, as: "download_attendance"
   get "attendances", to: "attendances#attendance", as: "attendance"
+  get "attendances/calculate_attendance", to: "attendances#calculate_attendance", as: "calculate_attendance"
 
   # , only: [ :index ]
   resources :courses
