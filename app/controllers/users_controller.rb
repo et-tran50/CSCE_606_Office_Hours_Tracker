@@ -22,9 +22,15 @@ class UsersController < ApplicationController
     if params[:course_id].present?
       @attendances = @attendances.where(course_id: params[:course_id])
     end
-    @attendances = @attendances.where(course_id: params[:course_id]) if params[:course_id].present?
+
     @attendances = @attendances.where("sign_in_time >= ?", params[:start_date]) if params[:start_date].present?
-    @attendances = @attendances.where("sign_in_time <= ?", params[:end_date]) if params[:end_date].present?
+
+    # Adjust end_date to be exclusive of the next day to include the full specified day
+    if params[:end_date].present?
+      end_date = (Date.parse(params[:end_date]) + 1.day).to_s
+      @attendances = @attendances.where("sign_in_time < ?", end_date)
+    end
+
     @attendances = @attendances.order(sign_in_time: :asc)
 
     params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
@@ -32,6 +38,7 @@ class UsersController < ApplicationController
     params[:start_date] ||= Date.today
     params[:end_date] ||= Date.today
   end
+
 
 
   # I asked chat to add security checks so that a student couldn't access the url unless in the file
