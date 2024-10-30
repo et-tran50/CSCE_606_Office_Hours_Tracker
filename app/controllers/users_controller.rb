@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @attendances = @attendances.where(course_id: params[:course_id]) if params[:course_id].present?
     @attendances = @attendances.where("sign_in_time >= ?", params[:start_date]) if params[:start_date].present?
     @attendances = @attendances.where("sign_in_time <= ?", params[:end_date]) if params[:end_date].present?
+    @attendances = @attendances.order(sign_in_time: :asc)
 
     params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
     params[:attendance_type] ||= "student"
