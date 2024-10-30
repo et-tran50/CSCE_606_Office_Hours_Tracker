@@ -27,11 +27,6 @@ class UsersController < ApplicationController
     params[:attendance_type] ||= "student"
     params[:start_date] ||= Date.today
     params[:end_date] ||= Date.today
-
-    respond_to do |format|
-      format.html # normal request
-      format.js   # AJAX request
-    end
   end
 
 
