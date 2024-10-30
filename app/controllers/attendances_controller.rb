@@ -77,44 +77,26 @@ class AttendancesController < ApplicationController
     puts "course_id: #{params[:course_id]}"
     puts "start_date: #{params[:start_date]}"
     puts "end_date: #{params[:end_date]}"
+    
     # Retrieve the course ID, start date, and end date from the request parameters
     course_id = params[:course_id]
     start_date = params[:start_date]
     end_date = params[:end_date]
-
-    # Initialize the data structure for the histogram, with labels for x-axis and values for y-axis
-    data = {
-      labels: [], # Stores hour labels (e.g., "8 AM", "9 AM") for x-axis
-      values: []  # Stores corresponding attendance counts for y-axis
+  
+    # Your existing histogram data calculation logic here...
+  
+    # Fetch attendance records based on the same parameters
+    @attendances = Attendance.where(course_id: course_id)
+                             .where('sign_in_time >= ? AND sign_in_time <= ?', start_date, end_date)
+  
+    # Render both histogram and attendance data as JSON
+    render json: {
+      histogram: data,        # Assuming 'data' holds your histogram data
+      attendances: @attendances
     }
-
-    # Loop through each hour from 8 AM to 8 PM to calculate attendance counts per hour
-    (8..20).each do |hour|
-      # Format the hour label (e.g., "8 AM", "12 PM", "5 PM") and add it to labels array
-      if hour < 12
-        data[:labels] << "#{hour} AM"
-      elsif hour == 12
-        data[:labels] << "12 PM"
-      else
-        data[:labels] << "#{hour - 12} PM"
-      end
-
-      # Define the start and end times for the current hour range
-      start_time = "#{hour}:00:00"
-      end_time = "#{hour + 1}:00:00"
-
-      # Get the attendance count for this course, date range, and hour range
-      count = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
-      data[:values] << count # Add the count to the values array
-    end
-
-    # Output the generated data to the console for debugging
-    puts "data: #{data}"
-
-    # Render the data as JSON to send it to the frontend for display
-    render json: data
   end
-
+  
+  
   private
 
 
