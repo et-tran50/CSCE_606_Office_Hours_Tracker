@@ -210,8 +210,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
 <table class="centered-table">
   <thead>
+    <tr>
+      <th>Select Course</th>
+      <th>
+        <%= form_with(url: admin_path, method: :get, local: true, style: "display: inline;") do %>
+          <%= select_tag :course_id, options_for_select([["No Selection", nil]] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]), onchange: "this.form.submit()" %>
+        <% end %>
+      </th>
+
+    </tr>
     <tr>
       <th>Course ID</th>
       <th>Sign In Time</th>
@@ -232,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <% end %>
   </tbody>
 </table>
+
 
 
 

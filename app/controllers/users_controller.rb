@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: [ :show, :showTA, :showAdmin ]
   before_action :authorize_access, only: [ :showTA, :showAdmin ]
 
+
+
   # user gets set above for all, so nothing is in controller
   def show
     session[:attendance_marked] = nil
@@ -15,6 +17,12 @@ class UsersController < ApplicationController
 
   def showAdmin
     @courses = Course.select(:course_number).distinct.order(:course_number)
+    if params[:course_id].present?
+      @attendances = Attendance.where(course_id: params[:course_id])
+    else
+      @attendances = Attendance.all # Load all records if no course is selected
+    end
+
     params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
     params[:attendance_type] ||= "student"
     params[:start_date] ||= Date.today
