@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <tr>
       <th colspan="2"> 
         <%= form_with(url: admin_path, method: :get, local: false, id: "attendanceForm") do %>
+        <%= label_tag :start_date, "Select Course:" %>
           <%= select_tag :course_id, 
             options_for_select([['No Selection', '']] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]),
             onchange: "this.form.submit();" 
