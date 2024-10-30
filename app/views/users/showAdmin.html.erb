@@ -40,6 +40,40 @@
 
   <% end %> 
 
+ <table class="centered-table">
+  <thead>
+    <tr>
+      <th>Select Course</th>
+      <th>
+        <%= form_with(url: admin_path, method: :get, local: false, id: "attendanceForm") do %>
+        <%= select_tag :course_id, 
+        options_for_select([['No Selection', '']] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]),
+        onchange: "this.form.submit();" 
+        %>
+      <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th>Course ID</th>
+      <th>Sign In Time</th>
+    </tr>
+  </thead>
+  <tbody id="attendanceTableBody">
+    <% if @attendances.present? %>
+      <% @attendances.each do |attendance| %>
+        <tr>
+          <td><%= attendance.course_id %></td>
+          <td><%= attendance.sign_in_time %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2">No attendance records found.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
   
   <h2>Attendance Histogram</h2>
   <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
@@ -210,38 +244,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+  function submitFilterForm() {
+    var form = document.getElementById('filterForm');
+    var formData = new FormData(form);
 
-<table class="centered-table">
-  <thead>
-    <tr>
-      <th>Select Course</th>
-      <th>
-        <%= form_with(url: admin_path, method: :get, local: true, style: "display: inline;") do %>
-          <%= select_tag :course_id, options_for_select([["No Selection", nil]] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]), onchange: "this.form.submit()" %>
-        <% end %>
-      </th>
+    fetch(form.action, {
+      method: 'GET',
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest' // Tells Rails to handle this as an AJAX request
+      }
+    })
+    .then(response => response.text())
+    .then(data => {
+      // Update the table body with new data
+      document.getElementById('attendanceTableBody').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+  }
+</script>
 
-    </tr>
-    <tr>
-      <th>Course ID</th>
-      <th>Sign In Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @attendances.present? %>
-      <% @attendances.each do |attendance| %>
-        <tr>
-          <td><%= attendance.course_id %></td>
-          <td><%= attendance.sign_in_time %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td colspan="2">No attendance records found.</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
 
 
 

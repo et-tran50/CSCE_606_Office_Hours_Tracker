@@ -17,16 +17,21 @@ class UsersController < ApplicationController
 
   def showAdmin
     @courses = Course.select(:course_number).distinct.order(:course_number)
+    @attendances = Attendance.all
+
     if params[:course_id].present?
-      @attendances = Attendance.where(course_id: params[:course_id])
-    else
-      @attendances = Attendance.all # Load all records if no course is selected
+      @attendances = @attendances.where(course_id: params[:course_id])
     end
 
     params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
     params[:attendance_type] ||= "student"
     params[:start_date] ||= Date.today
     params[:end_date] ||= Date.today
+
+    respond_to do |format|
+      format.html # normal request
+      format.js   # AJAX request
+    end
   end
 
 
