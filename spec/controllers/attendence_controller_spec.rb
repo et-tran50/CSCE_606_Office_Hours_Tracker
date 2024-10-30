@@ -166,21 +166,21 @@ end
 
       it 'marks student attendance when not marked recently' do
         allow_any_instance_of(AttendancesController).to receive(:attendance_marked_recently?).with(@user, "student").and_return(false)
-      
+
         # Print Attendance count before the request
         puts "Attendance count before: #{Attendance.count}"
-      
+
         expect {
           post :mark, params: { email: @user.email, course_number: @course.course_number }
         }.to change(Attendance, :count).by(1)
-      
+
         # Fix: Compare course_id with @course.id instead of course_number
         expect(Attendance.last.course_id).to eq(@course.course_number)
-      
+
         expect(flash[:notice]).to eq("Student attendance marked successfully!")
         expect(session[:attendance_marked]).to be true
       end
-      
+
 
       it 'does not mark student attendance when already marked' do
         allow_any_instance_of(AttendancesController).to receive(:attendance_marked_recently?).with(@user, "student").and_return(true)

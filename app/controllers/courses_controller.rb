@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [ :show, :edit, :update, :destroy ]
 
   # GET /courses
   def index
@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-      redirect_to courses_path, notice: 'Course was successfully created.'  # Redirect to index page
+      redirect_to courses_path, notice: "Course was successfully created."  # Redirect to index page
     else
       render :new
     end
@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/:id
   def update
     if @course.update(course_params)
-      redirect_to @course, notice: 'Course was successfully updated.'
+      redirect_to @course, notice: "Course was successfully updated."
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/:id
   def destroy
     @course.destroy
-    redirect_to courses_url, notice: 'Course was successfully destroyed.'
+    redirect_to courses_url, notice: "Course was successfully destroyed."
   end
 
   private

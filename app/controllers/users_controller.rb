@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: [ :show, :showTA, :showAdmin ]
   before_action :authorize_access, only: [ :showTA, :showAdmin ]
 
+
+
   # user gets set above for all, so nothing is in controller
   def show
     session[:attendance_marked] = nil
@@ -15,11 +17,28 @@ class UsersController < ApplicationController
 
   def showAdmin
     @courses = Course.select(:course_number).distinct.order(:course_number)
+    @attendances = Attendance.all
+
+    if params[:course_id].present?
+      @attendances = @attendances.where(course_id: params[:course_id])
+    end
+
+    @attendances = @attendances.where("sign_in_time >= ?", params[:start_date]) if params[:start_date].present?
+
+    # Adjust end_date to be exclusive of the next day to include the full specified day
+    if params[:end_date].present?
+      end_date = (Date.parse(params[:end_date]) + 1.day).to_s
+      @attendances = @attendances.where("sign_in_time < ?", end_date)
+    end
+
+    @attendances = @attendances.order(sign_in_time: :asc)
+
     params[:course_number] ||= @courses.sort_by(&:course_number).first.course_number
     params[:attendance_type] ||= "student"
     params[:start_date] ||= Date.today
     params[:end_date] ||= Date.today
   end
+
 
 
   # I asked chat to add security checks so that a student couldn't access the url unless in the file

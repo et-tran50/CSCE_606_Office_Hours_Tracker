@@ -12,7 +12,7 @@ RSpec.describe CoursesController, type: :controller do
       start_date: Date.new(2024, 8, 19),
       end_date: Date.new(2024, 12, 31)
     )
-    
+
     @course2 = Course.create!(
       course_number: 'ENGR 201',
       course_name: 'Engineering Lab II - Mechanics',
