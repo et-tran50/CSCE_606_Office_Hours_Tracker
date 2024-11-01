@@ -3,9 +3,11 @@
   <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
 </div>
 <div class="header-bar">
-  <h1 class="welcome-text">Howdy Admin, <%= @current_user.first_name %>!</h1>
+  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
+
+<h1 class="admin-text">Upload TA/Admin Emails</h1>
 
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
@@ -13,11 +15,12 @@
   <p class="alert"><%= flash[:alert] %></p>
 <% end %>
 
-<h1>Upload TA/Admin Emails</h1>
+<%# <h1>Upload TA/Admin Emails</h1> %>
 
+<div class="upload-container">
 <%= form_with url: upload_emails_path, method: :post, local: true do |form| %>
   <div>
-    <h3>Select Email Type</h3>
+    <h3 class="upload-text">Select Email Type</h3>
     <%= form.radio_button :email_type, 'ta', checked: true %>
     <%= form.label :email_type_ta, 'TA Email' %>
     <%= form.radio_button :email_type, 'admin' %>
@@ -25,22 +28,27 @@
   </div>
 
   <div>
-    <h3>Add Individual Email</h3>
+    <h3 class="upload-text">Add Individual Email</h3>
     <%= form.label :email, "Enter Email:" %>
     <%= form.text_field :email %>
     <%= form.submit "Upload Email" %>
   </div>
 
   <div>
-    <h3>Upload Email File</h3>
+    <h3 class="upload-text">Upload Email File</h3>
     <%= form.label :file, "Select CSV File:" %>
     <%= form.file_field :file %>
     <%= form.submit "Upload File" %>
   </div>
 <% end %>
+</div>
 
 <div>
-  <%= link_to 'Back to Admin Page', users_showAdmin_path(@current_user), class: 'back-btn' %>
+  <%= link_to 'Back', users_showAdmin_path(@current_user), class: 'gen-btn' %>
+</div>
+
+<div class="bottom-bar">
+        <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
 </div>
 
 

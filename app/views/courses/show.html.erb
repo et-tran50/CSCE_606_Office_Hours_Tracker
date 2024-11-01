@@ -1,24 +1,41 @@
-<h1><%= @course.course_name %></h1>
+<div class="top-bar">
+  <img src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
+  <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
+</div>
+<div class="header-bar">
+  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
+  <%= link_to "Logout", logout_path, class: "logout-btn" %>
+</div>
 
-<p>
-  <strong>Course Number:</strong>
-  <%= @course.course_number %>
-</p>
+<h1 class="admin-text"><%= @course.course_name %></h1>
 
-<p>
-  <strong>Instructor Name:</strong>
-  <%= @course.instructor_name %>
-</p>
+<div class="course-card">
+  <p>
+    <strong>Course Number:</strong>
+    <%= @course.course_number %>
+  </p>
 
-<p>
-  <strong>Start Date:</strong>
-  <%= @course.start_date %>
-</p>
+  <p>
+    <strong>Instructor Name:</strong>
+    <%= @course.instructor_name %>
+  </p>
 
-<p>
-  <strong>End Date:</strong>
-  <%= @course.end_date %>
-</p>
+  <p>
+    <strong>Start Date:</strong>
+    <%= @course.start_date %>
+  </p>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back to Courses', courses_path %>
+  <p>
+    <strong>End Date:</strong>
+    <%= @course.end_date %>
+  </p>
+</div>
+
+<div class="course-bar">
+  <%= link_to 'Back', courses_path, class: "gen-btn"%>
+  <%= link_to 'Edit Course', edit_course_path(@course), class: "gen-btn"%> 
+</div>
+
+<div class="bottom-bar">
+        <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
+</div>

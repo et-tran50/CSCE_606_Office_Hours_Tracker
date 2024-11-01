@@ -1,18 +1,43 @@
-<h1>Courses</h1>
-<%= link_to 'New Course', new_course_path %>
+<div class="top-bar">
+  <img src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
+  <img src="<%= image_path('profile.png') %>" alt="Profile Picture" class="profile-picture">
+</div>
+<div class="header-bar">
+  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
+  <%= link_to "Logout", logout_path, class: "logout-btn" %>
+</div>
 
-<ul>
-  <% @courses.each do |course| %>
-    <li>
-      <%= link_to course.course_name, course_path(course) %> |
-      <%= link_to 'Edit', edit_course_path(course) %> |
-      <%= link_to 'Delete', course_path(course), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-      <!--<%= link_to 'Delete', course_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>-->
+<h1 class="admin-text">Courses</h1>
 
-    </li>
-  <% end %>
-</ul>
 
-<div>
-  <%= link_to 'Back to Admin Page', users_showAdmin_path(@current_user), class: 'back-btn' %>
+
+<div class="course-table-container">
+  <table class="course-table">
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.course_name, course_path(course) %></td>
+          <td>
+            <%= link_to 'Edit', edit_course_path(course) %> |
+            <%= link_to 'Delete', course_path(course), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="course-bar">
+  <%= link_to 'Back', users_showAdmin_path(@current_user), class: 'gen-btn' %>
+  <%= link_to 'New Course', new_course_path, class: "gen-btn"%>
+</div>
+
+<div class="bottom-bar">
+        <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
 </div>

@@ -4,48 +4,56 @@
   <img  src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
 </div>
 <div class="header-bar">
-  <h1 class="welcome-text">Howdy Admin, <%= @current_user.first_name %>!</h1>
+  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
 
-<div class="attendance user-details">
-  <!--Admin function subpages -->
-  <%= link_to 'Upload TA/Admin Emails', upload_email_path, class: 'btn btn-primary' %>
-  <%= link_to 'Manage Courses', courses_path, class: 'btn btn-primary' %>
+<h1 class="admin-text">ADMIN PAGE</h1>
 
-  <h1>ADMIN</h1>
-  <h2>Attendance Data</h2>
+<div class="attendance-container">
+  
+  <div class="left-column">
+  <h1>Attendance Data</h1>
   <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
     <!-- todo: add the course id filter-->
 
     <div>
-    <%= label_tag :course_id, "Select Course:" %>
-    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "select-input", onchange: "submitAttendanceForm()"  %>
-    <%= label_tag :attendance_type, "Attendance Type:" %>
-    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "select-input", onchange: "submitAttendanceForm()"  %>
+    <%= label_tag :course_id, "Select Course:" , class: "data-text"%>
+    <br>
+    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+    </div>
+    <br>
+    <div>
+    <%= label_tag :attendance_type, "Attendance Type:", class: "data-text"%>
+    <br>
+    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
     </div>
 
     <br>
-    <%= label_tag :start_date, "Start Date:" %>
+    <%= label_tag :start_date, "Start Date:", class: "data-text" %>
+    <br>
     <%= date_field_tag :start_date, params[:start_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
-    <%= label_tag :end_date, "End Date:" %>
+    <br>
+    <%= label_tag :end_date, "End Date:", class: "data-text" %>
+    <br>
     <%= date_field_tag :end_date, params[:end_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
 
     <br>
     <div id="attendance-form-container">
       <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
-        <%= submit_tag "Download Attendance CSV", class: "download-btn", id: "download-btn" %>
+        <%= submit_tag "Download Data", class: "download-btn", id: "download-btn" %>
       <% end %>
     </div>
+    
 
   <% end %> 
-
-
-
-  
-  <h2>Attendance Histogram</h2>
-  <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
 </div>
+
+
+<div class="middle-column">
+  <%# <h2>Attendance Histogram</h2> %>
+  <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
+
 
 <script>
 function drawHistogram(data) {
@@ -61,6 +69,12 @@ function drawHistogram(data) {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  const title = "Attendance Histogram";
+  ctx.fillStyle = '#333';
+  ctx.font = '30px Times';
+  ctx.textAlign = 'center';
+  ctx.fillText(title, canvas.width / 2, 30); // Position the title at the top center
+
   // Set margin for the histogram and define bar width and axis color
   const x_margin = canvas.width * 0.05;
   const y_margin = x_margin / 2;
@@ -69,6 +83,8 @@ function drawHistogram(data) {
   const scale = (canvas.height - y_margin - y_margin) / maxVal; // Scale factor for bar height
   const axisColor = '#000';
   const fontSize = 20;
+
+  
 
   // Draw the y-axis
   ctx.beginPath();
@@ -251,6 +267,14 @@ document.addEventListener('DOMContentLoaded', function() {
   </tbody>
 </table>
 
+</div>
 
+ <div class="right-column">
+    <%= link_to 'Upload TA/Admin Emails', upload_email_path, class: 'admin-btn' %>
+    <br>
+    <%= link_to 'Manage Courses', courses_path, class: 'admin-btn' %> 
+  </div>
 
-
+<!-- <div class="bottom-bar">
+        <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
+</div> -->

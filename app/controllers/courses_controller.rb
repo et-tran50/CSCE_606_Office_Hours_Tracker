@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @submit_button_text = "Create Course"
   end
 
   # POST /courses
@@ -27,6 +28,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/:id/edit
   def edit
+    @submit_button_text = "Update Course"
   end
 
   # PATCH/PUT /courses/:id

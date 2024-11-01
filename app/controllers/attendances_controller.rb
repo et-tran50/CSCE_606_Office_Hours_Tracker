@@ -58,6 +58,7 @@ class AttendancesController < ApplicationController
   def mark
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
+    name = user.full_name()
     course_number = params[:course_number]
 
     if user
@@ -228,15 +229,15 @@ class AttendancesController < ApplicationController
   end
 
   def generate_ta_attendance_csv_count
-    # Shows how many tas showed up at each hour
+    # Shows how many TAs showed up at each hour
     attendances = filter_attendances.joins(:user).where(users: { role: "ta" })
 
-    # Define the date range from June 1 to June 6, 2024
+    # Define the date range
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
     end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
 
     CSV.generate(headers: true) do |csv|
-      csv << [ "Date", "Time Slot", "Number of TAs" ]
+      csv << [ "Date", "Time Slot", "Number of TAs", "TA Names" ]
 
       # Loop through each day
       (start_date..end_date).each do |date|
@@ -244,10 +245,16 @@ class AttendancesController < ApplicationController
         (9..16).each do |hour|
           start_time = Time.zone.parse("#{date} #{hour}:00:00")
           end_time = start_time + 1.hour
-          # Count the number of students in that time range
-          count = rand(0..5) # attendance.count
+
+          # Get the attendance records for TAs within the time slot
+          ta_records = TaAttendance.where(sign_in_time: start_time..end_time)
+
+          # Get the count of TAs and the names array
+          count = ta_records.count
+          names = ta_records.flat_map(&:checked_in_names).uniq # Combine all names, remove duplicates
+
           # Add a row to the CSV for each time slot
-          csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
+          csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count, names.join(", ") ]
         end
       end
     end
