@@ -121,4 +121,31 @@ RSpec.describe AdminUploadsController, type: :controller do
       end
     end
   end
+
+describe '#overwrite_emails' do
+  let(:controller) { AdminUploadsController.new }
+  let(:temp_file) { Tempfile.new(['emails', '.csv']) }
+  let(:temp_target_directory) { Dir.mktmpdir }
+  let(:target_file) { File.join(temp_target_directory, 'admin_emails.csv') }
+
+  after do
+    temp_file.close
+    temp_file.unlink
+    FileUtils.rm_rf(temp_target_directory) # Remove the temporary directory and its contents
+  end
+
+  it 'overwrites the target file with emails from the provided CSV file' do
+    # Prepare a temporary CSV file with email data
+    csv_data = "email\nnew1@example.com\nnew2@example.com"
+    temp_file.write(csv_data)
+    temp_file.rewind
+
+    # Call the method directly
+    controller.send(:overwrite_emails, temp_file, target_file)
+
+    # Verify that the target file contains the new emails only
+    emails = CSV.read(target_file, headers: true).map { |row| row['email'] }
+    expect(emails).to match_array(['new1@example.com', 'new2@example.com'])
+  end
+end
 end
