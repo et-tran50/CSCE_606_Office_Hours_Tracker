@@ -38,32 +38,39 @@ RSpec.describe AdminUploadsController, type: :controller do
   end
 
   describe 'POST #upload_emails' do
-    before do
-      @user = User.create!(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
-      session[:user_id] = @user.id
-    end
+  before do
+    @user = User.create!(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
+    session[:user_id] = @user.id
+  end
 
-    let(:temp_admin_file) { Rails.root.join('tmp', 'temp_admin_emails.csv') }
-    let(:temp_ta_file) { Rails.root.join('tmp', 'temp_ta_emails.csv') }
+  let(:temp_admin_file) { Rails.root.join('tmp', 'temp_admin_emails.csv') }
+  let(:temp_ta_file) { Rails.root.join('tmp', 'temp_ta_emails.csv') }
 
-    before do
-      # Ensure temp files do not exist
-      FileUtils.rm_f(temp_admin_file)
-      FileUtils.rm_f(temp_ta_file)
-    end
+  before do
+    # Ensure temp files do not exist
+    FileUtils.rm_f(temp_admin_file)
+    FileUtils.rm_f(temp_ta_file)
+  end
 
-    after do
-      # Clean up temp files after tests
-      FileUtils.rm_f(temp_admin_file)
-      FileUtils.rm_f(temp_ta_file)
-    end
+  after do
+    # Clean up temp files after tests
+    FileUtils.rm_f(temp_admin_file)
+    FileUtils.rm_f(temp_ta_file)
+  end
 
     context 'when a valid email is provided' do
-      it 'appends email to the target file and sets a success flash message' do
+      it 'sets a success flash message without modifying the real file' do
+        # Stub out the append_email method
+        allow(controller).to receive(:append_email)
+    
+        # Simulate the post request with the valid email
         post :upload_emails, params: { email: 'test@example.com', email_type: 'admin' }
-
+    
+        # Check that the success flash message is set correctly
         expect(flash[:notice]).to eq("Email test@example.com added successfully to Admin emails.")
-        expect(CSV.read(temp_admin_file, headers: true).map(&:first)).to include('test@example.com')
+    
+        # Check that append_email was called with the correct arguments
+        expect(controller).to have_received(:append_email).with('test@example.com', 'admin', 'admin_emails.csv')
       end
     end
 
@@ -121,4 +128,31 @@ RSpec.describe AdminUploadsController, type: :controller do
       end
     end
   end
+
+describe '#overwrite_emails' do
+  let(:controller) { AdminUploadsController.new }
+  let(:temp_file) { Tempfile.new(['emails', '.csv']) }
+  let(:temp_target_directory) { Dir.mktmpdir }
+  let(:target_file) { File.join(temp_target_directory, 'admin_emails.csv') }
+
+  after do
+    temp_file.close
+    temp_file.unlink
+    FileUtils.rm_rf(temp_target_directory) # Remove the temporary directory and its contents
+  end
+
+  it 'overwrites the target file with emails from the provided CSV file' do
+    # Prepare a temporary CSV file with email data
+    csv_data = "email\nnew1@example.com\nnew2@example.com"
+    temp_file.write(csv_data)
+    temp_file.rewind
+
+    # Call the method directly
+    controller.send(:overwrite_emails, temp_file, target_file)
+
+    # Verify that the target file contains the new emails only
+    emails = CSV.read(target_file, headers: true).map { |row| row['email'] }
+    expect(emails).to match_array(['new1@example.com', 'new2@example.com'])
+  end
+end
 end
