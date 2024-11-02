@@ -34,7 +34,7 @@ class AdminUploadsController < ApplicationController
     private
 
     def valid_email?(email)
-      /\A[^@\s]+@[^@\s]+\z/.match?(email)
+      /\A[^@\s]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}\z/.match?(email)
     end
 
 
