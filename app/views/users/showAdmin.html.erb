@@ -40,12 +40,9 @@
 
     <br>
     <div id="attendance-form-container">
-      <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
         <%= submit_tag "Download Data", class: "download-btn", id: "download-btn" %>
-      <% end %>
     </div>
     
-
   <% end %> 
 </div>
 
@@ -233,16 +230,16 @@ document.addEventListener('DOMContentLoaded', function() {
   <thead>
     <tr>
       <th colspan="2"> 
-        <%= form_with(url: admin_path, method: :get, local: false, id: "attendanceForm") do %>
-        <%= label_tag :start_date, "Select Course:" %>
+        <%= form_with(url: admin_path, method: :get, local: false) do %>
+        <%= label_tag :graph_start_date, "(Graph) Select Course:" %>
           <%= select_tag :course_id, 
             options_for_select([['No Selection', '']] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]),
             onchange: "this.form.submit();" 
           %>
-          <%= label_tag :start_date, "Start Date:" %>
-          <%= date_field_tag :start_date, params[:start_date], onchange: "this.form.submit();" %>
-          <%= label_tag :end_date, "End Date:" %>
-          <%= date_field_tag :end_date, params[:end_date], onchange: "this.form.submit();" %>
+          <%= label_tag :graph_start_date, "From Date:" %>
+          <%= date_field_tag :graph_start_date, params[:graph_start_date], onchange: "this.form.submit();" %>
+          <%= label_tag :graph_end_date, "To Date:" %>
+          <%= date_field_tag :graph_end_date, params[:graph_end_date], onchange: "this.form.submit();" %>
         <% end %>
       </th>
     </tr>

@@ -66,23 +66,29 @@ Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
   select(option, from: dropdown)
 end
 
-Then('I should see {string} on the button with id {string}') do |button_text, button_id|
+Then('I should see {string} within {string}') do |text, id_tag|
   # dropdown_element = find(:select, "course_number")
   # selected_value = dropdown_element.value
   # selected_option = dropdown_element.find("option[value='#{selected_value}']").text
   # puts "The selected option is: #{selected_option}"
 
-  find('#mark-attendance-btn').click
+  within(id_tag) do
+    find(text).click
+  end
 
   # expect(page).to have_button(button_text, wait: 10)
 end
 
 When("I set the start date to {string}") do |date|
-  fill_in "start_date", with: date
+  within("#attendance-form") do
+    fill_in "start_date", with: date
+  end
 end
 
 When("I set the end date to {string}") do |date|
-  fill_in "end_date", with: date
+  within("#attendance-form") do
+    fill_in "end_date", with: date
+  end
 end
 
 Then("I should receive a CSV file") do
@@ -119,4 +125,16 @@ end
 When('I mark my attendance') do
   # puts page.html  # This will print the HTML of the current page for debugging
   find('#mark-attendance-btn').click
+end
+
+Given('the following courses exist:') do |table|
+  table.hashes.each do |course|
+    Course.find_or_create_by!(
+      course_number: course['course_number'],
+      course_name: course['course_name'],
+      instructor_name: course['instructor_name'],
+      start_date: Date.parse(course['start_date']),
+      end_date: Date.parse(course['end_date'])
+    )
+  end
 end
