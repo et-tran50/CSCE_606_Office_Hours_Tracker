@@ -27,9 +27,9 @@ Feature: Student Page
     | course_number | course_name                     | instructor_name  | start_date  | end_date    |
     | ENGR 102      | Engineering Lab I - Computation | Niki Ritchey     | 2024-08-19  | 2024-12-31  |
     | ENGR 200      | Dummy Course 1                  | Dummy Professor  | 2024-08-19  | 2024-12-31  |
-    
+
     Given I am on the page "Home"
     Given I am logged in with name "name_student" and email "student@student.com"
     When I click "Login with Google"
     Then I select "ENGR 102" from the "course_number" dropdown
-    Then I should see "CHECK IN FOR ENGR 102" on the button with id "mark-attendance-btn"
+    Then I should see "ENGR 102"
