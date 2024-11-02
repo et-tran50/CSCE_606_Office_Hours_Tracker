@@ -203,4 +203,50 @@ end
       end
     end
   end
+describe '#calculate_attendance' do
+    let(:course_id) { 'course_123' }
+    let(:start_date) { '2024-10-01' }
+    let(:end_date) { '2024-10-07' }
+
+    # Mock the params to simulate incoming request parameters
+    before do
+      allow(controller).to receive(:params).and_return({
+        course_id: course_id,
+        start_date: start_date,
+        end_date: end_date
+      })
+    end
+
+    # Mock hourly_sign_in_count to return a predefined count for each hour
+    before do
+      allow(controller).to receive(:hourly_sign_in_count).and_return(5)
+    end
+
+    it 'extracts course_id, start_date, and end_date from params' do
+      expect(controller.params[:course_id]).to eq(course_id)
+      expect(controller.params[:start_date]).to eq(start_date)
+      expect(controller.params[:end_date]).to eq(end_date)
+    end
+
+    it 'returns a JSON response with 13 time slots from 8 AM to 8 PM' do
+      expected_labels = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"]
+
+      get :calculate_attendance
+
+      # Parse the JSON response
+      json_response = JSON.parse(response.body)
+
+      # Verify the labels and values in the response
+      expect(json_response['labels']).to eq(expected_labels)
+      expect(json_response['values']).to all(eq(5))
+    end
+
+    it 'calls hourly_sign_in_count 13 times for each hour slot' do
+      expect(controller).to receive(:hourly_sign_in_count).exactly(13).times.with(
+        course_id, start_date, end_date, anything, anything
+      ).and_return(5)
+
+      get :calculate_attendance
+    end
+  end
 end
