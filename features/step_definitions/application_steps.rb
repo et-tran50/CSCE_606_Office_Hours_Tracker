@@ -144,6 +144,6 @@ end
 Then("the histogram should be updated with the correct attendance data") do
   # Verify that the attendance histogram canvas is present on the page
   expect(page).to have_selector('#attendanceHistogram')
-  
+
   # Removed the text expectation as it is not applicable to <canvas> elements
 end

@@ -62,13 +62,13 @@ RSpec.describe AdminUploadsController, type: :controller do
       it 'sets a success flash message without modifying the real file' do
         # Stub out the append_email method
         allow(controller).to receive(:append_email)
-    
+
         # Simulate the post request with the valid email
         post :upload_emails, params: { email: 'test@example.com', email_type: 'admin' }
-    
+
         # Check that the success flash message is set correctly
         expect(flash[:notice]).to eq("Email test@example.com added successfully to Admin emails.")
-    
+
         # Check that append_email was called with the correct arguments
         expect(controller).to have_received(:append_email).with('test@example.com', 'admin', 'admin_emails.csv')
       end
@@ -131,7 +131,7 @@ RSpec.describe AdminUploadsController, type: :controller do
 
 describe '#overwrite_emails' do
   let(:controller) { AdminUploadsController.new }
-  let(:temp_file) { Tempfile.new(['emails', '.csv']) }
+  let(:temp_file) { Tempfile.new([ 'emails', '.csv' ]) }
   let(:temp_target_directory) { Dir.mktmpdir }
   let(:target_file) { File.join(temp_target_directory, 'admin_emails.csv') }
 
@@ -152,7 +152,7 @@ describe '#overwrite_emails' do
 
     # Verify that the target file contains the new emails only
     emails = CSV.read(target_file, headers: true).map { |row| row['email'] }
-    expect(emails).to match_array(['new1@example.com', 'new2@example.com'])
+    expect(emails).to match_array([ 'new1@example.com', 'new2@example.com' ])
   end
 end
 end

@@ -161,105 +161,105 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  # describe 'GET #showAdmin' do
-  #   before do
-  #     mock_google_oauth2  # Mock the Google OAuth2 response
-  #     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
-  #     @user = User.find_or_create_by(uid: request.env["omniauth.auth"]["uid"], provider: request.env["omniauth.auth"]["provider"]) do |u|
-  #       u.email = request.env["omniauth.auth"]["info"]["email"]
-  #       names = request.env["omniauth.auth"]["info"]["name"].split
-  #       u.first_name = names[0]
-  #       u.last_name = names[1..].join(" ")
-  #     end
-  #     session[:user_id] = @user.id
+    # describe 'GET #showAdmin' do
+    #   before do
+    #     mock_google_oauth2  # Mock the Google OAuth2 response
+    #     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
+    #     @user = User.find_or_create_by(uid: request.env["omniauth.auth"]["uid"], provider: request.env["omniauth.auth"]["provider"]) do |u|
+    #       u.email = request.env["omniauth.auth"]["info"]["email"]
+    #       names = request.env["omniauth.auth"]["info"]["name"].split
+    #       u.first_name = names[0]
+    #       u.last_name = names[1..].join(" ")
+    #     end
+    #     session[:user_id] = @user.id
 
-  #     # Create the course with the specified details
-  #     @course1 = Course.create!(
-  #       course_number: 'ENGR 102',
-  #       course_name: 'Engineering Lab I - Computation',
-  #       instructor_name: 'Niki Ritchey',
-  #       start_date: Date.new(2024, 8, 19),
-  #       end_date: Date.new(2024, 12, 31)
-  #     )
+    #     # Create the course with the specified details
+    #     @course1 = Course.create!(
+    #       course_number: 'ENGR 102',
+    #       course_name: 'Engineering Lab I - Computation',
+    #       instructor_name: 'Niki Ritchey',
+    #       start_date: Date.new(2024, 8, 19),
+    #       end_date: Date.new(2024, 12, 31)
+    #     )
 
-  #     # Create an attendance record linked to the user and course
-  #     @attendance = Attendance.create!(
-  #       user_id: @user.id,
-  #       sign_in_time: Time.current,
-  #       course_id: @course1.id  # Ensure this corresponds to the correct course_id field type
-  #     )
-  #   end
+    #     # Create an attendance record linked to the user and course
+    #     @attendance = Attendance.create!(
+    #       user_id: @user.id,
+    #       sign_in_time: Time.current,
+    #       course_id: @course1.id  # Ensure this corresponds to the correct course_id field type
+    #     )
+    #   end
 
-  #   context 'when valid parameters are provided' do
-  #     it 'assigns @courses' do
-  #       get :showAdmin, params: { course_id: @course1.id }
-  #       expect(assigns(:courses)).to include(@course1)
-  #     end
+    #   context 'when valid parameters are provided' do
+    #     it 'assigns @courses' do
+    #       get :showAdmin, params: { course_id: @course1.id }
+    #       expect(assigns(:courses)).to include(@course1)
+    #     end
 
-  #     it 'assigns @attendances' do
-  #       get :showAdmin, params: { course_id: @course1.id }
-  #       expect(assigns(:attendances)).to include(@attendance)
-  #     end
+    #     it 'assigns @attendances' do
+    #       get :showAdmin, params: { course_id: @course1.id }
+    #       expect(assigns(:attendances)).to include(@attendance)
+    #     end
 
-  #     it 'renders the showAdmin template' do
-  #       get :showAdmin, params: { course_id: @course1.id }
-  #       expect(response).to render_template(:showAdmin)
-  #     end
-  #   end
+    #     it 'renders the showAdmin template' do
+    #       get :showAdmin, params: { course_id: @course1.id }
+    #       expect(response).to render_template(:showAdmin)
+    #     end
+    #   end
 
-  #   context 'when filtering by course_id' do
-  #     it 'filters @attendances by course_id' do
-  #       get :showAdmin, params: { course_id: @course1.id }
-  #       expect(assigns(:attendances)).to all(have_attributes(course_id: @course1.id))
-  #     end
-  #   end
+    #   context 'when filtering by course_id' do
+    #     it 'filters @attendances by course_id' do
+    #       get :showAdmin, params: { course_id: @course1.id }
+    #       expect(assigns(:attendances)).to all(have_attributes(course_id: @course1.id))
+    #     end
+    #   end
 
-  #   context 'when filtering by start_date' do
-  #     # Add tests for filtering by start_date
-  #   end
+    #   context 'when filtering by start_date' do
+    #     # Add tests for filtering by start_date
+    #   end
 
-  #   context 'when filtering by end_date' do
-  #     # Add tests for filtering by end_date
-  #   end
+    #   context 'when filtering by end_date' do
+    #     # Add tests for filtering by end_date
+    #   end
 
-  #   context 'when no parameters are provided' do
-  #     it 'assigns default values to params' do
-  #       get :showAdmin
-  #       # Add expectations for default values
-  #     end
-  #   end
-  # end
+    #   context 'when no parameters are provided' do
+    #     it 'assigns default values to params' do
+    #       get :showAdmin
+    #       # Add expectations for default values
+    #     end
+    #   end
+    # end
 
-  # describe 'GET #showAdmin' do
-  #   before do
-  #     @user = User.create!(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
-  #     session[:user_id] = @user.id
-  #     # Create sample courses
-  #     @course1 = Course.create(course_number: 'CS101', course_name: 'Intro to Computer Science')
-  #     @course2 = Course.create(course_number: 'CS102', course_name: 'Data Structures')
+    # describe 'GET #showAdmin' do
+    #   before do
+    #     @user = User.create!(uid: "123456789", provider: "google_oauth2", email: "user@example.com", first_name: "John", last_name: "Doe")
+    #     session[:user_id] = @user.id
+    #     # Create sample courses
+    #     @course1 = Course.create(course_number: 'CS101', course_name: 'Intro to Computer Science')
+    #     @course2 = Course.create(course_number: 'CS102', course_name: 'Data Structures')
 
-  #     # Create sample attendances
-  #     @attendance1 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course1.id)
-  #     @attendance2 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course2.id)
-  #   end
-  #   it 'assigns distinct courses to @courses' do
-  #     get :showAdmin, params: { id: @user.id, course_id: @course1.id, start_date: '2024-11-01', end_date: '2024-11-01' }
-  #     expect(assigns(:courses).pluck(:course_number)).to include(@course1.course_number, @course2.course_number)
+    #     # Create sample attendances
+    #     @attendance1 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course1.id)
+    #     @attendance2 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course2.id)
+    #   end
+    #   it 'assigns distinct courses to @courses' do
+    #     get :showAdmin, params: { id: @user.id, course_id: @course1.id, start_date: '2024-11-01', end_date: '2024-11-01' }
+    #     expect(assigns(:courses).pluck(:course_number)).to include(@course1.course_number, @course2.course_number)
 
-  #   end
-  # end
+    #   end
+    # end
 
     # describe 'GET #showAdmin' do
     #   let!(:course1) { Course.create(course_number: 'CS101', course_name: 'Intro to Computer Science') }
     #   let!(:course2) { Course.create(course_number: 'CS102', course_name: 'Data Structures') }
     #   let!(:attendance1) { Attendance.create(user_id: 1, course_id: course1.course_number, sign_in_time: '2024-10-30 09:00:00') }
     #   let!(:attendance2) { Attendance.create(user_id: 2, course_id: course2.course_number, sign_in_time: '2024-10-31 10:00:00') }
-      
+
     #   before do
     #     # Set up the params for the request
     #     get :showAdmin, params: { course_id: course1.course_number, start_date: '2024-10-30', end_date: '2024-10-30' }
     #   end
-  
+
 
 
     #   it 'assigns @courses' do
@@ -276,20 +276,17 @@ RSpec.describe UsersController, type: :controller do
           # Create sample courses
           @course1 = Course.create(course_number: 'CS101', course_name: 'Intro to Computer Science')
           @course2 = Course.create(course_number: 'CS102', course_name: 'Data Structures')
-    
+
           # Create sample attendances
           @attendance1 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course1.id)
           @attendance2 = Attendance.create(user_id: @user.id, sign_in_time: Time.now, course_id: @course2.id)
-      
+
       # Set up the params for the request
       get :showAdmin, params: { id: @user.id, course_id: @course1.course_number, start_date: '2024-11-01', end_date: '2024-11-01' }
     end
     it 'assigns @courses' do
-      expect(assigns(:courses)).to include(@course2.course_number,@course1.course_number)
+      expect(assigns(:courses)).to include(@course2.course_number, @course1.course_number)
       expect(assigns(:courses).count).to eq(2)
     end
-
   end
-    
-
 end
