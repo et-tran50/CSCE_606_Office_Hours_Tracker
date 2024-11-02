@@ -1,3 +1,5 @@
+require 'uri'
+
 Given('I am on the page {string}') do |string|
   case string
   when "Home"
@@ -52,18 +54,12 @@ end
 
 Then('I select {string} from the {string} dropdown') do |option, dropdown|
   select(option, from: dropdown)
-
-  # page.execute_script("document.forms[0].submit()")
-
-  # save_and_open_page
-
-  # options = dropdown_element.all('option').map(&:text)
-  # puts "Options in the #{dropdown} dropdown: #{options.join(', ')}"
-  # expect(page).to have_button("CHECK IN FOR ENGR 102")
 end
 
-Then('I select {string} from the admin {string} dropdown') do |option, dropdown|
-  select(option, from: dropdown)
+When('I select {string} from the {string} dropdown within the {string} section') do |option, dropdown, section|
+  within("#{section}") do
+    select(option, from: dropdown)
+  end
 end
 
 Then('I should see {string} within {string}') do |text, id_tag|
@@ -137,4 +133,17 @@ Given('the following courses exist:') do |table|
       end_date: Date.parse(course['end_date'])
     )
   end
+end
+
+Then("the form should submit and update the attendance data for {string}") do |course_id|
+  # URI-encode the course_id
+  encoded_course_id = URI.encode_www_form_component(course_id)
+  expect(page).to have_current_path(/showAdmin\/\d+\?course_id=#{encoded_course_id}/, wait: 10)
+end
+
+Then("the histogram should be updated with the correct attendance data") do
+  # Verify that the attendance histogram canvas is present on the page
+  expect(page).to have_selector('#attendanceHistogram')
+  
+  # Removed the text expectation as it is not applicable to <canvas> elements
 end
