@@ -121,7 +121,7 @@ class AttendancesController < ApplicationController
 
   def handle_attendance(user, role, course_number)
     if attendance_marked_recently?(user, role)
-      flash[:notice] = "Attendance already marked for the time slot"
+      flash[:warning] = "Attendance already marked for the time slot"
     else
       mark_attendance(user, role, course_number)
       session[:attendance_marked] = true

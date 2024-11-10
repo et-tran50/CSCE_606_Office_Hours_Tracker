@@ -13,7 +13,7 @@
 
 # Sprint 3
 
-![Sprint 3 Report (burndown chart)]([documentation/Fall2024/Sprint1_report.png](https://tamu-team-office-tracker.atlassian.net/jira/software/projects/SCRUM/boards/1/reports/burndown?source=sidebar))
+![Sprint 3 Report (burndown chart)](https://tamu-team-office-tracker.atlassian.net/jira/software/projects/SCRUM/boards/1/reports/burndown?source=sidebar)
 
 # How to Run the Project
 

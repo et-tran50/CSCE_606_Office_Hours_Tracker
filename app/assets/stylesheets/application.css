@@ -526,3 +526,17 @@ tr:hover {
     cursor: pointer;
     text-align: center;
 }
+
+
+/*The flash message for student and TA when they try to mark attendance */
+.flash-warning {
+    color: red; 
+    font-size: 1.2em; 
+    font-weight: bold;
+}
+
+.flash-notice {
+    color: green;
+    font-size: 1.2em; 
+    font-weight: bold;
+}

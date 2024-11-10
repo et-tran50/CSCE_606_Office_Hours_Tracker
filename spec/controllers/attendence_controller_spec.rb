@@ -140,7 +140,7 @@ end
 
         post :mark, params: { email: @user.email, course_number: @course.course_number }
 
-        expect(flash[:notice]).to eq("Attendance already marked for the time slot")
+        expect(flash[:warning]).to eq("Attendance already marked for the time slot")
         expect(session[:attendance_marked]).to be_nil
       end
     end
@@ -187,7 +187,7 @@ end
 
         post :mark, params: { email: @user.email, course_number: @course.course_number }
 
-        expect(flash[:notice]).to eq("Attendance already marked for the time slot")
+        expect(flash[:warning]).to eq("Attendance already marked for the time slot")
         expect(session[:stu_attendance_marked]).to be_nil
       end
     end
