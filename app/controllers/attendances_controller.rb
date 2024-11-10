@@ -10,7 +10,7 @@ class AttendancesController < ApplicationController
       format.csv do
         send_data generate_attendance_csv,
                   filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
-                  type: "text/csv",
+                  type: "text/csv; charset=UTF-8",
                   disposition: "attachment"
       end
     end
@@ -194,9 +194,14 @@ class AttendancesController < ApplicationController
     end
   end
 
-  def filter_attendances
-    attendances = Attendance.all
-    attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
+  def filter_attendances(model: Attendance)
+    attendances = model.all
+    #attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
+
+    # Only filter by course_id if the model has a course_id column
+    if model.column_names.include?("course_id") && params[:course_id].present?
+      attendances = attendances.where(course_id: params[:course_id])
+    end
     attendances = attendances.where("created_at >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
     attendances = attendances.where("created_at <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
     attendances
@@ -210,7 +215,7 @@ class AttendancesController < ApplicationController
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
     end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
 
-    CSV.generate(headers: true) do |csv|
+    CSV.generate(headers: true, encoding: 'UTF-8') do |csv|
       csv << [ "Date", "Time Slot", "Number of Students" ]
 
       # Loop through each day
@@ -230,33 +235,18 @@ class AttendancesController < ApplicationController
 
   def generate_ta_attendance_csv_count
     # Shows how many TAs showed up at each hour
-    attendances = filter_attendances.joins(:user).where(users: { role: "ta" })
+    attendances = filter_attendances(model: TaAttendance)
 
-    # Define the date range
-    start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
-    end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
+    bom = "\uFEFF" # UTF-8 BOM
+    csv_data = CSV.generate(headers: true, encoding: 'UTF-8') do |csv|
+      # Add header row
+      csv << [ "Sign-in Time", "Checked-in Names"]
 
-    CSV.generate(headers: true) do |csv|
-      csv << [ "Date", "Time Slot", "Number of TAs", "TA Names" ]
-
-      # Loop through each day
-      (start_date..end_date).each do |date|
-        # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)
-        (9..16).each do |hour|
-          start_time = Time.zone.parse("#{date} #{hour}:00:00")
-          end_time = start_time + 1.hour
-
-          # Get the attendance records for TAs within the time slot
-          ta_records = TaAttendance.where(sign_in_time: start_time..end_time)
-
-          # Get the count of TAs and the names array
-          count = ta_records.count
-          names = ta_records.flat_map(&:checked_in_names).uniq # Combine all names, remove duplicates
-
-          # Add a row to the CSV for each time slot
-          csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count, names.join(", ") ]
-        end
+      # Add data rows
+      attendances.each do |attendance|
+        csv << [attendance.sign_in_time, attendance.checked_in_names]
       end
+    end.prepend(bom) # Prepend the BOM to the CSV data
     end
   end
 
@@ -284,7 +274,7 @@ class AttendancesController < ApplicationController
       end
     end
   end
-end
+
 
 # def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
 #   # Parse the start and end dates into Date objects
