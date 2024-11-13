@@ -16,7 +16,8 @@ class UsersController < ApplicationController
   end
 
   def showAdmin
-    @courses = Course.select(:course_number).distinct.order(:course_number)
+    @courses = Course.select(:course_number).distinct.order(:course_number).to_a
+    @courses.unshift(Course.new(course_number: "All Courses"))
     @attendances = Attendance.all
 
     if params[:course_id].present?

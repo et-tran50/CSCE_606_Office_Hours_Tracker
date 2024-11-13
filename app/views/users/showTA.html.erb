@@ -2,8 +2,6 @@
   <img  src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
 
   <% if @user %>
-    <%= image_tag @user.profile_picture.present? ? @user.profile_picture : image_path('profile.png'), alt: "User Profile Picture", class: "profile-picture" %>
-  <% else %>
     <%= image_tag image_path('profile.png'), alt: "Default Profile Picture", class: "profile-picture" %>
   <% end %>
 </div>
