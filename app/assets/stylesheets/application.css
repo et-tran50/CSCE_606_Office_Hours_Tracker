@@ -59,9 +59,9 @@ body::before {
     background-color: #500000;
     color: white;
     border: none;
-    padding: 1.5%;
-    width: 27%;
-    font-size: 25px;
+    padding: 2%;
+    width: 30%;
+    font-size: clamp(20px, 2.5vw, 30px);
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
@@ -179,9 +179,10 @@ body::before {
  }
 
  .header-text {
-     text-align: center;
-     margin-top: -2%;
-     font-size: 24px;
+    text-align: center;
+    margin-top: -2%;
+    font-size: clamp(16px, 2.5vw, 24px);
+    width: 100%;
  }
 
 .bottom-bar {
