@@ -8,6 +8,6 @@ class TaAttendance < ApplicationRecord
 
   # Sets checked_in_names to an empty array if it's nil
   def set_defaults
-    self.checked_in_names ||= []
+    # self.checked_in_names ||= []
   end
 end
