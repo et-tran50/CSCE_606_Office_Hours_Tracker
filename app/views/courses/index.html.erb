@@ -34,7 +34,7 @@
 </div>
 
 <div class="course-bar">
-  <%= link_to 'Back', users_showAdmin_path(@current_user), class: 'gen-btn' %>
+  <%= link_to 'Back', users_showAdmin_path(@current_user, Date.today), class: 'gen-btn', data: { turbo: false } %>
   <%= link_to 'New Course', new_course_path, class: "gen-btn"%>
 </div>
 

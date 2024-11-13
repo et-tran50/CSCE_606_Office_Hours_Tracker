@@ -44,7 +44,7 @@
 </div>
 
 <div>
-  <%= link_to 'Back', users_showAdmin_path(@current_user), class: 'gen-btn' %>
+  <%= link_to 'Back', users_showAdmin_path(@current_user, Date.today), class: 'gen-btn', data: { turbo: false }  %>
 </div>
 
 
