@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     session[:attendance_marked] = nil
     @user = User.find(params[:id])  # Load the user
-    @courses = Course.all
+    @courses = Course.select(:course_number).distinct.order(:course_number)
   end
 
   def showTA
