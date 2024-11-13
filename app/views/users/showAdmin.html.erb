@@ -1,277 +1,271 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Hours Tracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<div class="top-bar">
-  <img  src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
-</div>
-<div class="header-bar">
-  <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
-  <%= link_to "Logout", logout_path, class: "logout-btn" %>
-</div>
-
-<h1 class="admin-text">ADMIN PAGE</h1>
-
-<div class="attendance-container">
-  
-  <div class="left-column">
-  <h1>Attendance Data</h1>
-  <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
-    <!-- todo: add the course id filter-->
-
-    <div>
-    <%= label_tag :course_id, "Select Course:" , class: "data-text"%>
-    <br>
-    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+</head>
+<body>
+    <div class="top-bar">
+        <img  src="<%= image_path('Box_logo.png') %>" alt="Logo" class="top-bar-logo">
     </div>
-    <br>
-    <div>
-    <%= label_tag :attendance_type, "Attendance Type:", class: "data-text"%>
-    <br>
-    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+    <div class="header-bar">
+        <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
+        <%= link_to "Logout", logout_path, class: "logout-btn" %>
     </div>
 
-    <br>
-    <%= label_tag :start_date, "Start Date:", class: "data-text" %>
-    <br>
-    <%= date_field_tag :start_date, params[:start_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
-    <br>
-    <%= label_tag :end_date, "End Date:", class: "data-text" %>
-    <br>
-    <%= date_field_tag :end_date, params[:end_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
+    <h1 class="admin-text">ADMIN PAGE</h1>
 
-    <br>
-    <div id="attendance-form-container">
-        <%= submit_tag "Download Data", class: "download-btn", id: "download-btn" %>
-    </div>
+    <div class="attendance-container">
     
-  <% end %> 
-</div>
+        <div class="left-column">
+            <h1>Attendance Data</h1>
+            <%= form_tag download_attendance_path, method: :get, id: 'attendance-form' do %>
+                <!-- todo: add the course id filter-->    
+                <div>
+                    <%= label_tag :course_id, "Select Course:" , class: "data-text"%>
+                    <br>
+                    <%= select_tag :course_id, options_from_collection_for_select(@courses.sort_by(&:course_number), "course_number", "course_number", selected: params[:course_number]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+                </div>
+                <br>
+                <div>
+                    <%= label_tag :attendance_type, "Attendance Type:", class: "data-text"%>
+                    <br>
+                    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+                </div>    
+                <br>
+                <%= label_tag :start_date, "Start Date:", class: "data-text" %>
+                <br>
+                <%= date_field_tag :start_date, params[:start_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>
+                <br>
+                <%= label_tag :end_date, "End Date:", class: "data-text" %>
+                <br>
+                <%= date_field_tag :end_date, params[:end_date], class: "date-input", onchange: "updateDateConstraints(); submitAttendanceForm()" %>  
+                <br>
+                <div id="attendance-form-container">
+                    <%= submit_tag "Download Data", class: "download-btn", id: "download-btn" %>
+                </div>
+                
+            <% end %>
+
+        </div>
 
 
-<div class="middle-column">
-  <%# <h2>Attendance Histogram</h2> %>
-  <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
+        <div class="middle-column">
+            <h2>Attendance Histogram</h2>
+            <div class="canvas-container">
+                <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
+            </div>
+            <div class="table-container">
+                <table class="centered-table">
+                <thead>
+                    <tr>
+                    <th>Course ID</th>
+                    <th>Sign In Time</th>
+                    </tr>
+                </thead>
+                <tbody id="attendanceTableBody">
+                    <!-- table content will be inserted here -->
+                </tbody>
+                </table>
+            </div>
+        </div>
 
+        <div class="right-column">
+            <%= link_to 'Upload TA/Admin Emails', upload_email_path, class: 'admin-btn' %>
+            <br>
+            <%= link_to 'Manage Courses', courses_path, class: 'admin-btn' %> 
+        </div>
+    </div>
 
-<script>
-function drawHistogram(data) {
-  const canvas = document.getElementById('attendanceHistogram');
-  const ctx = canvas.getContext('2d');
-
-  // Set up histogram data: x-axis labels and y-axis values
-  const labels = data.labels;
-  const values = data.values;
-
-  // Clear the canvas and set the background color to white
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  const title = "Attendance Histogram";
-  ctx.fillStyle = '#333';
-  ctx.font = '30px Times';
-  ctx.textAlign = 'center';
-  ctx.fillText(title, canvas.width / 2, 30); // Position the title at the top center
-
-  // Set margin for the histogram and define bar width and axis color
-  const x_margin = canvas.width * 0.05;
-  const y_margin = x_margin / 2;
-  const barWidth = (canvas.width - x_margin) / 2 / 10;
-  const maxVal = Math.max(...values); // Get the highest y-axis value
-  const scale = (canvas.height - y_margin - y_margin) / maxVal; // Scale factor for bar height
-  const axisColor = '#000';
-  const fontSize = 20;
-
-  
-
-  // Draw the y-axis
-  ctx.beginPath();
-  ctx.moveTo(x_margin, y_margin);
-  ctx.lineTo(x_margin, canvas.height - y_margin);
-  ctx.strokeStyle = axisColor;
-  ctx.lineWidth = 4;
-  ctx.stroke();
-
-  // Draw the x-axis
-  ctx.beginPath();
-  ctx.moveTo(x_margin, canvas.height - y_margin);
-  ctx.lineTo(canvas.width - x_margin, canvas.height - y_margin);
-  ctx.strokeStyle = axisColor;
-  ctx.lineWidth = 4;
-  ctx.stroke();
-
-  // Set font properties for labels and text on the chart
-  ctx.font = `${fontSize}px Arial`;
-  ctx.fillStyle = axisColor;
-
-  // Draw y-axis labels with evenly spaced intervals
-  for (let i = 0; i <= 5; i++) {
-    const yValue = (maxVal / 5) * i;
-    const yPos = canvas.height - y_margin - (yValue * scale);
-    ctx.fillText(Math.round(yValue), x_margin / 4, yPos); // Display the y-axis values
-    ctx.beginPath();
-    ctx.moveTo(x_margin - 5, yPos);
-    ctx.lineTo(x_margin, yPos); // Draw ticks on the y-axis
-    ctx.stroke();
-  }
-
-  // Define color gradient function based on normalized values
-  function getColor(value, minValue, maxValue) {
-    const ratio = (value - minValue) / (maxValue - minValue);
-    const blue = Math.round(255 * (1 - ratio));
-    const green = Math.round(255 * ratio);
-    return `rgb(0, ${green}, ${blue})`;
-  }
-
-  // Animation control variables
-  let progress = 0;
-  const animationSpeed = 5; // Speed of the animation
-
-  // Function to animate bars growing to their target heights
-  function animateBars() {
-    progress += animationSpeed;
-
-    // Draw each bar according to current progress
-    for (let i = 0; i < values.length; i++) {
-      const barHeight = Math.min(values[i] * scale, progress);
-      const x = x_margin + i * (barWidth + barWidth * 0.4) + barWidth * 0.6;
-      const y = canvas.height - y_margin - barHeight;
-
-      // Set bar color based on value
-      ctx.fillStyle = getColor(values[i], 0, maxVal);
-      ctx.fillRect(x, y, barWidth, barHeight);
-
-      // Display bar values and labels
-      ctx.fillStyle = '#000';
-      ctx.fillText(values[i], x + barWidth / 3, canvas.height - y_margin - Math.min(values[i] * scale, maxVal * scale) - 10); // Display the count on each bar
-      ctx.fillText(labels[i], x, canvas.height - y_margin / 4); // Display the hour labels below each bar
-    }
-
-    // Continue animation until the full height is reached for each bar
-    if (progress < maxVal * scale) {
-      requestAnimationFrame(animateBars);
-    }
-  }
-  animateBars();
-}
-
-function submitAttendanceForm() {
-  // Get the form element by its ID
-  const form = document.getElementById('attendance-form');
-  
-  // Collect form data and create a URL query string
-  const formData = new FormData(form);
-  const queryString = new URLSearchParams(formData).toString();
-
-  // Send a GET request with the query string to the specified route
-  fetch(`/attendances/calculate_attendance?${queryString}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json', // Specify JSON content type
-      'X-Requested-With': 'XMLHttpRequest'  // Indicate that this is an AJAX request
-    }
-  })
-    .then(response => response.json())  // Parse the response data as JSON
-    .then(data => {
-      // Call drawHistogram function to render data on the histogram
-      // console.log(data);
-      drawHistogram(data);
-    })
-    .catch(error => console.error('Error:', error)); // Log errors in the console if they occur
-}
-</script>
-
-<script>
-  function updateDateConstraints() {
-    const endDateField = document.querySelector('.date-input[name="end_date"]');
-    const startDateField = document.querySelector('.date-input[name="start_date"]');
-    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
-
-    // Ensure end_date cannot exceed today's date
-    endDateField.max = today;
-
-    // Set the max attribute of start_date based on end_date's value
-    if (endDateField.value) {
-      startDateField.max = endDateField.value;
-    } else {
-      startDateField.removeAttribute('max'); // Reset if end_date is cleared
-    }
-
-    // Set the min attribute of end_date based on start_date's value
-    if (startDateField.value) {
-      endDateField.min = startDateField.value;
-    } else {
-      endDateField.removeAttribute('min'); // Reset if start_date is cleared
-    }
-  }
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Call the submitAttendanceForm function once the DOM is fully loaded
-  submitAttendanceForm();
-  // Initial call to set constraints when the page loads
-  updateDateConstraints();
-
-  var downloadBtn = document.getElementById('download-btn');
-  downloadBtn.addEventListener('click', function(e) {
-    e.preventDefault(); // prevent the default action of the button
-
-    var form = document.getElementById('attendance-form');
-    var formData = new FormData(form);
-    var queryString = new URLSearchParams(formData).toString();
-    var url = '<%= download_attendance_path %>' + '?' + queryString;
-    window.open(url, '_blank'); // open the csv file in a new tab
-  });
-});
-</script>
-
-
-<table class="centered-table">
-  <thead>
-    <tr>
-      <th colspan="2"> 
-        <%= form_with(url: admin_path, method: :get, local: false) do %>
-        <%= label_tag :graph_start_date, "(Graph) Select Course:" %>
-          <%= select_tag :course_id, 
-            options_for_select([['No Selection', '']] + @courses.sort_by(&:course_number).map { |course| [course.course_number, course.course_number] }, selected: params[:course_id]),
-            onchange: "this.form.submit();" 
-          %>
-          <%= label_tag :graph_start_date, "From Date:" %>
-          <%= date_field_tag :graph_start_date, params[:graph_start_date], onchange: "this.form.submit();" %>
-          <%= label_tag :graph_end_date, "To Date:" %>
-          <%= date_field_tag :graph_end_date, params[:graph_end_date], onchange: "this.form.submit();" %>
-        <% end %>
-      </th>
-    </tr>
-    <tr>
-      <th>Course ID</th>
-      <th>Sign In Time</th>
-    </tr>
-  </thead>
-  <tbody id="attendanceTableBody">
-    <% if @attendances.present? %>
-      <% @attendances.each do |attendance| %>
-        <tr>
-          <td><%= attendance.course_id %></td>
-          <td><%= attendance.sign_in_time %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td colspan="2">No attendance records found.</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-</div>
-
- <div class="right-column">
-    <%= link_to 'Upload TA/Admin Emails', upload_email_path, class: 'admin-btn' %>
-    <br>
-    <%= link_to 'Manage Courses', courses_path, class: 'admin-btn' %> 
-  </div>
+</body>
+</html>
 
 <!-- <div class="bottom-bar">
         <img src="<%= image_path('Horiz_logo.png') %>" alt="Logo" class="bottom-bar-logo">
 </div> -->
+<script>
+    function drawHistogram(data) {
+        const canvas = document.getElementById('attendanceHistogram');
+        const ctx = canvas.getContext('2d');
+        // Set up histogram data: x-axis labels and y-axis values
+        const labels = data.labels;
+        const values = data.values;
+        // Clear the canvas and set the background color to white
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#333';
+        ctx.font = '30px Times';
+        ctx.textAlign = 'center';
+        // Set margin for the histogram and define bar width and axis color
+        const x_margin = canvas.width * 0.06;
+        const y_margin = x_margin / 2;
+        const columnWidth = (canvas.width - x_margin - x_margin) / 12; // 12 bars
+        const barWidth = columnWidth * 0.6;
+        const maxVal = Math.max(...values); // Get the highest y-axis value
+        const scale = (canvas.height - y_margin - y_margin) / maxVal; // Scale factor for bar height
+        const axisColor = '#000';
+        const fontSize = 20;
+
+        // Draw the y-axis
+        ctx.beginPath();
+        ctx.moveTo(x_margin, y_margin);
+        ctx.lineTo(x_margin, canvas.height - y_margin);
+        ctx.strokeStyle = axisColor;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        // Draw the x-axis
+        ctx.beginPath();
+        ctx.moveTo(x_margin, canvas.height - y_margin);
+        ctx.lineTo(canvas.width - x_margin, canvas.height - y_margin);
+        ctx.strokeStyle = axisColor;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        // Set font properties for labels and text on the chart
+        ctx.font = `${fontSize}px Arial`;
+        ctx.fillStyle = axisColor;
+        // Draw y-axis labels with evenly spaced intervals
+        number_of_level = Math.min(maxVal, 10);
+        for (let i = 1; i <= number_of_level - 1; i++) {
+            const yValue = (maxVal / number_of_level) * i;
+            const yPos = canvas.height - y_margin - (yValue * scale);
+            ctx.fillText(Math.round(yValue), x_margin / 2, yPos); // Display the y-axis values
+            ctx.beginPath();
+            ctx.moveTo(x_margin - x_margin * 0.2, yPos);
+            ctx.lineTo(x_margin, yPos); // Draw ticks on the y-axis
+            ctx.stroke();
+        }
+        // Define color gradient function based on normalized values
+        function getColor(value, minValue, maxValue) {
+            const ratio = (value - minValue) / (maxValue - minValue);
+            const blue = Math.round(255 * (1 - ratio));
+            const green = Math.round(255 * ratio);
+            return `rgb(0, ${green}, ${blue})`;
+        }
+        // Animation control variables
+        let progress = 0;
+        const animationSpeed = 5; // Speed of the animation
+        // Function to animate bars growing to their target heights
+        function animateBars() {
+            progress += animationSpeed;
+            // Draw each bar according to current progress
+            for (let i = 0; i < values.length; i++) {
+                const barHeight = Math.min(values[i] * scale, progress);
+                const x = x_margin + i * columnWidth + columnWidth * 0.2;
+                const y = canvas.height - y_margin - barHeight;
+                // Set bar color based on value
+                ctx.fillStyle = getColor(values[i], 0, maxVal);
+                ctx.fillRect(x, y, barWidth, barHeight);
+                // Display bar values and labels
+                ctx.fillStyle = '#000';
+                ctx.fillText(values[i], x + barWidth / 2, canvas.height - y_margin - Math.min(values[i] * scale, maxVal * scale) - 10); // Display the count on each bar
+                ctx.fillText(labels[i], x + barWidth / 2, canvas.height - y_margin / 4); // Display the hour labels below each bar
+            }
+            // Continue animation until the full height is reached for each bar
+            if (progress < maxVal * scale) {
+                requestAnimationFrame(animateBars);
+            }
+        }
+        animateBars();
+    }
+
+    function fillTable(data) {
+        // clear the current table content
+        const tableBody = document.getElementById('attendanceTableBody');
+        tableBody.innerHTML = ''; // clear the table content
+        // console.log(data);
+        // check if there is data
+        if (data.raw_attendances && data.raw_attendances.length > 0) {
+            // iterate data and insert into table
+            data.raw_attendances.forEach(attendance => {
+                const row = document.createElement('tr');
+                // create course id cell
+                const courseIdCell = document.createElement('td');
+                courseIdCell.textContent = attendance.course_id;
+                row.appendChild(courseIdCell);
+                // create sign in time cell
+                const signInTimeCell = document.createElement('td');
+                const date = new Date(attendance.sign_in_time);
+                const formattedDate = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')} ` +
+            `${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}:${String(date.getUTCSeconds()).padStart(2, '0')} UTC`;
+                signInTimeCell.textContent = formattedDate
+                row.appendChild(signInTimeCell);
+                // add row to table
+                tableBody.appendChild(row);
+            });
+        } else {
+            // if there is no data, show a message
+            const noDataRow = document.createElement('tr');
+            const noDataCell = document.createElement('td');
+            noDataCell.setAttribute('colspan', '2');
+            noDataCell.textContent = 'No attendance records found.';
+            noDataRow.appendChild(noDataCell);
+            tableBody.appendChild(noDataRow);
+        }
+    }
+
+    function submitAttendanceForm() {
+        // Get the form element by its ID
+        const form = document.getElementById('attendance-form');
+
+        // Collect form data and create a URL query string
+        const formData = new FormData(form);
+        const queryString = new URLSearchParams(formData).toString();
+        // Send a GET request with the query string to the specified route
+        fetch(`/attendances/calculate_attendance?${queryString}`, {
+            method: 'GET',
+            headers: {
+            'Content-Type': 'application/json', // Specify JSON content type
+            'X-Requested-With': 'XMLHttpRequest'  // Indicate that this is an AJAX request
+            }
+        })
+        .then(response => response.json())  // Parse the response data as JSON
+        .then(data => {
+            // Call drawHistogram function to render data on the histogram
+            //   console.log(data);
+            drawHistogram(data);
+            fillTable(data);
+        })
+        .catch(error => console.error('Error:', error)); // Log errors in the console if they occur
+    }
+
+    function updateDateConstraints() {
+        const endDateField = document.querySelector('.date-input[name="end_date"]');
+        const startDateField = document.querySelector('.date-input[name="start_date"]');
+        const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format    
+        // Ensure end_date cannot exceed today's date
+        endDateField.max = today; 
+        // Set the max attribute of start_date based on end_date's value
+        if (endDateField.value) {
+            startDateField.max = endDateField.value;
+        } else {
+            startDateField.removeAttribute('max'); // Reset if end_date is cleared
+        } 
+        // Set the min attribute of end_date based on start_date's value
+        if (startDateField.value) {
+            endDateField.min = startDateField.value;
+        } else {
+            endDateField.removeAttribute('min'); // Reset if start_date is cleared
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Call the submitAttendanceForm function once the DOM is fully loaded
+        submitAttendanceForm();
+        // Initial call to set constraints when the page loads
+        updateDateConstraints();
+        var downloadBtn = document.getElementById('download-btn');
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // prevent the default action of the button
+            var form = document.getElementById('attendance-form');
+            var formData = new FormData(form);
+            var queryString = new URLSearchParams(formData).toString();
+            var url = '<%= download_attendance_path %>' + '?' + queryString;
+            window.open(url, '_blank'); // open the csv file in a new tab
+        });
+    });
+</script>
