@@ -206,10 +206,17 @@ class AttendancesController < ApplicationController
     attendances = model.all
     # attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
 
-    # Only filter by course_id if the model has a course_id column
+    # filter the data if the model contains course_id column, so it currently applies to attendance of student
     if model.column_names.include?("course_id") && params[:course_id].present?
-      attendances = attendances.where(course_id: params[:course_id])
+      # If the parameters of course_id includes "All Courses", don't do any filtering
+      if params[:course_id].to_s.include?("All Courses")
+        attendances = attendances.all
+      else
+        # Filter attendances based on the given course_id
+        attendances = attendances.where(course_id: params[:course_id])
+      end
     end
+
     attendances = attendances.where("#{model.table_name}.created_at >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
     attendances = attendances.where("#{model.table_name}.created_at <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
     attendances
@@ -218,6 +225,9 @@ class AttendancesController < ApplicationController
   def generate_student_attendance_csv_count
     # Shows how many students showed up at each hour
     attendances = filter_attendances.joins(:user).where(users: { role: "student" })
+
+    # Convert time zone to CST
+    time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
 
     # Define the date range given from attendance sheet
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
@@ -228,9 +238,12 @@ class AttendancesController < ApplicationController
 
       # Loop through each day
       (start_date..end_date).each do |date|
-        # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)
-        (9..16).each do |hour|
-          start_time = date.to_time.change(hour: hour)
+        # Loop through each hour from 9:00 AM to 10:00 PM (up to 17:00)
+        (9..21).each do |hour|
+          # start_time = date.to_time.change(hour: hour)
+          # end_time = start_time + 1.hour
+
+          start_time = time_zone.parse("#{date} #{hour}:00")
           end_time = start_time + 1.hour
           # Count the number of students in that time range
           count = attendances.where("attendances.sign_in_time >= ? AND attendances.sign_in_time < ?", start_time, end_time).count
