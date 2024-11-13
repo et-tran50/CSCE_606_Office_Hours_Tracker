@@ -295,9 +295,14 @@ def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
     start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: "+00:00")
     end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: "+00:00")
     # Retrieve records for each day within the specified time range
-    daily_attendances += Attendance
+    if course_id == "All Courses"
+      daily_attendances += Attendance
+                    .where(sign_in_time: start_time..end_time)
+    else
+      daily_attendances += Attendance
                     .where(course_id: course_id)
                     .where(sign_in_time: start_time..end_time)
+    end
   end
   daily_attendances
 end

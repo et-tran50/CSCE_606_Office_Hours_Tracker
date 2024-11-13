@@ -34,7 +34,7 @@
                 <div>
                     <%= label_tag :attendance_type, "Attendance Type:", class: "data-text"%>
                     <br>
-                    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "dropdown-menu", onchange: "submitAttendanceForm()"  %>
+                    <%= select_tag :attendance_type, options_for_select([['Student', 'student'], ['TA', 'ta']], params[:attendance_type]), class: "dropdown-menu" %>
                 </div>    
                 <br>
                 <%= label_tag :start_date, "Start Date:", class: "data-text" %>
@@ -55,7 +55,7 @@
 
 
         <div class="middle-column">
-            <h2>Attendance Histogram</h2>
+            <h2>Student Attendance Histogram</h2>
             <div class="canvas-container">
                 <canvas id="attendanceHistogram" width="1000" height="500"></canvas>
             </div>
