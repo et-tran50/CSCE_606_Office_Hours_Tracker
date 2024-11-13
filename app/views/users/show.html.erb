@@ -5,14 +5,16 @@
     <%= image_tag @user.profile_picture.present? ? @user.profile_picture : image_path('profile.png'), alt: "User Profile Picture", class: "profile-picture" %>
   <% else %>
     <%= image_tag image_path('profile.png'), alt: "Default Profile Picture", class: "profile-picture" %>
-  <% end %></div>
+  <% end %>
+  
+</div>
 
 <div class="header-bar">
   <h1 class="welcome-text">Howdy, <%= @current_user.first_name %>!</h1>
   <%= link_to "Logout", logout_path, class: "logout-btn" %>
 </div>
 
-<div class="class-menu">
+<div>
   <%= form_with url: user_path(@current_user), method: :get, class: "class-menu" do %>
     <h2>Select a course: </h2>
     <div>
