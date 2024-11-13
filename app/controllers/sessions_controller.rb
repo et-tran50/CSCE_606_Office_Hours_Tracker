@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       names = auth["info"]["name"].split
       u.first_name = names[0]
       u.last_name = names[1..].join(" ")
-      u.profile_picture = auth["info"]["image"]
+      # u.profile_picture = auth["info"]["image"]
       # Check whether the email is included in the admin.csv or ta.csv to assign the role
       # The datatype of role is a string: ta/student/admin
       if ta_email?(auth["info"]["email"])
