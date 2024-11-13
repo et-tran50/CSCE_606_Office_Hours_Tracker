@@ -210,8 +210,8 @@ class AttendancesController < ApplicationController
     if model.column_names.include?("course_id") && params[:course_id].present?
       attendances = attendances.where(course_id: params[:course_id])
     end
-    attendances = attendances.where("created_at >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
-    attendances = attendances.where("created_at <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
+    attendances = attendances.where("#{model.table_name}.created_at >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
+    attendances = attendances.where("#{model.table_name}.created_at <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
     attendances
   end
 
@@ -230,10 +230,10 @@ class AttendancesController < ApplicationController
       (start_date..end_date).each do |date|
         # Loop through each hour from 9:00 AM to 4:00 PM (up to 17:00)
         (9..16).each do |hour|
-          start_time = Time.zone.parse("#{date} #{hour}:00:00")
+          start_time = date.to_time.change(hour: hour)
           end_time = start_time + 1.hour
           # Count the number of students in that time range
-          count = rand(0..5) # attendance.count
+          count = attendances.where("attendances.sign_in_time >= ? AND attendances.sign_in_time < ?", start_time, end_time).count
           # Add a row to the CSV for each time slot
           csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
         end
@@ -282,7 +282,6 @@ end
       end
     end
   end
-
 
 def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
   # Parse start and end dates
