@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_01_082604) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_13_035515) do
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "sign_in_time"
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_082604) do
     t.string "uid"
     t.string "provider"
     t.string "role"
+    t.string "profile_picture"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

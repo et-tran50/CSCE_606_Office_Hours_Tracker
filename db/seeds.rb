@@ -12,7 +12,7 @@
 require 'faker'
 
 
-# # seed the Course database
+# seed the Course database
 # Course.create(
 #   course_number: 'ENGR 102',
 #   course_name: 'Engineering Lab I - Computation',
@@ -54,12 +54,12 @@ require 'faker'
 #   end_date: Date.new(2024, 12, 31)
 # )
 
-#Get all student ids
+# Get all student ids
 user_ids = User.pluck(:id)
 start_date = Date.parse("2024-10-01")
 end_date = Date.parse("2024-11-30")
 
-#Create fake attendance records for the TA attendance
+# Create fake attendance records for the TA attendance
 150.times do
   user_id = user_ids.sample  # Randomly select a valid student_id
   user = User.find(user_id)  # Find the User object associated with this ID
