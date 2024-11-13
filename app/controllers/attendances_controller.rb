@@ -3,9 +3,6 @@ class AttendancesController < ApplicationController
 
   def attendance
     @courses = Course.all
-    puts "attendance course_id: #{params[:course_id]}"
-    puts "attendance start_date: #{params[:start_date]}"
-    puts "attendance end_date: #{params[:end_date]}"
     @attendances = filter_attendances
 
     respond_to do |format|
@@ -207,7 +204,7 @@ class AttendancesController < ApplicationController
 
   def filter_attendances(model: Attendance)
     attendances = model.all
-    #attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
+    # attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
 
     # Only filter by course_id if the model has a course_id column
     if model.column_names.include?("course_id") && params[:course_id].present?
@@ -226,7 +223,7 @@ class AttendancesController < ApplicationController
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
     end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
 
-    CSV.generate(headers: true, encoding: 'UTF-8') do |csv|
+    CSV.generate(headers: true, encoding: "UTF-8") do |csv|
       csv << [ "Date", "Time Slot", "Number of Students" ]
 
       # Loop through each day
@@ -249,17 +246,17 @@ class AttendancesController < ApplicationController
     attendances = filter_attendances(model: TaAttendance)
 
     bom = "\uFEFF" # UTF-8 BOM
-    csv_data = CSV.generate(headers: true, encoding: 'UTF-8') do |csv|
+    csv_data = CSV.generate(headers: true, encoding: "UTF-8") do |csv|
       # Add header row
-      csv << [ "Sign-in Time", "Checked-in Names"]
+      csv << [ "Sign-in Time", "Checked-in Names" ]
 
       # Add data rows
       attendances.each do |attendance|
-        csv << [attendance.sign_in_time, attendance.checked_in_names]
+        csv << [ attendance.sign_in_time, attendance.checked_in_names ]
       end
     end.prepend(bom) # Prepend the BOM to the CSV data
     end
-  end
+end
 
   def generate_student_attendance_csv
     # Shows each attendance record (basically all entries where someone clicked "I am here")
