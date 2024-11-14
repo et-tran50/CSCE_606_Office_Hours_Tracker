@@ -189,7 +189,9 @@
                 row.appendChild(courseIdCell);
                 // create sign in time cell
                 const signInTimeCell = document.createElement('td');
+                console.log(attendance.sign_in_time);
                 const date = new Date(attendance.sign_in_time);
+                console.log(date);
                 const formattedDate = date.toLocaleString('en-US', {
                     timeZone: 'America/Chicago',
                     year: 'numeric',
@@ -200,6 +202,7 @@
                     second: '2-digit',
                     hour12: false
                 }).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3/$1/$2').replace(',', '') + ' CST';
+                console.log(formattedDate);
                 signInTimeCell.textContent = formattedDate
                 row.appendChild(signInTimeCell);
                 // add row to table
@@ -234,7 +237,7 @@
         .then(response => response.json())  // Parse the response data as JSON
         .then(data => {
             // Call drawHistogram function to render data on the histogram
-            // console.log(data);
+            console.log(data);
             drawHistogram(data);
             fillTable(data);
         })
