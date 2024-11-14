@@ -104,8 +104,6 @@ class AttendancesController < ApplicationController
       # Define the start and end times for the current hour range
       start_time = "#{hour}:00:00"
       end_time = "#{hour + 1}:00:00"
-      target_timezone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
-      offset_in_hours = target_timezone.now.utc_offset / 3600.0
 
       # Get the attendance count for this course, date range, and hour range
       daily_attendances = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
@@ -318,6 +316,20 @@ def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
     # Create specific datetime ranges for each day
     start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
     end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
+    # Define Houston timezone
+    houston_timezone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
+
+    # Set start_time in Houston time
+    start_time = date.in_time_zone(houston_timezone).change(
+    hour: hour_start.split(":")[0].to_i,
+    min: hour_start.split(":")[1].to_i,
+    sec: 0
+    )
+    end_time = date.in_time_zone(houston_timezone).change(
+        hour: hour_end.split(":")[0].to_i,
+        min: hour_end.split(":")[1].to_i,
+        sec: 0
+        )
     # Retrieve records for each day within the specified time range
     if course_id == "All Courses"
       daily_attendances += Attendance
