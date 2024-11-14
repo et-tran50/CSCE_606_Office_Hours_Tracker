@@ -177,7 +177,7 @@
         // clear the current table content
         const tableBody = document.getElementById('attendanceTableBody');
         tableBody.innerHTML = ''; // clear the table content
-        console.log(data);
+        // console.log(data);
         // check if there is data
         if (data.raw_attendances && data.raw_attendances.length > 0) {
             // iterate data and insert into table
@@ -191,7 +191,7 @@
                 const signInTimeCell = document.createElement('td');
                 const date = new Date(attendance.sign_in_time);
                 const formattedDate = date.toLocaleString('en-US', {
-                    // timeZone: 'America/Chicago',
+                    timeZone: 'America/Chicago',
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
@@ -199,7 +199,7 @@
                     minute: '2-digit',
                     second: '2-digit',
                     hour12: false
-                }).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3/$1/$2').replace(',', '') + ' ';
+                }).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3/$1/$2').replace(',', '') + ' CST';
                 signInTimeCell.textContent = formattedDate
                 row.appendChild(signInTimeCell);
                 // add row to table
