@@ -109,6 +109,7 @@ class AttendancesController < ApplicationController
       daily_attendances = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
       if daily_attendances.count > 0
         daily_attendances.each do |attendance|
+            attendance[:sign_in_time] = attendance[:sign_in_time] + (Time.now.utc_offset / 3600.0).hours
             data[:raw_attendances] << attendance
         end
       end
@@ -308,8 +309,8 @@ def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
 
   (start_date..end_date).each do |date|
     # Create specific datetime ranges for each day
-    start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: "+00:00")
-    end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: "+00:00")
+    start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
+    end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
     # Retrieve records for each day within the specified time range
     if course_id == "All Courses"
       daily_attendances += Attendance
