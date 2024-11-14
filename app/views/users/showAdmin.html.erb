@@ -177,7 +177,7 @@
         // clear the current table content
         const tableBody = document.getElementById('attendanceTableBody');
         tableBody.innerHTML = ''; // clear the table content
-        // console.log(data);
+        console.log(data);
         // check if there is data
         if (data.raw_attendances && data.raw_attendances.length > 0) {
             // iterate data and insert into table
@@ -190,8 +190,16 @@
                 // create sign in time cell
                 const signInTimeCell = document.createElement('td');
                 const date = new Date(attendance.sign_in_time);
-                const formattedDate = `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')} ` +
-            `${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}:${String(date.getUTCSeconds()).padStart(2, '0')} CT`;
+                const formattedDate = date.toLocaleString('en-US', {
+                    // timeZone: 'America/Chicago',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3/$1/$2').replace(',', '') + ' ';
                 signInTimeCell.textContent = formattedDate
                 row.appendChild(signInTimeCell);
                 // add row to table
@@ -226,7 +234,7 @@
         .then(response => response.json())  // Parse the response data as JSON
         .then(data => {
             // Call drawHistogram function to render data on the histogram
-            //   console.log(data);
+            // console.log(data);
             drawHistogram(data);
             fillTable(data);
         })

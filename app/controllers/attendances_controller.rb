@@ -104,12 +104,15 @@ class AttendancesController < ApplicationController
       # Define the start and end times for the current hour range
       start_time = "#{hour}:00:00"
       end_time = "#{hour + 1}:00:00"
+      #   target_timezone = Time.now.utc.in_time_zone("Central Time (US & Canada)")
 
       # Get the attendance count for this course, date range, and hour range
       daily_attendances = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
       if daily_attendances.count > 0
         daily_attendances.each do |attendance|
-            attendance[:sign_in_time] = attendance[:sign_in_time] + (Time.now.utc_offset / 3600.0).hours
+            # Adjust sign_in_time by the timezone offset
+            # attendance = { sign_in_time: Time.now.utc.in_time_zone("Central Time (US & Canada)") }
+            puts "attendance: #{attendance[:sign_in_time]}"
             data[:raw_attendances] << attendance
         end
       end
@@ -117,7 +120,7 @@ class AttendancesController < ApplicationController
     end
 
     data[:raw_attendances] = data[:raw_attendances].sort_by do |attendance|
-        [ attendance[:sign_in_time].hour, attendance[:sign_in_time].min, attendance[:sign_in_time].sec, attendance[:sign_in_time].year, attendance[:sign_in_time].month, attendance[:sign_in_time].day ]
+        [ attendance[:course_id],  attendance[:sign_in_time].hour, attendance[:sign_in_time].min, attendance[:sign_in_time].sec, attendance[:sign_in_time].year, attendance[:sign_in_time].month, attendance[:sign_in_time].day ]
     end
     # puts "data: #{data}"
 
