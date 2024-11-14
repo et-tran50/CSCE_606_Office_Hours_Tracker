@@ -217,17 +217,19 @@ class AttendancesController < ApplicationController
       end
     end
 
-    attendances = attendances.where("#{model.table_name}.created_at >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
-    attendances = attendances.where("#{model.table_name}.created_at <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
+    attendances = attendances.where("#{model.table_name}.sign_in_time >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
+    attendances = attendances.where("#{model.table_name}.sign_in_time <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
     attendances
   end
 
   def generate_student_attendance_csv_count
     # Shows how many students showed up at each hour
     attendances = filter_attendances.joins(:user).where(users: { role: "student" })
+    
+    puts "number of attendance with students role" + attendances.count.to_s
 
     # Convert time zone to CST
-    time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
+    # time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
 
     # Define the date range given from attendance sheet
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
@@ -239,14 +241,15 @@ class AttendancesController < ApplicationController
       # Loop through each day
       (start_date..end_date).each do |date|
         # Loop through each hour from 9:00 AM to 10:00 PM (up to 17:00)
-        (9..21).each do |hour|
-          # start_time = date.to_time.change(hour: hour)
-          # end_time = start_time + 1.hour
-
-          start_time = time_zone.parse("#{date} #{hour}:00")
+        (9..16).each do |hour|
+          start_time = date.to_time.change(hour: hour)
           end_time = start_time + 1.hour
+
+          # start_time = time_zone.parse("#{date} #{hour}:00")
+          # end_time = start_time + 1.hour
           # Count the number of students in that time range
           count = attendances.where("attendances.sign_in_time >= ? AND attendances.sign_in_time < ?", start_time, end_time).count
+          puts count
           # Add a row to the CSV for each time slot
           csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
         end

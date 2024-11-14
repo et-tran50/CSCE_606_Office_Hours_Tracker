@@ -54,24 +54,37 @@ require 'faker'
 #   end_date: Date.new(2024, 12, 31)
 # )
 
-# Get all student ids
-user_ids = User.pluck(:id)
-start_date = Date.parse("2024-10-01")
-end_date = Date.parse("2024-11-30")
+# # Get all student ids
+# user_ids = User.pluck(:id)
+# start_date = Date.parse("2024-10-01")
+# end_date = Date.parse("2024-11-30")
 
-# Create fake attendance records for the TA attendance
-150.times do
-  user_id = user_ids.sample  # Randomly select a valid student_id
-  user = User.find(user_id)  # Find the User object associated with this ID
-  random_date = rand(start_date..end_date)
-  # Generate a random time between 9:00 and 19:00 (inclusive)
-  random_hour = rand(9..19)
-  random_minute = rand(0..59)
-  random_time = Time.zone.local(random_date.year, random_date.month, random_date.day, random_hour, random_minute)
+# # Create fake attendance records for the TA attendance
+# 150.times do
+#   user_id = user_ids.sample  # Randomly select a valid student_id
+#   user = User.find(user_id)  # Find the User object associated with this ID
+#   random_date = rand(start_date..end_date)
+#   # Generate a random time between 9:00 and 19:00 (inclusive)
+#   random_hour = rand(9..19)
+#   random_minute = rand(0..59)
+#   random_time = Time.zone.local(random_date.year, random_date.month, random_date.day, random_hour, random_minute)
 
-  TaAttendance.create(
-    user_id: user_id,
-    sign_in_time: random_time,
-    checked_in_names: "#{user.first_name} #{user.last_name}"
+#   TaAttendance.create(
+#     user_id: user_id,
+#     sign_in_time: random_time,
+#     checked_in_names: "#{user.first_name} #{user.last_name}"
+#   )
+# end
+
+
+# Generate 50 fake attendance records
+50.times do
+  Attendance.create(
+    user_id: 4,
+    course_id: "ENGR 102",
+    sign_in_time: Faker::Time.between(
+      from: DateTime.new(2024, 11, 13, 0, 0, 0), 
+      to: DateTime.new(2024, 11, 13, 23, 59, 59)
+    )
   )
 end
