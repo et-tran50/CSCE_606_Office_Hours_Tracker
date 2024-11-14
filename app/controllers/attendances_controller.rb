@@ -109,11 +109,6 @@ class AttendancesController < ApplicationController
       daily_attendances = hourly_sign_in_count(course_id, start_date, end_date, start_time, end_time)
       if daily_attendances.count > 0
         daily_attendances.each do |attendance|
-            # Adjust sign_in_time by the timezone offset
-            # attendance = { sign_in_time: Time.now.utc.in_time_zone("Central Time (US & Canada)") }
-            # attendance[:sign_in_time] = attendance[:sign_in_time] + offset_in_hours.hours
-            # attendance[:sign_in_time] = attendance[:sign_in_time].in_time_zone(target_timezone)
-            puts "BB attendance: #{attendance[:sign_in_time]}"
             data[:raw_attendances] << attendance
         end
       end
@@ -310,26 +305,15 @@ def hourly_sign_in_count(course_id, start_date, end_date, hour_start, hour_end)
   start_date = Date.parse(start_date)
   end_date = Date.parse(end_date)
 
+  # Define Houston timezone
+  houston_timezone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
   daily_attendances = []
 
   (start_date..end_date).each do |date|
     # Create specific datetime ranges for each day
-    start_time = date.to_time.change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
-    end_time = date.to_time.change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0, offset: Time.now.formatted_offset.to_s)
-    # Define Houston timezone
-    houston_timezone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
+    start_time = date.in_time_zone(houston_timezone).change(hour: hour_start.split(":")[0].to_i, min: hour_start.split(":")[1].to_i, sec: 0)
+    end_time = date.in_time_zone(houston_timezone).change(hour: hour_end.split(":")[0].to_i, min: hour_end.split(":")[1].to_i, sec: 0)
 
-    # Set start_time in Houston time
-    start_time = date.in_time_zone(houston_timezone).change(
-    hour: hour_start.split(":")[0].to_i,
-    min: hour_start.split(":")[1].to_i,
-    sec: 0
-    )
-    end_time = date.in_time_zone(houston_timezone).change(
-        hour: hour_end.split(":")[0].to_i,
-        min: hour_end.split(":")[1].to_i,
-        sec: 0
-        )
     # Retrieve records for each day within the specified time range
     if course_id == "All Courses"
       daily_attendances += Attendance
