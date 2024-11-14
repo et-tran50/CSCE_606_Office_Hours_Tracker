@@ -146,8 +146,6 @@ class AttendancesController < ApplicationController
     end
   end
 
-
-
   def attendance_marked_recently?(user, role)
     if role == "ta"
       # Check TA attendance within the last hour
@@ -226,11 +224,11 @@ class AttendancesController < ApplicationController
   def generate_student_attendance_csv_count
     # Shows how many students showed up at each hour
     attendances = filter_attendances.joins(:user).where(users: { role: "student" })
-    
+
     puts "number of attendance with students role" + attendances.count.to_s
 
     # Convert time zone to CST
-    # time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
+    time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
 
     # Define the date range given from attendance sheet
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
@@ -243,16 +241,19 @@ class AttendancesController < ApplicationController
       (start_date..end_date).each do |date|
         # Loop through each hour from 9:00 AM to 10:00 PM (up to 17:00)
         (9..16).each do |hour|
-          start_time = date.to_time.change(hour: hour)
+          start_time = date.to_time.change(hour: hour).utc
           end_time = start_time + 1.hour
 
           # start_time = time_zone.parse("#{date} #{hour}:00")
           # end_time = start_time + 1.hour
           # Count the number of students in that time range
           count = attendances.where("attendances.sign_in_time >= ? AND attendances.sign_in_time < ?", start_time, end_time).count
-          puts count
+
+          cst_start_time = start_time.in_time_zone(time_zone)
+          cst_end_time = end_time.in_time_zone(time_zone)
+
           # Add a row to the CSV for each time slot
-          csv << [ date.strftime("%Y-%m-%d"), "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')}", count ]
+          csv << [ date.strftime("%Y-%m-%d"), "#{cst_start_time.strftime('%H:%M')} - #{cst_end_time.strftime('%H:%M')} CST", count ]
         end
       end
     end
