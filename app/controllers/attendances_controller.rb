@@ -261,6 +261,7 @@ class AttendancesController < ApplicationController
   def generate_ta_attendance_csv_count
     # Shows how many TAs showed up at each hour
     attendances = filter_attendances(model: TaAttendance)
+    time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
 
     bom = "\uFEFF" # UTF-8 BOM
     csv_data = CSV.generate(headers: true, encoding: "UTF-8") do |csv|
@@ -269,7 +270,9 @@ class AttendancesController < ApplicationController
 
       # Add data rows
       attendances.each do |attendance|
-        csv << [ attendance.sign_in_time, attendance.checked_in_names ]
+
+        cst_signin_time = attendance.sign_in_time.in_time_zone(time_zone).strftime("%Y-%m-%d %H:%M:%S CST")
+        csv << [ cst_signin_time, attendance.checked_in_names ]
       end
     end.prepend(bom) # Prepend the BOM to the CSV data
     end
