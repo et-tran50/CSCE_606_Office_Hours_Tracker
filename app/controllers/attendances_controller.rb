@@ -9,7 +9,7 @@ class AttendancesController < ApplicationController
       format.html
       format.csv do
         send_data generate_attendance_csv,
-                  filename: "#{params[:attendance_type]}_attendance_#{params[:course_id]}_#{Date.today.strftime('%Y%m%d')}.csv",
+                  filename: "#{params[:attendance_type]}_attendance_#{params[:course_id] if params[:attendance_type] == "student"}_#{Date.today.strftime('%Y%m%d')}.csv",
                   type: "text/csv; charset=UTF-8",
                   disposition: "attachment"
       end
@@ -268,13 +268,13 @@ class AttendancesController < ApplicationController
     bom = "\uFEFF" # UTF-8 BOM
     csv_data = CSV.generate(headers: true, encoding: "UTF-8") do |csv|
       # Add header row
-      csv << [ "Sign-in Time", "Checked-in Names" ]
+      csv << [ "Sign-in Time", "Checked-in Name", "Email" ]
 
       # Add data rows
       attendances.each do |attendance|
-
         cst_signin_time = attendance.sign_in_time.in_time_zone(time_zone).strftime("%Y-%m-%d %H:%M:%S CST")
-        csv << [ cst_signin_time, attendance.checked_in_names ]
+        csv << [ cst_signin_time, attendance.user.full_name, attendance.user.email ]
+        # print("attendance row ", cst_signin_time, " ", attendance.user.full_name, " ", attendance.user.email, "\n")
       end
     end.prepend(bom) # Prepend the BOM to the CSV data
     end
