@@ -9,7 +9,7 @@ class AttendancesController < ApplicationController
       format.html
       format.csv do
         send_data generate_attendance_csv,
-                  filename: "#{params[:attendance_type]}_attendance_#{Date.today.strftime('%Y%m%d')}.csv",
+                  filename: "#{params[:attendance_type]}_attendance_#{params[:course_id]}_#{Date.today.strftime('%Y%m%d')}.csv",
                   type: "text/csv; charset=UTF-8",
                   disposition: "attachment"
       end
@@ -204,6 +204,7 @@ class AttendancesController < ApplicationController
     attendances = model.all
     # attendances = attendances.where(course_id: params[:course_id]) if params[:course_id].present?
 
+    # print("model column names", model.column_names)
     # filter the data if the model contains course_id column, so it currently applies to attendance of student
     if model.column_names.include?("course_id") && params[:course_id].present?
       # If the parameters of course_id includes "All Courses", don't do any filtering
@@ -215,16 +216,17 @@ class AttendancesController < ApplicationController
       end
     end
 
-    attendances = attendances.where("#{model.table_name}.sign_in_time >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
-    attendances = attendances.where("#{model.table_name}.sign_in_time <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
+    # don't filter here, it's redundant to the hourly filter and makes time zone conversions complicated
+    # attendances = attendances.where("#{model.table_name}.sign_in_time >= ?", params[:start_date].to_date.beginning_of_day) if params[:start_date].present?
+    # attendances = attendances.where("#{model.table_name}.sign_in_time <= ?", params[:end_date].to_date.end_of_day) if params[:end_date].present?
     attendances
   end
 
   def generate_student_attendance_csv_count
     # Shows how many students showed up at each hour
-    attendances = filter_attendances.joins(:user).where(users: { role: ["student", nil, ""] })
+    attendances = filter_attendances.joins(:user).where(users: { role: [ "student", nil, "" ] })
 
-    puts "number of attendance with students role" + attendances.count.to_s
+    # print("attendances count is:", attendances.count)
 
     # Convert time zone to CST
     time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
@@ -238,8 +240,8 @@ class AttendancesController < ApplicationController
 
       # Loop through each day
       (start_date..end_date).each do |date|
-        # Loop through each hour from 9:00 AM to 10:00 PM (up to 17:00)
-        (9..16).each do |hour|
+        # Loop through each hour from 9:00 AM to 9:00 PM (21:00)
+        (9..21).each do |hour|
           start_time = date.to_time.change(hour: hour).utc
           end_time = start_time + 1.hour
 
