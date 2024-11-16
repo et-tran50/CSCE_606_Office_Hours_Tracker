@@ -229,7 +229,7 @@ describe '#calculate_attendance' do
     end
 
     it 'returns a JSON response with 13 time slots from 8 AM to 8 PM' do
-      expected_labels = ["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM"]
+      expected_labels = [ "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM" ]
 
       get :calculate_attendance
 
@@ -250,3 +250,89 @@ describe '#calculate_attendance' do
     end
   end
 end
+
+describe "#generate_student_attendance_csv" do
+    before do
+      @user1 = User.create(uid: "123458789", provider: "google_oauth2", email: "user1@example.com", first_name: "John", last_name: "Doe1", role: "student")
+      @user2 = User.create(uid: "123458788", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe2", role: "student")
+      @user3 = User.create(uid: "123458787", provider: "google_oauth2", email: "user3@example.com", first_name: "John", last_name: "Doe3", role: "student")
+      @user4 = User.create(uid: "123458786", provider: "google_oauth2", email: "user4@example.com", first_name: "John", last_name: "Doe4", role: "student")
+      @course1 = Course.create(
+      course_number: 'ENGR 102',
+      course_name: 'Engineering Lab I - Computation',
+      instructor_name: 'Niki Ritchey',
+      start_date: Date.new(2025, 8, 19),
+      end_date: Date.new(2025, 12, 31)
+    )
+      @course2 = Course.create(
+      course_number: 'ENGR 103',
+      course_name: 'Engineering Lab II - Computation',
+      instructor_name: 'Niki Ritchey',
+      start_date: Date.new(2025, 8, 19),
+      end_date: Date.new(2025, 12, 31)
+    )
+      @student_attendance1 = Attendance.create(user: @user1, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+
+    @student_attendance2 = Attendance.create(user: @user2, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+
+    @student_attendance3 = Attendance.create(user: @user3, course_id: @course2.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+
+    @student_attendance4 = Attendance.create(user: @user4, course_id: @course2.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+    end
+
+    it 'returns attendances within the time range for a specific course' do
+      start_date = "2024-5-14"
+      end_date = "2024-7-14"
+      hour_start = "09:00"
+      hour_end = "15:00"
+
+      result = hourly_sign_in_count(@course1, start_date, end_date, hour_start, hour_end)
+
+      expect(result).to match_array([@attendance1, @attendance2])
+    end
+
+     it 'returns attendances within the time range for all courses' do
+      start_date = "2024-11-14"
+      end_date = "2024-11-14"
+      hour_start = "09:00"
+      hour_end = "11:00"
+
+      result = hourly_sign_in_count("All Courses", start_date, end_date, hour_start, hour_end)
+
+      expect(result).to match_array([@attendance1, @attendance3])
+    end
+  end
+
+  describe '#attendance_marked_recently?' do
+    before do
+      # Setup user and roles
+      @user1 = User.create(uid: "123458789", provider: "google_oauth2", email: "user1@example.com", first_name: "John", last_name: "Doe1", role: "ta")
+      @user2 = User.create(uid: "123458788", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe2", role: "student")
+      @course1 = Course.create(
+      course_number: 'ENGR 102',
+      course_name: 'Engineering Lab I - Computation',
+      instructor_name: 'Niki Ritchey',
+      start_date: Date.new(2025, 8, 19),
+      end_date: Date.new(2025, 12, 31)
+    )
+      # Create TA and Student attendance records
+      @ta_attendance = Attendance.create(user: @user1, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+      @student_attendance = Attendance.create(user: @user2, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
+    end
+
+    it 'returns true if the user is a TA and has signed in within the last hour' do
+      result = attendance_marked_recently?(@user1, 'ta')
+      expect(result).to be_truthy
+    end
+
+    # it 'returns true if the user is a student and has signed in within the last hour' do
+    #   result = attendance_marked_recently?(@user, "student")
+    #   expect(result).to be_truthy
+    # end
+
+    # it 'returns false if the user is a TA and has not signed in within the last hour' do
+    #   @ta_attendance.update!(sign_in_time: Time.now - 2.hours)
+    #   result = attendance_marked_recently?(@user, "ta")
+    #   expect(result).to be_falsey
+    # end
+  end

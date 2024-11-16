@@ -83,7 +83,7 @@ require 'faker'
     user_id: 4,
     course_id: "ENGR 102",
     sign_in_time: Faker::Time.between(
-      from: DateTime.new(2024, 11, 13, 0, 0, 0), 
+      from: DateTime.new(2024, 11, 13, 0, 0, 0),
       to: DateTime.new(2024, 11, 13, 23, 59, 59)
     )
   )

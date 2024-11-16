@@ -58,7 +58,7 @@ class AttendancesController < ApplicationController
   def mark
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
-    name = user.full_name()
+    # name = user.full_name()
     course_number = params[:course_number]
 
     if user
@@ -270,7 +270,6 @@ class AttendancesController < ApplicationController
 
       # Add data rows
       attendances.each do |attendance|
-
         cst_signin_time = attendance.sign_in_time.in_time_zone(time_zone).strftime("%Y-%m-%d %H:%M:%S CST")
         csv << [ cst_signin_time, attendance.checked_in_names ]
       end

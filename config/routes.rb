@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "courses/destroy"
   root "welcome#index"
   get "welcome/index", to: "welcome#index", as: "welcome"
-  
+
   get "/users/:id", to: "users#show", as: "user"
   get "showTA/:id", to: "users#showTA", as: "ta"
   get "showAdmin/:id", to: "users#showAdmin", as: "admin"
