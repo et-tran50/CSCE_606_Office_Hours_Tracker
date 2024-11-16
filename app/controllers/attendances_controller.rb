@@ -222,7 +222,7 @@ class AttendancesController < ApplicationController
 
   def generate_student_attendance_csv_count
     # Shows how many students showed up at each hour
-    attendances = filter_attendances.joins(:user).where(users: { role: "student" })
+    attendances = filter_attendances.joins(:user).where(users: { role: ["student", nil, ""] })
 
     puts "number of attendance with students role" + attendances.count.to_s
 
