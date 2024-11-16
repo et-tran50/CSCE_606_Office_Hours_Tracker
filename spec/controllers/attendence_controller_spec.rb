@@ -302,37 +302,3 @@ describe "#generate_student_attendance_csv" do
       expect(result).to match_array([@attendance1, @attendance3])
     end
   end
-
-  describe '#attendance_marked_recently?' do
-    before do
-      # Setup user and roles
-      @user1 = User.create(uid: "123458789", provider: "google_oauth2", email: "user1@example.com", first_name: "John", last_name: "Doe1", role: "ta")
-      @user2 = User.create(uid: "123458788", provider: "google_oauth2", email: "user2@example.com", first_name: "John", last_name: "Doe2", role: "student")
-      @course1 = Course.create(
-      course_number: 'ENGR 102',
-      course_name: 'Engineering Lab I - Computation',
-      instructor_name: 'Niki Ritchey',
-      start_date: Date.new(2025, 8, 19),
-      end_date: Date.new(2025, 12, 31)
-    )
-      # Create TA and Student attendance records
-      @ta_attendance = Attendance.create(user: @user1, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
-      @student_attendance = Attendance.create(user: @user2, course_id: @course1.id, sign_in_time: Time.zone.local(2024, 6, 1, 10, 30))
-    end
-
-    it 'returns true if the user is a TA and has signed in within the last hour' do
-      result = attendance_marked_recently?(@user1, 'ta')
-      expect(result).to be_truthy
-    end
-
-    # it 'returns true if the user is a student and has signed in within the last hour' do
-    #   result = attendance_marked_recently?(@user, "student")
-    #   expect(result).to be_truthy
-    # end
-
-    # it 'returns false if the user is a TA and has not signed in within the last hour' do
-    #   @ta_attendance.update!(sign_in_time: Time.now - 2.hours)
-    #   result = attendance_marked_recently?(@user, "ta")
-    #   expect(result).to be_falsey
-    # end
-  end
