@@ -262,8 +262,19 @@ class AttendancesController < ApplicationController
 
   def generate_ta_attendance_csv_count
     # Shows how many TAs showed up at each hour
-    attendances = filter_attendances(model: TaAttendance)
     time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
+    start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
+    end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
+    
+    # Convert start_date and end_date to UTC based on CST timezone
+    start_time = start_date.beginning_of_day.in_time_zone(time_zone).utc
+    end_time = end_date.end_of_day.in_time_zone(time_zone).utc
+    
+    # Filter attendances within the adjusted time range
+    attendances =  filter_attendances(model: TaAttendance)
+    attendances = attendances.where("sign_in_time >= ? AND sign_in_time <= ?", start_time, end_time)
+
+    
 
     bom = "\uFEFF" # UTF-8 BOM
     csv_data = CSV.generate(headers: true, encoding: "UTF-8") do |csv|
