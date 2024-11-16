@@ -70,7 +70,7 @@ RSpec.describe AdminUploadsController, type: :controller do
         expect(flash[:notice]).to eq("Email test@example.com added successfully to Admin emails.")
 
         # Check that append_email was called with the correct arguments
-        expect(controller).to have_received(:append_email).with('test@example.com', 'admin', 'admin_emails.csv')
+        expect(controller).to have_received(:append_email).with('test@example.com', 'admin_emails.csv')
       end
     end
 

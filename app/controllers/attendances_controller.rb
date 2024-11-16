@@ -58,7 +58,7 @@ class AttendancesController < ApplicationController
   def mark
     email = params[:email]
     user = User.find_by(email: email)  # Assuming User is the model associated with the user
-    name = user.full_name()
+    # name = user.full_name()
     course_number = params[:course_number]
 
     if user
