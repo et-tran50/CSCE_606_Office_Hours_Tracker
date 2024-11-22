@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+
 html {
     height: 100%;
     margin: 0;
@@ -29,6 +31,10 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
 }
 
 body::before {
@@ -61,6 +67,7 @@ body::before {
     border: none;
     padding: 2%;
     width: 30%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: clamp(20px, 2.5vw, 30px);
     font-weight: bold;
     border-radius: 4px;
@@ -96,9 +103,9 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 45px;
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
     text-align: center;
     cursor: pointer;
 }
@@ -130,8 +137,8 @@ body::before {
 /* Styling for the top bar */
 .top-bar {
     width: 100%;
+    height: 10%;
     background-color: #500000;
-    padding: 3%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,10 +147,8 @@ body::before {
 .top-bar-logo {
     position: absolute;
     text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
-    height: auto;
-    width: 6%;
+    height: 10%;
+    width: clamp(70px, 5%, 90px);
 }
 
 .header-bar {
