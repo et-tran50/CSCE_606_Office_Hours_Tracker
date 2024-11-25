@@ -55,7 +55,7 @@ rails db:seed
 
 ## Running Application
 
-- Launch the rails application using the below command, the application will be hosted on http://localhost or http://127.0.0.0 with the default port as 3000
+- Launch the rails application using the below command, the application will be hosted on [http://localhost:3000](http://localhost:3000) or [http://127.0.0.1:3000](http://127.0.0.1:3000) 
 
 ```bash
 rails server
@@ -133,6 +133,13 @@ Execute below command to run cucumber scenarios
 ```bash
 bundle exec cucumber
 ```
+
+## Add First Admin Account
+**To log in as an admin, you need to register the email address you will use in this app as an admin account. This ensures that when logging in, the account is recognized as an admin, granting the necessary permissions to perform additional actions such as adding or deleting courses.**
+
+1. Open CSCE_606_Office_Hours_Tracker/lib/admin_email.csv
+2. Append your email at the end of the file
+
 ## Heroku Deployment
 
 **Login to Heroku through CLI**
