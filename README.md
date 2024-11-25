@@ -62,6 +62,61 @@ rails server
 ```
 
 ### Google OAuth Configuration
+#### Step 1: Create a New Project in Google Developer Console
+
+1. Go to the Google Developer Console: [https://console.cloud.google.com/](https://console.cloud.google.com/)
+2. Select or create a project for your application (e.g., `office-hours-tracker`).
+
+#### Step 2: Set Up OAuth Consent Screen
+
+1. In your project, navigate to **APIs & Services** > **OAuth consent screen**.
+2. Set the **User Type** to:
+   - **External** for any user, or
+   - **Internal** for specific accounts.
+3. Fill out the required information:
+   - App name
+   - User support email
+   - Developer contact information
+4. Click **Save and Continue**.
+
+#### Step 3: Create OAuth 2.0 Client ID
+
+1. In **Credentials**, click on **Create Credentials** and select **OAuth client ID**.
+2. Choose **Web application** as the application type.
+3. Provide a name for your OAuth client.
+4. Under **Authorized redirect URIs**, add the following URIs:
+   - `http://localhost:3000/auth/google_oauth2/callback`
+   - `http://127.0.0.1:3000/auth/google_oauth2/callback`
+5. Click **Create**.
+6. Save the **Client ID** and **Client Secret** provided.
+
+#### Step 4: Add Authorized Redirect URI for Heroku (For Production)
+
+1. In **Credentials**, click **Edit** for the OAuth 2.0 Client ID you created.
+2. Add your Heroku app's callback URL as an authorized redirect URI:
+   - `https://your-app-name.herokuapp.com/auth/google_oauth2/callback`
+3. Click **Save**.
+
+#### Step 5: Add OAuth ID and Secret to Rails Credentials
+
+1. Open your Rails credentials file by running the following command:
+   ```bash
+   EDITOR=nano rails credentials:edit
+The credentials file will open in the editor.
+
+Add your Google OAuth credentials to the file in the following format. Make sure to maintain the correct indentation and spacing as shown. There should be 2 spaces before client_id and client_secret, and a space after the colon:
+
+```bash
+   google:
+     client_id: your_client_id
+     client_secret: your_client_secret
+```
+
+Note: Replace your_client_id and your_client_secret with your own Google OAuth credentials. Do not include any quotes around the actual credentials.
+
+After adding your credentials, save the changes and exit the editor.
+
+Now, your Google OAuth credentials are securely stored in the Rails credentials file and your application will be able to use them for authentication. Make sure to keep your credentials safe and secret.
 
 ### Running Tests
 
