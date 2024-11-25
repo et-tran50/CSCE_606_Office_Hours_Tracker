@@ -3,13 +3,12 @@
 - [Deployed Application](https://office-hours-tracker-a63f1f6d64ad.herokuapp.com/)
 
 - [Code Climate Report](https://codeclimate.com/github/et-tran50/CSCE_606_Office_Hours_Tracker)
-  Note: This report captures the state at the end of Sprint 3 and will not be updated in real-time.
 
 - [Team Working Agreement](documentation/Fall2024/Team_Working_Agreement.md)
   
 # Goal
 
-- The app will allow students to mark their attendance. TAs can clock their shifts in the web application and mark their attendance. Admin can view Excel reports for payroll and analytics. Users can switch between student and admin roles depending on their class.
+- This app is designed to track office hour attendance. Students can mark their attendance, TAs can clock in their shifts and record their attendance, and Admins can download attendance data for both students and TAs. Additionally, Admins can use charts to quickly visualize the attendance distribution across different courses.
 
 # Project Set Up
 
@@ -63,7 +62,7 @@ rails server
 ```
 
 ## Google OAuth Configuration
-#### Step 1: Create a New Project in Google Developer Console
+### Step 1: Create a New Project in Google Developer Console
 
 1. Go to the Google Developer Console: [https://console.cloud.google.com/](https://console.cloud.google.com/)
 2. Select or create a project for your application (e.g., `office-hours-tracker`).
@@ -211,3 +210,20 @@ If you have not already done so, install the [Heroku CLI](https://devcenter.hero
     ```
 
 Your app is now successfully deployed to the production environment.
+
+# Contact Information
+It is a course project for Fall 2024 CSCE 606: Software Engineering. Below is the list of team members:
+
+- bryson.brown@tamu.edu
+
+- chwu0717@tamu.edu
+
+- et.tran50@tamu.edu
+
+- franklin.kao@tamu.edu
+
+- gourangitaware@tamu.edu
+
+- nazaro@tamu.edu
+
+- nmnguy29@tamu.edu
