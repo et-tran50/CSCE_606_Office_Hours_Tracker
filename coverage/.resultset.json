@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/course.rb": {
+      "/home/user/office-hours-tracker/app/models/course.rb": {
         "lines": [
           1,
           1,
@@ -9,14 +9,14 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/application_record.rb": {
+      "/home/user/office-hours-tracker/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/welcome_controller.rb": {
         "lines": [
           1,
           1,
@@ -28,7 +28,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
@@ -43,61 +43,61 @@
           null,
           null,
           null,
-          29,
+          31,
           null,
           null,
           1,
           null,
           null,
-          29,
+          31,
           null,
           null,
           1,
           null,
-          15,
+          17,
           0,
           null,
           null,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/application_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/admin_uploads_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/admin_uploads_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/attendance_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/attendance_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/attendances_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/attendances_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/courses_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/courses_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/home_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/home_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/sessions_controller.rb": {
         "lines": [
           1,
           1,
@@ -120,9 +120,9 @@
           null,
           null,
           10,
-          2,
-          8,
-          4,
+          3,
+          7,
+          3,
           null,
           4,
           null,
@@ -145,9 +145,9 @@
           null,
           1,
           10,
-          2,
-          8,
-          4,
+          3,
+          7,
+          3,
           null,
           4,
           null,
@@ -158,7 +158,7 @@
           null,
           null,
           1,
-          16,
+          14,
           null,
           null,
           1,
@@ -166,20 +166,20 @@
           null,
           null,
           1,
-          16,
+          14,
           null,
           null,
           1,
-          36,
-          36,
-          2964,
+          34,
+          34,
+          2952,
           null,
-          36,
+          34,
           null,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
+      "/home/user/office-hours-tracker/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -191,7 +191,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/users_controller.rb": {
         "lines": [
           1,
           1,
@@ -211,28 +211,28 @@
           null,
           null,
           1,
-          5,
-          5,
-          5,
+          4,
+          4,
+          4,
           null,
-          5,
+          4,
           0,
           null,
           null,
-          5,
+          4,
           null,
           null,
-          5,
+          4,
           0,
           0,
           null,
           null,
-          5,
+          4,
           null,
-          5,
-          5,
-          5,
-          5,
+          4,
+          4,
+          4,
+          4,
           null,
           null,
           null,
@@ -241,54 +241,54 @@
           null,
           null,
           1,
-          11,
+          12,
           null,
           null,
           1,
-          7,
-          0,
-          null,
-          null,
-          null,
-          1,
-          7,
-          null,
-          7,
-          2,
-          5,
-          5,
-          null,
+          8,
           0,
           null,
           null,
           null,
           1,
-          2,
+          8,
           null,
+          8,
+          4,
+          4,
+          4,
           null,
-          1,
-          5,
+          0,
           null,
-          null,
-          1,
-          2,
-          null,
-          null,
-          1,
-          5,
           null,
           null,
           1,
-          7,
-          7,
-          327,
+          4,
           null,
-          7,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          8,
+          8,
+          600,
+          null,
+          8,
           null,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/attendance.rb": {
+      "/home/user/office-hours-tracker/app/models/attendance.rb": {
         "lines": [
           1,
           1,
@@ -298,7 +298,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/attendances_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/attendances_controller.rb": {
         "lines": [
           1,
           1,
@@ -358,17 +358,14 @@
           null,
           null,
           1,
-          0,
-          0,
+          1,
+          1,
           null,
-          0,
+          1,
           null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
+          1,
+          1,
+          1,
           null,
           0,
           null,
@@ -379,6 +376,9 @@
           1,
           null,
           null,
+          1,
+          null,
+          null,
           null,
           null,
           0,
@@ -430,15 +430,35 @@
           null,
           null,
           1,
-          0,
-          0,
-          null,
-          0,
-          0,
+          1,
           0,
           null,
+          1,
+          1,
+          1,
           null,
           null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
           1,
           0,
           0,
@@ -448,23 +468,7 @@
           null,
           null,
           1,
-          0,
-          null,
-          0,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
+          2,
           null,
           null,
           1,
@@ -472,7 +476,7 @@
           null,
           null,
           1,
-          0,
+          2,
           null,
           null,
           1,
@@ -480,15 +484,11 @@
           null,
           null,
           1,
-          0,
+          2,
+          2,
+          284,
           null,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          0,
+          2,
           null,
           null,
           1,
@@ -646,7 +646,24 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/channel.rb": {
+      "/home/user/office-hours-tracker/app/models/ta_attendance.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/user/office-hours-tracker/app/channels/application_cable/channel.rb": {
         "lines": [
           0,
           0,
@@ -656,7 +673,7 @@
         "branches": {
         }
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
+      "/home/user/office-hours-tracker/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -666,7 +683,7 @@
         "branches": {
         }
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/admin_uploads_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/admin_uploads_controller.rb": {
         "lines": [
           null,
           null,
@@ -743,7 +760,7 @@
         "branches": {
         }
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/courses_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/courses_controller.rb": {
         "lines": [
           0,
           0,
@@ -809,7 +826,7 @@
         "branches": {
         }
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/jobs/application_job.rb": {
+      "/home/user/office-hours-tracker/app/jobs/application_job.rb": {
         "lines": [
           0,
           null,
@@ -822,29 +839,10 @@
         "branches": {
         }
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/mailers/application_mailer.rb": {
+      "/home/user/office-hours-tracker/app/mailers/application_mailer.rb": {
         "lines": [
           0,
           0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/ta_attendance.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          0,
-          null,
           0,
           0
         ],
@@ -852,47 +850,47 @@
         }
       }
     },
-    "timestamp": 1732555447
+    "timestamp": 1732558935
   },
   "RSpec": {
     "coverage": {
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/admin_uploads_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/admin_uploads_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/application_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/attendance_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/attendance_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/attendances_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/attendances_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/courses_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/courses_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/helpers/home_helper.rb": {
+      "/home/user/office-hours-tracker/app/helpers/home_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/admin_uploads_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/admin_uploads_controller.rb": {
         "lines": [
           null,
           null,
@@ -967,7 +965,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/application_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/application_controller.rb": {
         "lines": [
           1,
           1,
@@ -1000,7 +998,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/attendances_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/attendances_controller.rb": {
         "lines": [
           1,
           1,
@@ -1188,7 +1186,7 @@
           1,
           4,
           4,
-          168,
+          166,
           null,
           4,
           null,
@@ -1348,7 +1346,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/courses_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/courses_controller.rb": {
         "lines": [
           1,
           1,
@@ -1412,7 +1410,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/sessions_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/sessions_controller.rb": {
         "lines": [
           1,
           1,
@@ -1494,7 +1492,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/ta_attendance.rb": {
+      "/home/user/office-hours-tracker/app/models/ta_attendance.rb": {
         "lines": [
           1,
           1,
@@ -1511,14 +1509,14 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/application_record.rb": {
+      "/home/user/office-hours-tracker/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/users_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/users_controller.rb": {
         "lines": [
           1,
           1,
@@ -1608,14 +1606,14 @@
           1,
           2,
           2,
-          11,
+          10,
           null,
           2,
           null,
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/controllers/welcome_controller.rb": {
+      "/home/user/office-hours-tracker/app/controllers/welcome_controller.rb": {
         "lines": [
           1,
           1,
@@ -1627,7 +1625,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/channel.rb": {
+      "/home/user/office-hours-tracker/app/channels/application_cable/channel.rb": {
         "lines": [
           1,
           1,
@@ -1635,7 +1633,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/channels/application_cable/connection.rb": {
+      "/home/user/office-hours-tracker/app/channels/application_cable/connection.rb": {
         "lines": [
           1,
           1,
@@ -1643,7 +1641,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/jobs/application_job.rb": {
+      "/home/user/office-hours-tracker/app/jobs/application_job.rb": {
         "lines": [
           1,
           null,
@@ -1654,7 +1652,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/mailers/application_mailer.rb": {
+      "/home/user/office-hours-tracker/app/mailers/application_mailer.rb": {
         "lines": [
           1,
           1,
@@ -1662,7 +1660,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/user.rb": {
+      "/home/user/office-hours-tracker/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -1674,7 +1672,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/course.rb": {
+      "/home/user/office-hours-tracker/app/models/course.rb": {
         "lines": [
           1,
           1,
@@ -1682,7 +1680,7 @@
           null
         ]
       },
-      "/home/frankkao/Software_Engineering/test/CSCE_606_Office_Hours_Tracker/app/models/attendance.rb": {
+      "/home/user/office-hours-tracker/app/models/attendance.rb": {
         "lines": [
           1,
           1,
@@ -1693,6 +1691,6 @@
         ]
       }
     },
-    "timestamp": 1732555438
+    "timestamp": 1732558987
   }
 }

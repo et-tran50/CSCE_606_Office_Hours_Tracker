@@ -40,5 +40,5 @@ Feature: Admin Page
     Given I am logged in with name "name_admin" and email "admin@admin.com"
     And I am on the page "Home"
     And I click "Login with Google"
-    When I select "ENGR 102" from the "course_id" dropdown within the ".centered-table" section
+    When I select "ENGR 102" from the "course_id" dropdown
     Then the histogram should be updated with the correct attendance data
