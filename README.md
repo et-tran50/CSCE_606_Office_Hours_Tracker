@@ -11,30 +11,31 @@
 
 - The app will allow students to mark their attendance. TAs can clock their shifts in the web application and mark their attendance. Admin can view Excel reports for payroll and analytics. Users can switch between student and admin roles depending on their class.
 
-## Project Set Up
+# Project Set Up
 
-### Prerequisites
+## Prerequisites
 
-**Ruby version**: Ensure you have Ruby version 2.7.0 or higher installed. You can check the version of the ruby installed using the command `ruby -v`. The application used the `ruby 3.3.4` version.
+**1. Check your Ruby version**: The application used the `ruby 3.3.4` version. Ensure you have Ruby version 2.7.0 or higher installed. You can check the version of the ruby installed using the command `ruby -v`. If needed, follow [Ruby Install and Setup Instructions](https://www.ruby-lang.org/en/documentation/installation/) to install Ruby.
 
-**Rails version**: This project requires Rails 6.0 or higher. You can verify the rails version using the command `rails -v`. The application uses the `Rails 7.2.1` version.
+**2. Check your Rails version**: The application uses the `Rails 7.2.1` version. This project requires Rails 6.0 or higher. You can verify the rails version using the command `rails -v`. 
 
+**3. Check your Bundler version**: If bundle -v fails, run gem install bundler to install it. (Normally, though, installing the rails gem will also install bundler.)
 
-### Clone the repository
+## Clone the repository
 
 ```bash
 git clone https://github.com/et-tran50/CSCE_606_Office_Hours_Tracker.git
 cd CSCE_606_Office_Hours_Tracker
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 - Execute the below command to install all the required gems
 
 ```bash
 bundle install 
 ```
-### Database Setup
+## Database Setup
 - Create database
 
 ```bash
@@ -53,7 +54,7 @@ rails db:migrate
 rails db:seed
 ```
 
-### Running Application
+## Running Application
 
 - Launch the rails application using the below command, the application will be hosted on http://localhost or http://127.0.0.0 with the default port as 3000
 
@@ -61,13 +62,13 @@ rails db:seed
 rails server
 ```
 
-### Google OAuth Configuration
+## Google OAuth Configuration
 #### Step 1: Create a New Project in Google Developer Console
 
 1. Go to the Google Developer Console: [https://console.cloud.google.com/](https://console.cloud.google.com/)
 2. Select or create a project for your application (e.g., `office-hours-tracker`).
 
-#### Step 2: Set Up OAuth Consent Screen
+### Step 2: Set Up OAuth Consent Screen
 
 1. In your project, navigate to **APIs & Services** > **OAuth consent screen**.
 2. Set the **User Type** to:
@@ -79,7 +80,7 @@ rails server
    - Developer contact information
 4. Click **Save and Continue**.
 
-#### Step 3: Create OAuth 2.0 Client ID
+### Step 3: Create OAuth 2.0 Client ID
 
 1. In **Credentials**, click on **Create Credentials** and select **OAuth client ID**.
 2. Choose **Web application** as the application type.
@@ -90,14 +91,14 @@ rails server
 5. Click **Create**.
 6. Save the **Client ID** and **Client Secret** provided.
 
-#### Step 4: Add Authorized Redirect URI for Heroku (For Production)
+### Step 4: Add Authorized Redirect URI for Heroku (For Production)
 
 1. In **Credentials**, click **Edit** for the OAuth 2.0 Client ID you created.
 2. Add your Heroku app's callback URL as an authorized redirect URI:
    - `https://your-app-name.herokuapp.com/auth/google_oauth2/callback`
 3. Click **Save**.
 
-#### Step 5: Add OAuth ID and Secret to Rails Credentials
+### Step 5: Add OAuth ID and Secret to Rails Credentials
 
 1. Open your Rails credentials file by running the following command:
    ```bash
@@ -118,7 +119,7 @@ After adding your credentials, save the changes and exit the editor.
 
 Now, your Google OAuth credentials are securely stored in the Rails credentials file and your application will be able to use them for authentication. Make sure to keep your credentials safe and secret.
 
-### Running Tests
+## Running Tests
 
 **NOTE**: Google OAuth Configuration is required for the application to start up smoothly and run tests.
 
@@ -133,7 +134,7 @@ Execute below command to run cucumber scenarios
 ```bash
 bundle exec cucumber
 ```
-### Heroku Deployment
+## Heroku Deployment
 
 **Login to Heroku through CLI**
 If you have not already done so, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli).
