@@ -199,6 +199,7 @@ If you have not already done so, install the [Heroku CLI](https://devcenter.hero
     heroku run rails db:migrate
     ```
 11. Seed the Database
+- Note: Becuase of the role classification in the app, there will be two seeding steps. Please refer to the seed.rb for more details.
     ```bash
     heroku run rails db:seed
     ```

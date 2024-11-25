@@ -6,7 +6,7 @@ Feature: TA Page
     Given I am logged in with name "name_ta" and email "tata@tata.com"
     Given I am on the page "Home"
     When I click "Login with Google"
-    Then I should see "Howdy TA, name_ta!"
+    Then I should see "Howdy, name_ta!"
 
   Scenario: TA logs out
     Given I am on the page "Home"

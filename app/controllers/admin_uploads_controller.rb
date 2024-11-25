@@ -8,7 +8,6 @@ class AdminUploadsController < ApplicationController
     def upload_emails
         email_type = params[:email_type]
         target_file = email_type == "admin" ? "admin_emails.csv" : "ta_emails.csv"
-
         if params[:email].present?
           email = params[:email].strip
           if valid_email?(email)
@@ -39,13 +38,24 @@ class AdminUploadsController < ApplicationController
 
 
     def append_email(email, target_file)
-      CSV.open(Rails.root.join("lib", target_file), "a+", headers: true) do |csv|
-        csv << [ email ]  # Wrap email in an array to create a new row
+
+      path = Rails.root.join("lib", target_file)
+
+      # see if the last line of file contains the newline element
+      File.open(path, "a") do |file|
+        file.puts("") unless file.size.zero? || File.read(path).end_with?("\n")
+      end
+
+      # Open the file in append mode
+      File.open(path, "a+") do |file|
+        # Append the email followed by a comma and newline
+        file.puts("#{email},")
       end
     end
 
 
     def overwrite_emails(file, target_file)
+      puts file
       emails = CSV.read(file.path).flatten
       CSV.open(Rails.root.join("lib", target_file), "w") do |csv|
         emails.each do |email|
@@ -55,6 +65,7 @@ class AdminUploadsController < ApplicationController
     end
 
     def valid_csv_file?(file)
-      file.content_type == "text/csv" || file.content_type == "application/vnd.ms-excel"
+      #file.content_type == "text/csv" || file.content_type == "application/vnd.ms-excel"
+      file[:content_type] == "text/csv" || file[:content_type] == "application/vnd.ms-excel"
     end
 end

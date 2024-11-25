@@ -88,7 +88,7 @@ When("I set the end date to {string}") do |date|
 end
 
 Then("I should receive a CSV file") do
-  expect(page.response_headers['Content-Type']).to eq 'text/csv'
+  expect(page.response_headers['Content-Type']).to eq 'text/csv; charset=utf-8'
 end
 
 Then("the CSV file should contain the correct attendance data") do
@@ -108,8 +108,10 @@ Then("the CSV file should contain the correct attendance data") do
   # verify the time slots
   time_slots = csv['Time Slot'].uniq
   expected_time_slots = [
-    '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '12:00 - 13:00',
-    '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00'
+    '09:00 - 10:00 CST', '10:00 - 11:00 CST', '11:00 - 12:00 CST', '12:00 - 13:00 CST',
+    '13:00 - 14:00 CST', '14:00 - 15:00 CST', '15:00 - 16:00 CST', '16:00 - 17:00 CST',
+    '17:00 - 18:00 CST', '18:00 - 19:00 CST', '19:00 - 20:00 CST', '20:00 - 21:00 CST',
+    '21:00 - 22:00 CST'
   ]
   expect(time_slots).to match_array(expected_time_slots)
 
