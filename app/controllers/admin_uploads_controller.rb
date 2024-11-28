@@ -56,16 +56,22 @@ class AdminUploadsController < ApplicationController
 
     def overwrite_emails(file, target_file)
       puts file
-      emails = CSV.read(file.path).flatten
-      CSV.open(Rails.root.join("lib", target_file), "w") do |csv|
+      emails = CSV.read(file.path).flatten.map { |email| email.to_s.strip }.reject(&:empty?) # Convert nil to string and strip
+      # CSV.open(Rails.root.join("lib", target_file), "w") do |csv|
+      #   emails.each do |email|
+      #     csv << ["#{email},"]  # Add a comma after each email
+      #   end
+      # end
+
+      File.open(Rails.root.join("lib", target_file), "w") do |file|
         emails.each do |email|
-          csv << [ email ]  # Write each email as a new row
+          file.puts "#{email},"  # Add a comma after each email
         end
       end
     end
 
     def valid_csv_file?(file)
-      #file.content_type == "text/csv" || file.content_type == "application/vnd.ms-excel"
-      file[:content_type] == "text/csv" || file[:content_type] == "application/vnd.ms-excel"
+      file.content_type == "text/csv" || file.content_type == "application/vnd.ms-excel"
+      #file[:content_type] == "text/csv" || file[:content_type] == "application/vnd.ms-excel"
     end
 end
