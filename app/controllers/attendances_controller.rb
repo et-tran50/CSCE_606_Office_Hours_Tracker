@@ -242,19 +242,25 @@ class AttendancesController < ApplicationController
       (start_date..end_date).each do |date|
         # Loop through each hour from 9:00 AM to 9:00 PM (21:00)
         (9..21).each do |hour|
-          start_time = date.to_time.change(hour: hour).utc
+          start_time = time_zone.local(date.year, date.month, date.day, hour)
           end_time = start_time + 1.hour
+
+          utc_start_time = start_time.utc
+          utc_end_time = end_time.utc
 
           # start_time = time_zone.parse("#{date} #{hour}:00")
           # end_time = start_time + 1.hour
           # Count the number of students in that time range
-          count = attendances.where("attendances.sign_in_time >= ? AND attendances.sign_in_time < ?", start_time, end_time).count
-
-          cst_start_time = start_time.in_time_zone(time_zone)
-          cst_end_time = end_time.in_time_zone(time_zone)
+          count = attendances.where(
+            "attendances.sign_in_time >= ? AND attendances.sign_in_time < ?",
+            utc_start_time,
+            utc_end_time
+          ).count
 
           # Add a row to the CSV for each time slot
-          csv << [ date.strftime("%Y-%m-%d"), "#{cst_start_time.strftime('%H:%M')} - #{cst_end_time.strftime('%H:%M')} CST", count ]
+          time_slot = "#{start_time.strftime('%H:%M')} - #{end_time.strftime('%H:%M')} CST"
+
+          csv << [ date.strftime("%Y-%m-%d"), time_slot, count ]
         end
       end
     end
@@ -265,16 +271,16 @@ class AttendancesController < ApplicationController
     time_zone = ActiveSupport::TimeZone["Central Time (US & Canada)"]
     start_date = params[:start_date].present? ? params[:start_date].to_date : Date.today
     end_date = params[:end_date].present? ? params[:end_date].to_date : Date.today
-    
+
     # Convert start_date and end_date to UTC based on CST timezone
     start_time = start_date.beginning_of_day.in_time_zone(time_zone).utc
     end_time = end_date.end_of_day.in_time_zone(time_zone).utc
-    
+
     # Filter attendances within the adjusted time range
     attendances =  filter_attendances(model: TaAttendance)
     attendances = attendances.where("sign_in_time >= ? AND sign_in_time <= ?", start_time, end_time)
 
-    
+
 
     bom = "\uFEFF" # UTF-8 BOM
     csv_data = CSV.generate(headers: true, encoding: "UTF-8") do |csv|

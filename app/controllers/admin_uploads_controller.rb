@@ -38,7 +38,6 @@ class AdminUploadsController < ApplicationController
 
 
     def append_email(email, target_file)
-
       path = Rails.root.join("lib", target_file)
 
       # see if the last line of file contains the newline element
@@ -72,6 +71,6 @@ class AdminUploadsController < ApplicationController
 
     def valid_csv_file?(file)
       file.content_type == "text/csv" || file.content_type == "application/vnd.ms-excel"
-      #file[:content_type] == "text/csv" || file[:content_type] == "application/vnd.ms-excel"
+      # file[:content_type] == "text/csv" || file[:content_type] == "application/vnd.ms-excel"
     end
 end

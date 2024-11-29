@@ -288,7 +288,7 @@ describe "#generate_student_attendance_csv" do
 
       result = hourly_sign_in_count(@course1, start_date, end_date, hour_start, hour_end)
 
-      expect(result).to match_array([@attendance1, @attendance2])
+      expect(result).to match_array([ @attendance1, @attendance2 ])
     end
 
      it 'returns attendances within the time range for all courses' do
@@ -299,6 +299,6 @@ describe "#generate_student_attendance_csv" do
 
       result = hourly_sign_in_count("All Courses", start_date, end_date, hour_start, hour_end)
 
-      expect(result).to match_array([@attendance1, @attendance3])
+      expect(result).to match_array([ @attendance1, @attendance3 ])
     end
   end
