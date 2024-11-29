@@ -240,8 +240,8 @@ class AttendancesController < ApplicationController
 
       # Loop through each day
       (start_date..end_date).each do |date|
-        # Loop through each hour from 9:00 AM to 9:00 PM (21:00)
-        (9..21).each do |hour|
+        # Loop through each hour from 8:00 AM to 8:00 PM (20:00)
+        (8..20).each do |hour|
           start_time = time_zone.local(date.year, date.month, date.day, hour)
           end_time = start_time + 1.hour
 
