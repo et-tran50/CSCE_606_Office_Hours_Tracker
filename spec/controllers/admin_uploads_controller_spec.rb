@@ -43,10 +43,25 @@ RSpec.describe AdminUploadsController, type: :controller do
     session[:user_id] = @user.id
   end
 
+  let(:original_admin_file) { Rails.root.join('lib', 'admin_emails.csv') }
+  let(:backup_admin_file) { Rails.root.join('lib', 'admin_emails_backup.csv') }
+  let(:original_ta_file) { Rails.root.join('lib', 'ta_emails.csv') }
+  let(:backup_ta_file) { Rails.root.join('lib', 'ta_emails_backup.csv') }
   let(:temp_admin_file) { Rails.root.join('tmp', 'temp_admin_emails.csv') }
   let(:temp_ta_file) { Rails.root.join('tmp', 'temp_ta_emails.csv') }
 
   before do
+    # Ensure temp files do not exist
+    FileUtils.rm_f(temp_admin_file)
+    FileUtils.rm_f(temp_ta_file)
+
+    # Backup the original admin emails file
+    if File.exist?(original_admin_file)
+        FileUtils.cp(original_admin_file, backup_admin_file)
+    end
+    if File.exist?(original_ta_file)
+        FileUtils.cp(original_ta_file, backup_ta_file)
+    end
     # Ensure temp files do not exist
     FileUtils.rm_f(temp_admin_file)
     FileUtils.rm_f(temp_ta_file)
@@ -56,6 +71,14 @@ RSpec.describe AdminUploadsController, type: :controller do
     # Clean up temp files after tests
     FileUtils.rm_f(temp_admin_file)
     FileUtils.rm_f(temp_ta_file)
+
+    # Restore the original admin emails file
+    if File.exist?(backup_admin_file)
+        FileUtils.mv(backup_admin_file, original_admin_file)
+    end
+    if File.exist?(backup_ta_file)
+        FileUtils.mv(backup_ta_file, original_ta_file)
+    end
   end
 
     context 'when a valid email is provided' do
@@ -86,15 +109,17 @@ RSpec.describe AdminUploadsController, type: :controller do
     context 'when a valid CSV file is uploaded' do
       it 'overwrites the emails in the target file and sets a success flash message' do
         # Create a temporary CSV file
-        csv_data = "email\nvalid1@example.com\nvalid2@example.com"
+        csv_data = "valid1@example.com,\nvalid2@example.com,"
         temp_file = Tempfile.new([ 'temp', '.csv' ])
         temp_file.write(csv_data)
         temp_file.rewind
 
-        post :upload_emails, params: { file: { io: temp_file, filename: 'temp.csv', content_type: 'text/csv' }, email_type: 'ta' }
+        uploaded_file = Rack::Test::UploadedFile.new(temp_file.path, 'text/csv')
+
+        post :upload_emails, params: { file: uploaded_file, email_type: 'ta' }
 
         expect(flash[:notice]).to eq("Email file uploaded successfully to Ta emails.")
-        emails = CSV.read(temp_ta_file, headers: true).map(&:first)
+        emails = CSV.read(original_ta_file, headers: false).flat_map(&:compact).reject(&:blank?)
         expect(emails).to include('valid1@example.com', 'valid2@example.com')
 
         temp_file.close
@@ -109,10 +134,12 @@ RSpec.describe AdminUploadsController, type: :controller do
         temp_file.write("This is a test file.")
         temp_file.rewind
 
-        post :upload_emails, params: { file: { io: temp_file, filename: 'temp.txt', content_type: 'text/plain' }, email_type: 'ta' }
+        uploaded_file = Rack::Test::UploadedFile.new(temp_file.path, 'text/txt')
+
+        post :upload_emails, params: { file: uploaded_file, email_type: 'ta' }
 
         expect(flash[:alert]).to eq("Invalid file format. Please upload a CSV file.")
-        expect(File.exist?(temp_ta_file)).to be false
+        expect(File.exist?(original_ta_file)).to be true
 
         temp_file.close
         temp_file.unlink  # Deletes the temporary file
@@ -129,30 +156,30 @@ RSpec.describe AdminUploadsController, type: :controller do
     end
   end
 
-describe '#overwrite_emails' do
-  let(:controller) { AdminUploadsController.new }
-  let(:temp_file) { Tempfile.new([ 'emails', '.csv' ]) }
-  let(:temp_target_directory) { Dir.mktmpdir }
-  let(:target_file) { File.join(temp_target_directory, 'admin_emails.csv') }
+  describe '#overwrite_emails' do
+    let(:controller) { AdminUploadsController.new }
+    let(:temp_file) { Tempfile.new([ 'emails', '.csv' ]) }
+    let(:temp_target_directory) { Dir.mktmpdir }
+    let(:target_file) { File.join(temp_target_directory, 'admin_emails.csv') }
 
-  after do
-    temp_file.close
-    temp_file.unlink
-    FileUtils.rm_rf(temp_target_directory) # Remove the temporary directory and its contents
+    after do
+      temp_file.close
+      temp_file.unlink
+      FileUtils.rm_rf(temp_target_directory) # Remove the temporary directory and its contents
+    end
+
+    it 'overwrites the target file with emails from the provided CSV file' do
+      # Prepare a temporary CSV file with email data
+      csv_data = "email\nnew1@example.com\nnew2@example.com"
+      temp_file.write(csv_data)
+      temp_file.rewind
+
+      # Call the method directly
+      controller.send(:overwrite_emails, temp_file, target_file)
+
+      # Verify that the target file contains the new emails only
+      emails = CSV.read(target_file, headers: true).map { |row| row['email'] }
+      expect(emails).to match_array([ 'new1@example.com', 'new2@example.com' ])
+    end
   end
-
-  it 'overwrites the target file with emails from the provided CSV file' do
-    # Prepare a temporary CSV file with email data
-    csv_data = "email\nnew1@example.com\nnew2@example.com"
-    temp_file.write(csv_data)
-    temp_file.rewind
-
-    # Call the method directly
-    controller.send(:overwrite_emails, temp_file, target_file)
-
-    # Verify that the target file contains the new emails only
-    emails = CSV.read(target_file, headers: true).map { |row| row['email'] }
-    expect(emails).to match_array([ 'new1@example.com', 'new2@example.com' ])
-  end
-end
 end
